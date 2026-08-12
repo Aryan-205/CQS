@@ -1,0 +1,116 @@
+[
+  {
+    "id": 1,
+    "name": "Uncategorized",
+    "slug": "uncategorized",
+    "count": 6
+  },
+  {
+    "id": 2,
+    "name": "App Modernization",
+    "slug": "app-modernization",
+    "count": 9
+  },
+  {
+    "id": 3,
+    "name": "Dynamics 365 CRM Applications",
+    "slug": "dynamics-365-crm-applications",
+    "count": 8
+  },
+  {
+    "id": 4,
+    "name": "Cloud Migration and Modernization",
+    "slug": "cloud-migration-and-modernization",
+    "count": 9
+  },
+  {
+    "id": 6,
+    "name": "Data Analytics",
+    "slug": "data-analytics",
+    "count": 10
+  },
+  {
+    "id": 7,
+    "name": "Microsoft Modern Workplace",
+    "slug": "modern-workplace",
+    "count": 10
+  },
+  {
+    "id": 8,
+    "name": "Power Platform and RPA",
+    "slug": "power-platform-and-rpa",
+    "count": 10
+  },
+  {
+    "id": 9,
+    "name": "Salesforce Services",
+    "slug": "salesforce-services",
+    "count": 10
+  },
+  {
+    "id": 10,
+    "name": "SAP",
+    "slug": "sap",
+    "count": 10
+  },
+  {
+    "id": 11,
+    "name": "ServiceNow Services",
+    "slug": "servicenow-services",
+    "count": 10
+  },
+  {
+    "id": 12,
+    "name": "Dynamics 365 ERP Applications",
+    "slug": "dynamics-365-erp-applications",
+    "count": 8
+  },
+  {
+    "id": 13,
+    "name": "ghgemissions",
+    "slug": "ghgemissions",
+    "count": 5
+  },
+  {
+    "id": 14,
+    "name": "Business Intelligence",
+    "slug": "business-intelligence",
+    "count": 10
+  },
+  {
+    "id": 15,
+    "name": "Dynamics 365 Finance & Operations",
+    "slug": "dynamics-365-finance-operations",
+    "count": 10
+  },
+  {
+    "id": 16,
+    "name": "Blogs",
+    "slug": "blogs",
+    "count": 26
+  },
+  {
+    "id": 17,
+    "name": "Commercial",
+    "slug": "commercial",
+    "count": 15
+  },
+  {
+    "id": 18,
+    "name": "Government",
+    "slug": "government",
+    "count": 15
+  },
+  {
+    "id": 19,
+    "name": "Copilot and Generative AI",
+    "slug": "copilot-and-generative-ai",
+    "count": 7
+  },
+  {
+    "id": 20,
+    "name": "Cyber Security",
+    "slug": "cyber-security",
+    "count": 4
+  }
+]

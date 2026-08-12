@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   CompQsoft design tokens
+   White is the page. Brand primaries are fills carrying black text, never
+   text on white. Black is a contained element only — never a page ground.
+   See CLAUDE.md for the full rationale and the contrast table.
+--------------------------------------------------------------------------- */
+
+@theme {
+  /* -- Grounds ------------------------------------------------------------ */
+  --color-bg: #ffffff;
+  --color-tint-blue: #f2fafe;
+  --color-tint-red: #fef5f5;
+  --color-tint-neutral: #f7f8f9;
+
+  /* -- Text on white or tint ---------------------------------------------- */
+  --color-ink: #0a0a0a; /* 19.6:1 */
+  --color-body: #3a3f45; /* 10.6:1 */
+  --color-muted: #63696f; /*  5.6:1 */
+  --color-line: #e3e6e9;
+
+  /* -- Brand as text: darkened siblings, minimum change to clear AA ------- */
+  --color-link: #017aad; /*  4.7:1 */
+  --color-link-hover: #015e86;
+  --color-red-text: #d93a36; /*  4.6:1 */
+
+  /* -- Brand at full saturation: fills, rules, markers, icons.
+        Always carries --color-ink text, never white. --------------------- */
+  --color-brand-blue: #01a7e5; /* ink on it: 7.7:1 */
+  --color-brand-red: #ee4743; /* ink on it: 5.6:1 */
+
+  /* -- Black: hero media card, primary buttons, footer. Never a ground. --- */
+  --color-black: #000000;
+  --color-on-black: #ffffff; /* 21:1  */
+  --color-on-black-mute: #a6acb2; /*  9.2:1 */
+
+  /* -- Type --------------------------------------------------------------- */
+  --font-sans: var(--font-brand-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-brand-mono), ui-monospace, monospace;
+
+  /* Weight ladder is 400/500 only — the brand specifies Regular and Medium.
+     Hierarchy comes from size and color, never from bold. */
+  --text-display: clamp(2.5rem, 6vw, 4rem); /* 40 → 64 */
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 400;
+
+  --text-h1: clamp(2rem, 4.5vw, 2.875rem); /* 32 → 46 */
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h1--font-weight: 500;
+
+  --text-h2: clamp(1.625rem, 3.2vw, 2.125rem); /* 26 → 34 */
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 500;
+
+  --text-h3: 1.5rem; /* 24 */
+  --text-h3--line-height: 1.3;
+  --text-h3--font-weight: 500;
+
+  --text-h4: 1.1875rem; /* 19 */
+  --text-h4--line-height: 1.4;
+  --text-h4--font-weight: 500;
+
+  /* Body sizes override Tailwind's native scale names so `text-body` stays
+     free for the text *color*. text-lg = lead paragraphs, text-base = default. */
+  --text-lg: 1.1875rem; /* 19 */
+  --text-lg--line-height: 1.7;
+
+  --text-base: 1.0625rem; /* 17 */
+  --text-base--line-height: 1.75;
+
+  --text-sm: 0.9375rem; /* 15 */
+  --text-sm--line-height: 1.6;
+
+  --text-eyebrow: 0.75rem; /* 12 */
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.12em;
+  --text-eyebrow--font-weight: 500;
+
+  --text-code: 0.875rem; /* 14 */
+  --text-code--line-height: 1.5;
+
+  --text-stat: clamp(2.75rem, 5vw, 4rem); /* 44 → 64 */
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.02em;
+  --text-stat--font-weight: 400;
+
+  --text-stat-label: 0.8125rem; /* 13 */
+  --text-stat-label--line-height: 1.4;
+  --text-stat-label--letter-spacing: 0.1em;
+  --text-stat-label--font-weight: 500;
+
+  /* -- Shape -------------------------------------------------------------- */
+  --radius-pill: 9999px;
+  --radius-card: 12px;
+
+  /* -- Motion: microinteractions only ------------------------------------- */
+  --ease-brand: cubic-bezier(0.2, 0, 0, 1);
+
+  /* -- Elevation: borders carry structure; this is for floating layers ---- */
+  --shadow-layer: 0 8px 24px -8px rgb(0 0 0 / 0.16);
+
+  /* -- Shell -------------------------------------------------------------- */
+  --container-shell: 80rem; /* 1280px */
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings default to ink; size comes from utilities, not from the tag. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-ink);
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-blue);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-blue);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Stat counters and any figure that must not jitter while animating. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  /* Prose measure. Body copy caps here — the site is a reading site. */
+  .measure {
+    max-width: 70ch;
+  }
+
+  /* Page shell: 1280px, 24px gutters, 16px on mobile. */
+  .shell {
+    margin-inline: auto;
+    max-width: var(--container-shell);
+    padding-inline: 1rem;
+  }
+
+  @media (width >= 40rem) {
+    .shell {
+      padding-inline: 1.5rem;
+    }
+  }
+}
+
+/* Motion confirms an action; it never introduces content. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

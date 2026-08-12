@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Powerful Out of the Box Reporting for Dynamics 365 Business Central",
+    "url": "/webinar/powerful-out-of-the-box-reporting-for-dynamics-365-business-central",
+    "slug": "powerful-out-of-the-box-reporting-for-dynamics-365-business-central",
+    "published": "2024-12-24",
+    "modified": "2024-12-24",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/12/Untitled-design.png",
+      "alt": "Business Central"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "In this session, we will showcase how Business Central Insights empowers users to bridge the gap between standard and custom reporting, offering effortless integration, visualization, and security – all without coding."
+      },
+      {
+        "type": "heading",
+        "text": "What you will learn:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "400+ Pre-Built Reports, 1,000+ Metrics: Access ready-made insights and KPIs such as on-time delivery and sell-through rate to streamline supply chain performance."
+          },
+          {
+            "text": "Advanced Visualization: Cube Reports offer flexible row/column selections for deep user interaction."
+          },
+          {
+            "text": "No-Code Extensions for Custom Fields: Quickly add custom data fields with our Power BI Table Extensions."
+          },
+          {
+            "text": "Legacy Data Integration: Integrate historical data for year-over-year analysis."
+          },
+          {
+            "text": "High-Performance Analytics: Refresh 20M+ rows in under 20 minutes."
+          }
+        ]
+      }
+    ]
+  }
+]

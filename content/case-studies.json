@@ -1,0 +1,1341 @@
+[
+  {
+    "title": "America’s leading real estate and home services company uses Dynamics 365 Finance to centralize operations and streamline Financial Processes",
+    "url": "/case-study/dynamics-365-finance-case-study",
+    "slug": "dynamics-365-finance-case-study",
+    "published": "2025-01-19",
+    "modified": "2025-01-19",
+    "category": "Uncategorized",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2025/01/1-1.png",
+      "alt": "Dynamics 365 Finance Case Study"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "**America’s leading real estate and home services company**."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenge"
+      },
+      {
+        "type": "para",
+        "text": "America’s leading real estate and home services company faced operational inefficiencies and sought to centralize its processes and financial management on a unified platform."
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Disjointed ERP System** : The company’s existing ERP system lacked centralization. Reports were generated across multiple servers, requiring manual compilation."
+          },
+          {
+            "text": "**Need for Centralization** : The company struggled with decentralizing business processes and operations."
+          },
+          {
+            "text": "**Inefficient Financial Management** : Smoother operations required streamlining financial records and improving supply chain efficiencies."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solutions:"
+      },
+      {
+        "type": "para",
+        "text": "**CompQsoft implemented Microsoft Dynamics 365 Finance and Supply Chain Management** to address these challenges. Key actions included:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**System Integration and Centralization**",
+            "children": [
+              "Conceptualized a tailored architecture to align with business needs.",
+              "Planned a phased development path for business apps."
+            ]
+          },
+          {
+            "text": "**Real-Time Data Access**",
+            "children": [
+              "Integrated **Power BI** for real-time data insights, empowering the company to be agile and make data-driven decisions to minimize losses."
+            ]
+          },
+          {
+            "text": "**CRM Integration**",
+            "children": [
+              "PowerApps, Power BI, Flow, SharePoint Lists, Dynamics CRM, and Outlook Online enabled seamless app development and integration."
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Increased Efficiency** : Streamlined operations, particularly in payables and payments, resulted in improved process efficiency."
+          },
+          {
+            "text": "**Enhanced Visibility** : Real-time data access enabled better financial and operational performance visibility, improving decision-making capabilities."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "A family-owned international construction company specializing in construction and resources transforms Collaboration and Operational Excellence with Microsoft 365 and Dynamics CRM",
+    "url": "/case-study/dynamics-crm-case-study",
+    "slug": "dynamics-crm-case-study",
+    "published": "2025-01-19",
+    "modified": "2025-01-19",
+    "category": "Uncategorized",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2025/01/Untitled-design-2-1.png",
+      "alt": "Dynamics CRM Case Study"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "A family-owned international construction company."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenge"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Disconnected Systems** : Each business area maintained independent project areas, creating silos."
+          },
+          {
+            "text": "**Inefficient Collaboration** : Lack of transparency and standardized processes hindered teamwork."
+          },
+          {
+            "text": "**Cultural Shift** : Needed employees to adopt new digital tools and collaborative habits."
+          },
+          {
+            "text": "**Legacy Systems** : Outdated IT systems required modernization to meet business needs."
+          },
+          {
+            "text": "**Data Redundancy** : Files and projects were duplicated across departments."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solutions:"
+      },
+      {
+        "type": "para",
+        "text": "With **CompQsoft’s expertise** , the company unlocked its digital potential by leveraging **Microsoft 365, Dynamics CRM, and Azure** :"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Workshops and Architecture Design**",
+            "children": [
+              "Conceptualized a tailored architecture to align with business needs.",
+              "Planned a phased development path for business apps."
+            ]
+          },
+          {
+            "text": "**Dedicated Business Apps**",
+            "children": [
+              "**Construction Defects App** : Simplified defect recording, classification, and tracking with smartphone picture uploads.",
+              "**Dynamic Storage App** : Created SharePoint site structures dynamically to store project documents centrally based on CRM project entries.",
+              "**Building Documentation App** : Enhanced communication with clients by documenting and sharing project progress."
+            ]
+          },
+          {
+            "text": "**Microsoft Tools Utilized**",
+            "children": [
+              "PowerApps, Power BI, Flow, SharePoint Lists, Dynamics CRM, and Outlook Online enabled seamless app development and integration."
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Improved Collaboration** : Cross-team collaboration became more efficient and streamlined."
+          },
+          {
+            "text": "**Time Savings** : Automated workflows reduced manual effort and duplication."
+          },
+          {
+            "text": "**Enhanced Transparency** : Standardized processes and visualized project progress improved clarity across teams."
+          },
+          {
+            "text": "**Higher Quality Workflows** : Consistent processes ensured accuracy and reliability in business operations."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Empowering Decision-Making with Tableau to Power BI Migration for a Leading Transportation Company",
+    "url": "/case-study/tableau-to-power-bi",
+    "slug": "tableau-to-power-bi",
+    "published": "2025-01-19",
+    "modified": "2025-01-19",
+    "category": "Uncategorized",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2025/01/Untitled-design-1.png",
+      "alt": "Tableau to Power BI"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "A leading transportation and logistics company."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenge"
+      },
+      {
+        "type": "para",
+        "text": "A leading transportation and logistics company relied on Tableau for enterprise reporting but faced growing challenges:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Escalating Costs** : Tableau's licensing fees have become increasingly cost-prohibitive."
+          },
+          {
+            "text": "**Lack of Flexibility** : The company needed organization-specific custom visuals but was limited by Tableau's proprietary structure."
+          },
+          {
+            "text": "**Inaccurate Insights** : Inadequate data accuracy and outdated reports hindered business performance."
+          },
+          {
+            "text": "**Data Inefficiencies** : Legacy systems caused inefficiencies in analytics and real-time reporting."
+          },
+          {
+            "text": "**Security Concerns** : Limited security controls increased the risk of data vulnerabilities."
+          }
+        ]
+      },
+      {
+        "type": "para",
+        "text": "The company required a cost-effective, flexible, and robust analytics solution to overcome these challenges."
+      },
+      {
+        "type": "heading",
+        "text": "Solutions:"
+      },
+      {
+        "type": "para",
+        "text": "To address these issues, the company partnered with our data and analytics team to migrate from Tableau to Power BI:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Comprehensive Migration** : Successfully migrated 45 reports and the entire dataset from Tableau to Power BI without performance degradation."
+          },
+          {
+            "text": "**Proof of Concept (PoC)** : Conducted a thorough PoC before completing the migration to ensure feasibility and effectiveness."
+          },
+          {
+            "text": "**Optimized Reporting** : Rebuilt reports using DAX formulas for enhanced accuracy and functionality."
+          },
+          {
+            "text": "**Rigorous Testing** : Addressed compatibility and quality assurance concerns with detailed testing protocols."
+          },
+          {
+            "text": "**Real-Time Insights** : Enabled real-time access to actionable insights, improving decision-making across the organization."
+          },
+          {
+            "text": "**Empowered Teams** : Provided hands-on training for the company's staff to ensure seamless adoption of Power BI."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Cost Savings** : Achieved a **40% reduction in licensing costs** , significantly improving ROI."
+          },
+          {
+            "text": "**Enhanced Reporting** : Improved accuracy and efficiency with real-time reporting and analytics."
+          },
+          {
+            "text": "**Flexibility and Scalability** : Power BI's custom visuals and robust capabilities allowed the organization to tailor insights to their specific needs."
+          },
+          {
+            "text": "**Increased Security** : Strengthened data protection with Power BI's advanced security features."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Leading Industrial Tooling Supplier Transforms Operations with Dynamics 365 Finance & Operations, Boosting Efficiency and Real-Time Visibility",
+    "url": "/case-study/dynamics-365-finance-operations",
+    "slug": "dynamics-365-finance-operations",
+    "published": "2024-11-01",
+    "modified": "2024-10-31",
+    "category": "Uncategorized",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/10/Untitled-design-2.png",
+      "alt": "d365 finance"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "A trusted industry leader for over 135 years, this client is a premier supplier of high-speed steel and carbide cutting tools, offering end-to-end tooling solutions for drilling, threading, and milling. Their commitment to quality empowers customers with productivity advantages and improved profitability."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenge"
+      },
+      {
+        "type": "para",
+        "text": "The client faced several operational obstacles that hindered growth and efficiency:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Legacy Systems & Manual Processes**: Dependent on outdated systems for finance, supply chain, and customer relationship management, they faced data silos, duplication, and inaccurate reporting."
+          },
+          {
+            "text": "**Resource Allocation Inefficiencies** : Disconnected systems made it difficult to manage resources effectively, resulting in costly inventory, production, and distribution delays."
+          },
+          {
+            "text": "**Limited Real-Time Insights** : With fragmented data across systems, the client lacked comprehensive visibility into operations, financials, and customer activities, slowing decision-making and response to market demands."
+          },
+          {
+            "text": "**Need for Streamlined Workflows** : Desired a system overhaul to streamline workflows and reduce process bottlenecks."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solutions:"
+      },
+      {
+        "type": "para",
+        "text": "CompQsoft, a Microsoft Partner, introduced Dynamics 365 Finance and Operations as a strategic solution. After detailed consultations, the client recognized its fit for both current and future needs, enabling smoother operations and better alignment with business goals. Key solution components included:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Data Migration** : Transitioned data from legacy systems into Dynamics 365 for seamless integration."
+          },
+          {
+            "text": "**Process Automation** : Automated key processes, including procurement, production, sales, and financial management, significantly enhancing accuracy and operational efficiency."
+          },
+          {
+            "text": "**Real-Time Unified Dashboard** : Provided a comprehensive, real-time view of operations, financials, and customer interactions, supporting better-informed decision-making."
+          },
+          {
+            "text": "**Optimized Resource Allocation** : Streamlined resource distribution across inventory and production, reducing operational costs."
+          },
+          {
+            "text": "**Lifecycle Tracking** : Enabled end-to-end tracking of tools, from delivery and installation to ongoing field servicing."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact:"
+      },
+      {
+        "type": "para",
+        "text": "The deployment of Dynamics 365 Finance and Operations delivered significant improvements:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Reduced Manual Labor Costs** : Automation minimized manual data entry, lowering labor expenses and reducing errors."
+          },
+          {
+            "text": "**Inventory Optimization** : Enhanced inventory management minimized waste and carrying costs, resulting in notable savings."
+          },
+          {
+            "text": "**Streamlined Production** : Improved scheduling and resource allocation reduced downtime and bottlenecks, cutting operational costs."
+          },
+          {
+            "text": "**Accelerated Time-to-Market** : Optimized processes enabled faster response to customer needs and reduced lead times."
+          },
+          {
+            "text": "**Enhanced Customer Satisfaction** : Real-time insights into customer interactions allowed tailored service offerings, boosting satisfaction and repeat business."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Automobile Component Company Migrates from QuickBooks to Business Central, Boosting Growth and Efficiency",
+    "url": "/case-study/quickbooks-to-business-central",
+    "slug": "quickbooks-to-business-central",
+    "published": "2024-10-31",
+    "modified": "2024-10-31",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/10/Untitled-design-1.png",
+      "alt": "QuickBooks to Business Central"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "A mid-sized leader in the automobile distribution sector, specializing in automobile components. This customer initially relied on QuickBooks Desktop for accounting and auditing."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenge"
+      },
+      {
+        "type": "para",
+        "text": "The customer’s rapid growth exposed limitations in their current accounting solution, which struggled to handle increasing complexity and business demands. Key issues included:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Scalability Limitations:** QuickBooks Desktop could not support the volume and complexity of transactions as the business grew."
+          },
+          {
+            "text": "**Lack of Insightful Reporting:** The platform offered limited insights and reporting options, restricting data-driven decision-making."
+          },
+          {
+            "text": "**Inventory Tracking Constraints:** Tracking inventory accurately was a critical requirement, but the existing solution fell short."
+          },
+          {
+            "text": "**Security and Integration Needs:** The business sought enhanced security features and seamless integration with third-party and Microsoft applications."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solutions:"
+      },
+      {
+        "type": "para",
+        "text": "CompQsoft, a trusted Microsoft Partner, conducted detailed workshops and proposed Dynamics 365 Business Central to meet the company’s evolving needs. Key solution highlights:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Data Migration:** Transferred customer, vendor, item, and account data from QuickBooks to Dynamics 365 Business Central."
+          },
+          {
+            "text": "**Project Management Integration:** Linked Dynamics 365 Business Central with Project Service Automation to streamline project workflows."
+          },
+          {
+            "text": "**Enhanced Security:** Introduced Multi-Factor Authentication (MFA) for robust data protection."
+          },
+          {
+            "text": "**Data Mapping:** Organized financial and inventory data in Dynamics 365 for accuracy and compliance."
+          },
+          {
+            "text": "**Custom Reporting:** Developed customizable reports, enabling real-time data insights and improved decision-making."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Scalability for Future Growth:** A flexible ERP solution that scales seamlessly with business demands."
+          },
+          {
+            "text": "**Improved Data Accuracy and Compliance:** Real-time inventory tracking and data integrity boost operational efficiency."
+          },
+          {
+            "text": "**Enhanced Security and Integration Capabilities:** MFA and third-party application integrations foster a secure, connected environment."
+          },
+          {
+            "text": "**Empowered Decision-Making:** Comprehensive, customizable reports deliver actionable insights for informed business strategies."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Transforming Retail Operations: Boosting Efficiency and Customer Satisfaction with Dynamics 365 Finance & Operations",
+    "url": "/case-study/transforming-retail-operations",
+    "slug": "transforming-retail-operations",
+    "published": "2024-10-30",
+    "modified": "2024-10-30",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/10/Untitled-design.png",
+      "alt": "d365 in retail"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "A leading retail chain experiencing rapid growth, challenged by outdated ERP systems and an increasingly competitive landscape."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenge"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Legacy ERP systems limited growth and profitability, struggling to meet operational demands."
+          },
+          {
+            "text": "Disparate, non-integrated systems created inefficiencies, inaccuracies, and slowed decision-making."
+          },
+          {
+            "text": "Limited control and visibility over processes resulted in operational errors and duplications."
+          },
+          {
+            "text": "Customer expectations for faster service and personalized experiences were unmet, impacting satisfaction."
+          },
+          {
+            "text": "Rising competition from market disruptors emphasized the need to modernize and streamline operations."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solutions:"
+      },
+      {
+        "type": "para",
+        "text": "CompQsoft, a certified Microsoft Partner, assessed the retailer’s needs and implemented the Dynamics 365 Finance and Operations module to transform their ERP system. Key solution elements included:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "A centralized platform for sales, inventory, finance, and customer service, providing seamless integration across functions."
+          },
+          {
+            "text": "Industry-specific customizations tailored for retail, streamlining workflows and enhancing process control."
+          },
+          {
+            "text": "Real-time visibility into operations, supporting data-driven decisions and error reduction."
+          },
+          {
+            "text": "360-degree customer insights with purchase history, preferences, and interaction tracking for personalized service."
+          },
+          {
+            "text": "Optimized inventory management to minimize overstocking, improve cash flow, and meet customer demand efficiently."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Increased Revenue:** Enhanced efficiency, integration, and customer satisfaction led to revenue growth."
+          },
+          {
+            "text": "**Improved Profitability:** Cost reduction, optimized cash flow, and boosted sales contributed to stronger profitability."
+          },
+          {
+            "text": "**Enhanced Customer Experience:** Streamlined service delivery and personalization increased customer loyalty and retention."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CompQsoft transforms the legacy ERP system of a leading food manufacturing company by implementing Dynamics 365 Business Central, significantly enhancing operational efficiency and data management.",
+    "url": "/case-study/legacy-erp-to-business-central",
+    "slug": "legacy-erp-to-business-central",
+    "published": "2024-10-24",
+    "modified": "2024-10-24",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/10/Untitled-design-2-1.png",
+      "alt": "case study"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "The client is a leading food manufacturing company, facing growing challenges with their outdated ERP system."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenge"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Fragmented data across legacy systems, creating inefficiencies."
+          },
+          {
+            "text": "The current ERP system was outdated and couldn’t keep up with business growth."
+          },
+          {
+            "text": "Integration with new technologies was problematic, disrupting workflows with other business applications."
+          },
+          {
+            "text": "Data sharing between departments was cumbersome and inefficient."
+          },
+          {
+            "text": "Reliance on manual data collection led to frequent errors and reduced productivity."
+          },
+          {
+            "text": "The company lacked real-time business insights, hindering informed decision-making."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solutions:"
+      },
+      {
+        "type": "para",
+        "text": "CompQsoft, a trusted Microsoft Partner, conducted discovery sessions and system assessments, recommending Dynamics 365 Business Central as the ideal solution to modernize their ERP system."
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Migrated data to the cloud for continuous updates and seamless connectivity across departments."
+          },
+          {
+            "text": "Implemented Business Central integrated with Power Apps to streamline key manufacturing processes."
+          },
+          {
+            "text": "Built custom workflows using Power Apps to automate manual processes."
+          },
+          {
+            "text": "Provided end-user training to ensure proficiency in the new system."
+          },
+          {
+            "text": "Enabled real-time data analysis for actionable insights, enhancing decision-making."
+          },
+          {
+            "text": "Facilitated automatic data transformation between systems for a smoother workflow."
+          },
+          {
+            "text": "Improved accessibility to data via mobile devices, significantly boosting operational efficiency."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "The shift to a cloud-based ERP system improved data management and interdepartmental collaboration."
+          },
+          {
+            "text": "Automation of workflows reduced manual errors and increased overall productivity."
+          },
+          {
+            "text": "Real-time insights empowered leadership with timely, data-driven decisions."
+          },
+          {
+            "text": "Mobile accessibility enhanced operational flexibility and efficiency across the organization."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CompQsoft helps a leading retailer launch its e-Store, and leverages Salesforce Experience Cloud and Commerce Cloud features to expand its business faster.",
+    "url": "/case-study/compqsoft-helps-a-leading-retailer-launch-its-e-store-and-leverages-salesforce-experience-cloud-and-commerce-cloud-features-to-expand-its-business-faster",
+    "slug": "compqsoft-helps-a-leading-retailer-launch-its-e-store-and-leverages-salesforce-experience-cloud-and-commerce-cloud-features-to-expand-its-business-faster",
+    "published": "2024-04-30",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/CompQsoft-helps-a-leading-retailer-launch-its-e-Store.jpg",
+      "alt": "CompQsoft helps a leading retailer launch its e-Store"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "The customer is a leading retail company with a widespread presence in the US."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenge"
+      },
+      {
+        "type": "para",
+        "text": "The retail client had a huge offline presence and was looking to expand their business through online channels."
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Limited Online Presence:** The retailer faced the challenge of limited online presence, hindering its ability to reach a wider audience and capitalize on the growing e-commerce market."
+          },
+          {
+            "text": "**Inadequate Customer Engagement:** The retailer struggled to engage customers effectively online, resulting in lower conversion rates and customer retention."
+          },
+          {
+            "text": "**Complexity in Managing Sales:** With disparate systems for managing sales and customer interactions, the retailer encountered inefficiencies and difficulties in tracking and analyzing sales data."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solutions:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Implementation of Salesforce Experience Cloud:** CompQsoft leveraged Salesforce Experience Cloud to create a seamless online experience for the retailer's customers. This included the development of a user-friendly interface, personalized content delivery, and community-building features to enhance engagement."
+          },
+          {
+            "text": "**Integration of Salesforce Commerce Cloud:** By integrating Salesforce Commerce Cloud, CompQsoft enabled the retailer to establish a robust e-commerce platform."
+          },
+          {
+            "text": "**Customization and Optimization:** CompQsoft customized the Salesforce platforms to align with the retailer's specific business requirements. This involved implementing features such as AI-driven product recommendations, mobile responsiveness, and omnichannel capabilities to enhance the overall shopping experience."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "**Increased Online Visibility:** Helped the retailer significantly expand its online presence. This resulted in increased website traffic and brand visibility, enabling the retailer to reach a broader audience of potential customers."
+          },
+          {
+            "text": "**Enhanced Customer Engagement:** With personalized content and seamless shopping experiences, the retailer experienced higher levels of customer engagement. This led to improved conversion rates, repeat purchases, and greater customer satisfaction and loyalty."
+          }
+        ]
+      },
+      {
+        "type": "para",
+        "text": "**Improved Sales Performance:** By consolidating sales and customer data within the Salesforce platforms, the retailer gained valuable insights into customer behavior and preferences. This empowered the retailer to make informed decisions, optimize marketing strategies, and drive sales growth."
+      }
+    ]
+  },
+  {
+    "title": "CompQsoft helped a leading manufacturing company migrate Dynamics NAV to Dynamics 365 Business Central to improve operational efficiency, business agility and save costs.",
+    "url": "/case-study/compqsoft-helped-a-leading-manufacturing-company-migrate-dynamics-nav-to-dynamics-365-business-central-to-improve-operational-efficiency-business-agility-and-save-costs",
+    "slug": "compqsoft-helped-a-leading-manufacturing-company-migrate-dynamics-nav-to-dynamics-365-business-central-to-improve-operational-efficiency-business-agility-and-save-costs",
+    "published": "2024-04-30",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/CompQsoft-helped-a-leading-manufacturing-company.jpg",
+      "alt": "CompQsoft helped a leading manufacturing company"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "The customer is a leading manufacturer of powertrain solutions."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenges"
+      },
+      {
+        "type": "para",
+        "text": "A leading manufacturer utilizes Dynamics NAV for managing various business operations. Over the years, their business has outgrown, and the legacy Dynamics NAV ERP is not able to scale in terms of technology and functionality."
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "They were planning to migrate from Dynamics NAV to Business Central to manage departments like finance, supply chain and customer service."
+          },
+          {
+            "text": "They were facing several performance issues with Dynamics NAV impacting their operational efficiency."
+          },
+          {
+            "text": "Legacy ERP application is not allowing them to scale in terms of technology and functionality."
+          },
+          {
+            "text": "Dynamics NAV reaching end of support, posing security and compliance risks."
+          },
+          {
+            "text": "Need for modernization to streamline processes and enhance productivity."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solution"
+      },
+      {
+        "type": "para",
+        "text": "CompQsoft, a leading Microsoft Dynamics 365 partner upgraded the legacy ERP to modern cloud-based Dynamics 365 Business Central."
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Conducted comprehensive assessment of current Dynamics NAV setup and business requirements."
+          },
+          {
+            "text": "Developed a migration strategy tailored to customer's needs and goals."
+          },
+          {
+            "text": "Implemented phased approach to minimize disruption to operations."
+          },
+          {
+            "text": "Conducted comprehensive assessment of current Dynamics NAV setup and business requirements."
+          },
+          {
+            "text": "Developed a migration strategy tailored to customer's needs and goals."
+          },
+          {
+            "text": "Implemented phased approach to minimize disruption to operations."
+          },
+          {
+            "text": "Business Central enabled them with actionable insights about all the processes and operations."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Improved scalability and flexibility to support future growth initiatives."
+          },
+          {
+            "text": "Streamlined business processes resulting in increased efficiency and productivity."
+          },
+          {
+            "text": "Access to advanced features and functionalities of Dynamics Business Central."
+          },
+          {
+            "text": "Empowered employees with user-friendly interface and robust reporting capabilities."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "CompQsoft helped a leading consumer services company enhance user experience with application modernization on Microsoft Azure.",
+    "url": "/case-study/compqsoft-helped-a-leading-consumer-services-company-enhance-user-experience-with-application-modernization-on-microsoft-azure",
+    "slug": "compqsoft-helped-a-leading-consumer-services-company-enhance-user-experience-with-application-modernization-on-microsoft-azure",
+    "published": "2024-04-30",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/CompQsoft-helped-a-leading-consumer-services-company.jpg",
+      "alt": "CompQsoft helped a leading consumer services company"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "Customer"
+      },
+      {
+        "type": "para",
+        "text": "The customer is a leading US-based consumer service company."
+      },
+      {
+        "type": "heading",
+        "text": "Business Challenges"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Outdated legacy applications impacting business. Not scalable for growing business needs."
+          },
+          {
+            "text": "Old interface, struggling to keep pace with modern design trends impacting user experience."
+          },
+          {
+            "text": "The customer wanted to introduce new features and improve overall application performance. This was not possible without technical upgrades."
+          },
+          {
+            "text": "Legacy applications are grappling with security challenges, often struggling to fend off increasingly sophisticated cyber threats."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Solution"
+      },
+      {
+        "type": "para",
+        "text": "CompQsoft modernizes legacy applications with the latest technology stack including cloud, automation, and powerful API upgrades."
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Revamped UX for both audiences – internal and external."
+          },
+          {
+            "text": "Use DevOps and Agile approach for application development."
+          },
+          {
+            "text": "Implemented new features including.",
+            "children": [
+              "Offline cart shopping mode.",
+              "Add and scan new products.",
+              "New product offerings and promotions.",
+              "Suggest new products and deals to customers."
+            ]
+          },
+          {
+            "text": "Developed sales dashboards and order view for internal users."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Business Impact"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Improved experience for both customers and internal users."
+          },
+          {
+            "text": "Increase revenue."
+          },
+          {
+            "text": "Greater visibility into the order pipeline."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Defense Enterprise Accounting Management System (DEAMS)",
+    "url": "/case-study/deams",
+    "slug": "deams",
+    "published": "2024-04-24",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Defense-Enterprise-Accounting-Management-System.jpg",
+      "alt": "Defense Enterprise Accounting Management System"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "**Functional Areas**  Testing and Data Design"
+      },
+      {
+        "type": "heading",
+        "text": "WORK DESCRIPTION"
+      },
+      {
+        "type": "para",
+        "text": "CompQSoft assists with requirements definition, fit/gap analysis & documentation for DEAMS. Our personnel documents assigned functional designs in the corresponding specification document or CDRL and participates in facilitated peer reviews of own work products and other team member’s work products, as per the software development lifecycle process, project and program design, and review standards and procedures alternating between the test and design phases"
+      }
+    ]
+  },
+  {
+    "title": "Expeditionary Combat Support System – Data Management & Execution",
+    "url": "/case-study/ecss-dmo",
+    "slug": "ecss-dmo",
+    "published": "2024-04-24",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Expeditionary-Combat-Support-System.jpg",
+      "alt": "Expeditionary Combat Support System"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Functional Areas: Data Management"
+      },
+      {
+        "type": "heading",
+        "text": "WORK DESCRIPTION"
+      },
+      {
+        "type": "para",
+        "text": "CompQsoft supports the transition of all Data Management Organization (DMO) and Data Execution Team (DET) processes and procedures, providing support in the areas of data preparation and migration management, data metrics, project communications and stakeholder management, master data management, and maintenance and contractor transition."
+      }
+    ]
+  },
+  {
+    "title": "Data Center And System Support For a Client In Houston, Texas",
+    "url": "/case-study/data-center-support",
+    "slug": "data-center-support",
+    "published": "2024-04-24",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Data-Center-And-System-Support.jpg",
+      "alt": "Data Center And System Support"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "**Functional Areas :  **Operational and Software Support"
+      },
+      {
+        "type": "heading",
+        "text": "WORK DESCRIPTION"
+      },
+      {
+        "type": "para",
+        "text": "CompQSoft supports this client by installing, supporting, and maintaining servers or other computer systems and planning for and responding to service outages and other problems."
+      },
+      {
+        "type": "para",
+        "text": "Our personnel diagnosed software and hardware failures towards resolution, also assisting in the prevention of computer hacking and other security problems by implementing preventive measures in compliance with AF or IC enterprise architecture. We ensured that all firewalls and intrusion detection or other information assurance systems were fully functional and remained current. We also monitored system performance and resolved issues related to efficient and effective system use. Other support services we extended include operational, software, network/hardware, technical, LAN/WAN/MAN, telecommunications (data, voice, images, including wireless), and help desk / IT assistance hotline."
+      }
+    ]
+  },
+  {
+    "title": "Total Force Information Technology Systems Integrator Consolidation (TFITS)",
+    "url": "/case-study/tfits",
+    "slug": "tfits",
+    "published": "2024-04-24",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Total-Force-Information-Technology-Systems-Integrator-Consolidation-TFITS.jpg",
+      "alt": "Total Force Information Technology Systems Integrator Consolidation (TFITS)"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft supports the Marine Corps Information Technology (IT) systems in the transfer and performance of System Integration (SI) services, currently provided by multiple System Integrators (Sis), to a single System Integrator (SI) to eliminate redundancy, improve utilization of SI resources, standardize business processes, improve process and product quality and reduce Marine Corps lifecycle ownership costs."
+      }
+    ]
+  },
+  {
+    "title": "Radio-controlled Improvised Explosive Device Electronic Warfare (CREW) Program",
+    "url": "/case-study/crew",
+    "slug": "crew",
+    "published": "2024-04-24",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Radio-controlled-Improvised-Explosive-Device-Electronic-Warfare-CREW-Program.jpg",
+      "alt": "Radio-controlled Improvised Explosive Device Electronic Warfare (CREW) Program"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft assists in maintaining the capability to support New Equipment Training (NET) by helping as needed with planning, developing, and conducting NET at locations to be identified by the USMC CREW Program Office. We provide CONUS and OCONUS FSRs/MTs for installation, maintenance, repair, training support, and technical liaison services in support of CREW systems support and CREW staffing requirements and ensure they receive required training and certification"
+      }
+    ]
+  },
+  {
+    "title": "Vanguard",
+    "url": "/case-study/vanguard",
+    "slug": "vanguard",
+    "published": "2024-04-24",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Department-of-State-Vanguard.jpg",
+      "alt": "Department of State Vanguard"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft’s work is within the Vanguard 2.2.1 program’s Enterprise Security Office (ESO), supporting assessment and authorization (A&A) of the DoS major applications requiring significant interaction with the DoS and staff and with the DoS Information Assurance (IA) office"
+      }
+    ]
+  },
+  {
+    "title": "Marine Corps Enterprise IT Services (MCEITS)",
+    "url": "/case-study/mceits",
+    "slug": "mceits",
+    "published": "2024-04-24",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Marine-Corps-Enterprise-IT-Services-MCEITS.jpg",
+      "alt": "Marine Corps Enterprise IT Services (MCEITS)"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQSoft currently supports MCEITS through asset management. We apply our expertise in Enterprise II operations and maintenance on Defense programs, where we look into the system support and administration tasks."
+      }
+    ]
+  },
+  {
+    "title": "Next Generation Enterprise Network (NGEN)",
+    "url": "/case-study/ngen",
+    "slug": "ngen",
+    "published": "2024-04-24",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Next-Generation-Enterprise-Network-NGEN.jpg",
+      "alt": "Next Generation Enterprise Network (NGEN)"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQSoft on NGEN monitors the infrastructure and network, responding appropriately to alerts, events, and incidents from triage through resolution. This includes escalations, where appropriate, including directing remote activities to maintain operational effectiveness for services and root cause analysis documentation, in accordance with Government procedures."
+      }
+    ]
+  },
+  {
+    "title": "Usstratcom Systems And Mission Support (USAMS)",
+    "url": "/case-study/usams",
+    "slug": "usams",
+    "published": "2024-04-22",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Usstratcom-Systems-And-Mission-Support-USAMS.jpg",
+      "alt": "Usstratcom Systems And Mission Support (USAMS)"
+    },
+    "blocks": [
+      {
+        "type": "heading",
+        "text": "WORK DESCRIPTION"
+      },
+      {
+        "type": "para",
+        "text": "We provide recommendations on the scope and approach of modeling, simulation, and analysis activities within and across projects and programs, including the visualization and validation and verification (V & V) approach, guide the formulation of assumptions and scenarios necessary to create complex simulation models (e.g., operational capabilities, networking, computing resources and processes). We provide advice on collaboration with other organizations to establish integration and interoperability within and between modeling and simulation tools and synthetic environments, maintaining proficiency with state-of-the-art and state-of-the-practice M&S tools, techniques and procedures (TTPs)."
+      }
+    ]
+  },
+  {
+    "title": "Logistics Support Activity’s (LOGSA’s) contract for LOGSA Information Technology Services",
+    "url": "/case-study/logsa-lites",
+    "slug": "logsa-lites",
+    "published": "2024-04-22",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Logistics-Support-Activitys-LOGSA-contract-for-LOGSA-Information-Technology-Services.jpg",
+      "alt": "Logistics Support Activitys (LOGSA) contract for LOGSA Information Technology Services"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft as part of IBM LOGSA LITeS team will be supporting the US Army Logistics Support Activity’s (LOGSA’s) contract for LOGSA Information Technology Services (LITeS) under Department of Army, Army Materiel Command (AMC), and Aviation and Missile Command’s (AMCOM's) G6 Corporate Information Office."
+      },
+      {
+        "type": "para",
+        "text": "We provide our knowledge and expertise on integrated life-cycle logistics, in support of Warfighters globally to meet a full range of operational requirements."
+      },
+      {
+        "type": "heading",
+        "text": "WE WILL BE PROVIDING THE SERVICES IN THE FOLLOWING AREAS:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Application Systems"
+          },
+          {
+            "text": "Application Programming"
+          },
+          {
+            "text": "Configuration Management"
+          },
+          {
+            "text": "Systems Engineering"
+          },
+          {
+            "text": "Business Systems Analysis"
+          },
+          {
+            "text": "Hardware Maintenance"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Logistics Modernization Program (LMP)",
+    "url": "/case-study/lmp",
+    "slug": "lmp",
+    "published": "2024-04-22",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Logistics-Modernization-Program-LMP.jpg",
+      "alt": "Logistics Modernization Program (LMP)"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft supports the prime contractor on Logistics Modernization Program (LMP) providing technical and functional expertise on SAP business intelligence/business objects and ERP."
+      },
+      {
+        "type": "heading",
+        "text": "WORK DESCRIPTION"
+      },
+      {
+        "type": "para",
+        "text": "We provide our subject matter expertise across the depth and breadth of various SAP modules, sub-modules, and interfaces on both functional and technical aspects supporting the full life cycle implementations. With our functional knowledge on SAP modules and business and technical integration, we support interfaces, data conversion, setup, and configuration associated with the product module’s specialty area."
+      }
+    ]
+  },
+  {
+    "title": "Brooke Army Medical Center (BAMC)",
+    "url": "/case-study/bamc",
+    "slug": "bamc",
+    "published": "2024-04-22",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Brooke-Army-Medical-Center-BAMC.jpg",
+      "alt": "Brooke Army Medical Center (BAMC)"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft supports the prime contractor at Brooke Army Medical Center (BAMC) in telephone system sustainment and maintenance."
+      },
+      {
+        "type": "heading",
+        "text": "WORK DESCRIPTION"
+      },
+      {
+        "type": "para",
+        "text": "Our team maintains, configures, and supports the 8,000-line enterprise telephone switch in a major medical facility, including external campus buildings and remote switch nodes. We are responsible for the administration, programming, maintenance, and support of the main telephone switch. Our team’s tasks include troubleshooting and integration. Our personnel installs and maintains the switching, data communications, and peripheral equipment associated with the switch."
+      }
+    ]
+  },
+  {
+    "title": "Medical Information Technology Center (MITC)",
+    "url": "/case-study/mitc",
+    "slug": "mitc",
+    "published": "2024-04-22",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Medical-Information-Technology-Center-MITC.jpg",
+      "alt": "Medical Information Technology Center (MITC)"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft supports the prime contractor with an SAP Basis Team Member at the US Army Medical Information Technology Center (USAMITC)."
+      },
+      {
+        "type": "heading",
+        "text": "WORK DESCRIPTION"
+      },
+      {
+        "type": "para",
+        "text": "Our team provides subject-matter expertise for the sustainment of Theater Enterprise-Wide Logistics System (TEWLS) software and hardware platforms. We resolve problems, install and upgrade software and coordinate with the SAP Online Service System and Early Watch Services."
+      },
+      {
+        "type": "para",
+        "text": "Our personnel monitors the SAP R/3 system to ensure peak performance and availability for transaction processing. We also provide database and security assistance and transport objects (programs, customizations and configurations) across platforms for change control, source control and promotion. We offer implementation, test, and other support in the TEWLS environments during upgrades and/or implementation of support packages."
+      },
+      {
+        "type": "para",
+        "text": "Additional tasks we provide include TEWLS system recovery and restore; MQ Series, SmartBatch, WebSphere monitoring and downtime management."
+      }
+    ]
+  },
+  {
+    "title": "Theater Enterprise-Wide Logistics System (TEWLS)",
+    "url": "/case-study/tewls",
+    "slug": "tewls",
+    "published": "2024-04-22",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/Theater-Enterprise-Wide-Logistics-System-TEWLS.jpg",
+      "alt": "Theater Enterprise-Wide Logistics System (TEWLS)"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft supports the prime contractor in Theater Enterprise-Wide Logistics System (TEWLS) deployment and sustainment."
+      },
+      {
+        "type": "heading",
+        "text": "WORK DESCRIPTION"
+      },
+      {
+        "type": "para",
+        "text": "Our TEWLS deployment support included developing reports, interfaces, data conversion and forms. We coordinated with the business support leads and TEWLS technical team to implement several new interfaces and provided data conversion support of purchasing / materiel data elements inside US Army Medical Materiel Agency (USAMMA), US Army Medical Materiel Center-Europe (USAMMCE), 6th Medical Logistics Management Center (MLMC), DSCP and Central Command (CENTCOM) units."
+      },
+      {
+        "type": "para",
+        "text": "Our work enabled the processing of purchase orders into the Army’s Standard Procurement System (SPS) and the enterprise management of customer, vendor, financial, and catalog data. Coordination with the DMLSS Program Management Office (PMO), the Joint Medical Logistics Functional Development Center (JMLFDC), and the TEWLS Program Manager helped transition TEWLS to Defense Medical Logistics Standard Support (DMLSS)."
+      }
+    ]
+  },
+  {
+    "title": "General Funds Enterprise Business System (GFEBS)",
+    "url": "/case-study/gfebs",
+    "slug": "gfebs",
+    "published": "2024-04-22",
+    "modified": "2024-05-08",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/General-Funds-Enterprise-Business-System-GFEBS.jpg",
+      "alt": "General Funds Enterprise Business System (GFEBS)"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "CompQsoft supports the prime contractor in General Funds Enterprise Business System (GFEBS) deployment and sustainment."
+      },
+      {
+        "type": "para",
+        "text": "**WORK DESCRIPTION**"
+      },
+      {
+        "type": "para",
+        "text": "Our team supports the deployment of the GFEBS solution to more than 200 geographic sites and 79,000 users. The project focuses on GRC (Governance, Risk and Compliance) practices, project systems, Plant Maintenance, Material Management, Spending Chain, Financials, Equipment & Assets and BI / BO front end development. We supplement our in-depth understanding of GFEBS with additional Medical Command (MEDCOM) expertise and Defense Medical Logistics Standard Support (DMLSS) knowledge to accomplish successful user adoption and knowledge transfer during deployments."
+      },
+      {
+        "type": "para",
+        "text": "We offer onsite support and training to Army personnel throughout CONUS and OCONUS installations. Training support activities include feedback collection, course development / documentation and training schedule maintenance. We support the software by providing system recommendations, user requirements, technical support and integrated testing. Our program support includes detailed management and transition plans, cutover cycle management, issue resolution and risk mitigation."
+      }
+    ]
+  }
+]

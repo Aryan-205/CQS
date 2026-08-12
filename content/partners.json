@@ -1,0 +1,170 @@
+[
+  {
+    "title": "Polycom",
+    "url": "/alliance-partner/polycom",
+    "slug": "polycom",
+    "published": "2024-05-02",
+    "modified": "2024-05-02",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/05/poly.jpg",
+      "alt": "poly"
+    },
+    "blocks": []
+  },
+  {
+    "title": "Splunk",
+    "url": "/alliance-partner/splunk",
+    "slug": "splunk",
+    "published": "2024-05-02",
+    "modified": "2024-05-02",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/05/splunk.jpg",
+      "alt": "splunk"
+    },
+    "blocks": []
+  },
+  {
+    "title": "Juniper Networks",
+    "url": "/alliance-partner/juniper-networks",
+    "slug": "juniper-networks",
+    "published": "2024-05-02",
+    "modified": "2024-05-02",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/05/juniper.jpg",
+      "alt": "juniper"
+    },
+    "blocks": []
+  },
+  {
+    "title": "AWS",
+    "url": "/alliance-partner/aws",
+    "slug": "aws",
+    "published": "2024-05-02",
+    "modified": "2024-05-02",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/05/aws.jpg",
+      "alt": "aws"
+    },
+    "blocks": []
+  },
+  {
+    "title": "Data Bricks",
+    "url": "/alliance-partner/data-bricks",
+    "slug": "data-bricks",
+    "published": "2024-05-02",
+    "modified": "2024-05-02",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/05/databrick.jpg",
+      "alt": "databrick"
+    },
+    "blocks": []
+  },
+  {
+    "title": "pax8",
+    "url": "/alliance-partner/pax8",
+    "slug": "pax8",
+    "published": "2024-05-02",
+    "modified": "2024-05-02",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/05/pax8.jpg",
+      "alt": "pax8"
+    },
+    "blocks": []
+  },
+  {
+    "title": "Microsoft",
+    "url": "/alliance-partner/microsoft",
+    "slug": "microsoft",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/logo-01-1.jpg",
+      "alt": "logo-01"
+    },
+    "blocks": []
+  },
+  {
+    "title": "Salesforce",
+    "url": "/alliance-partner/salesforce",
+    "slug": "salesforce",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/logo-02.jpg",
+      "alt": "logo-02"
+    },
+    "blocks": []
+  },
+  {
+    "title": "SAP",
+    "url": "/alliance-partner/sap",
+    "slug": "sap",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/logo-03.jpg",
+      "alt": "logo-03"
+    },
+    "blocks": []
+  },
+  {
+    "title": "Servicenow",
+    "url": "/alliance-partner/servicenow",
+    "slug": "servicenow",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/logo-04.jpg",
+      "alt": "logo-04"
+    },
+    "blocks": []
+  },
+  {
+    "title": "Accenture",
+    "url": "/alliance-partner/accenture",
+    "slug": "accenture",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/logo-06.jpg",
+      "alt": "logo-06"
+    },
+    "blocks": []
+  },
+  {
+    "title": "IBM",
+    "url": "/alliance-partner/ibm",
+    "slug": "ibm",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/logo-07.jpg",
+      "alt": "logo-07"
+    },
+    "blocks": []
+  },
+  {
+    "title": "ORACLE",
+    "url": "/alliance-partner/oracle",
+    "slug": "oracle",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/logo-08.jpg",
+      "alt": "logo-08"
+    },
+    "blocks": []
+  },
+  {
+    "title": "General Dynamics",
+    "url": "/alliance-partner/general-dynamics",
+    "slug": "general-dynamics",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/04/logo-15.jpg",
+      "alt": "logo-15"
+    },
+    "blocks": []
+  }
+]

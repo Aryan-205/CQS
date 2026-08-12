@@ -1,0 +1,459 @@
+[
+  {
+    "title": "How can businesses choose the right Cyber Security Services for their needs?",
+    "url": "/faq/how-can-businesses-choose-the-right-cyber-security-services-for-their-needs",
+    "slug": "how-can-businesses-choose-the-right-cyber-security-services-for-their-needs",
+    "published": "2025-03-25",
+    "modified": "2025-03-25",
+    "category": "Cyber Security",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Businesses should assess their unique security requirements, including compliance needs, potential vulnerabilities, and risk tolerance. Partnering with a trusted provider offering tailored solutions—such as risk assessments, managed security, and incident response—ensures the best fit for their organizational goals."
+      }
+    ]
+  },
+  {
+    "title": "How do Cyber Security Services help protect against emerging threats?",
+    "url": "/faq/how-do-cyber-security-services-help-protect-against-emerging-threats",
+    "slug": "how-do-cyber-security-services-help-protect-against-emerging-threats",
+    "published": "2025-03-25",
+    "modified": "2025-03-25",
+    "category": "Cyber Security",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Cyber Security Services leverage advanced threat intelligence, continuous monitoring, and proactive risk management to identify and mitigate evolving threats like ransomware, phishing, and zero-day attacks. By staying ahead of attackers, these services help organizations maintain a robust security posture."
+      }
+    ]
+  },
+  {
+    "title": "Why is Cyber Security Services becoming more critical today?",
+    "url": "/faq/why-is-cyber-security-services-becoming-more-critical-today",
+    "slug": "why-is-cyber-security-services-becoming-more-critical-today",
+    "published": "2025-03-25",
+    "modified": "2025-03-25",
+    "category": "Cyber Security",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Cyber Security Services are becoming more critical today due to the increasing frequency, sophistication, and impact of cyber threats. Organizations face growing risks from ransomware, phishing, and advanced persistent threats, alongside the challenges of managing remote work, cloud adoption, and interconnected systems. Additionally, stricter regulatory requirements and the need to safeguard sensitive customer and business data make robust cyber security essential for protecting operations, maintaining trust, and ensuring compliance in an evolving digital landscape."
+      }
+    ]
+  },
+  {
+    "title": "Is it necessary to modernize all applications?",
+    "url": "/faq/is-it-necessary-to-modernize-all-applications",
+    "slug": "is-it-necessary-to-modernize-all-applications",
+    "published": "2024-04-25",
+    "modified": "2024-04-25",
+    "category": "App Modernization",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "No, it is not necessary. However, evaluating each application's performance, business impact, and security is critical."
+      }
+    ]
+  },
+  {
+    "title": "Why Dynamics 365 Business Central?",
+    "url": "/faq/whydynamics-365-business-central",
+    "slug": "whydynamics-365-business-central",
+    "published": "2024-04-20",
+    "modified": "2024-04-30",
+    "category": "Dynamics 365 ERP Applications",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "**Business Central** replaces disconnected systems with a single comprehensive business management solution and adapts faster with connected processes across finance, sales, service, projects, and operations. Copilot is your AI assistant, extending capabilities and empowering employees. Perform better using guidance and insights within the flow of work and Power BI."
+      }
+    ]
+  },
+  {
+    "title": "What is Microsoft Dynamics 365 Business Central?",
+    "url": "/faq/what-is-microsoft-dynamics-365-business-central",
+    "slug": "what-is-microsoft-dynamics-365-business-central",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Dynamics 365 ERP Applications",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "**Dynamics 365 Business Central** , built for SMBs, is a single, easy-to-use solution that helps you confidently run your business in the cloud. Business Central connects various functional departments, including finance, operations, supply chain, service management, and sales."
+      }
+    ]
+  },
+  {
+    "title": "Can I hire ServiceNow consultants for our ongoing projects?",
+    "url": "/faq/can-i-hire-servicenow-consultants-for-our-ongoing-projects",
+    "slug": "can-i-hire-servicenow-consultants-for-our-ongoing-projects",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "ServiceNow Services",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Yes. CompQsoft provides ServiceNow experts for your ongoing in-house ServiceNow project requirements and those of your clients."
+      }
+    ]
+  },
+  {
+    "title": "What is ServiceNow?",
+    "url": "/faq/what-is-servicenow",
+    "slug": "what-is-servicenow",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "ServiceNow Services",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "ServiceNow is a leading cloud-based SaaS platform that provides software solutions for various aspects of enterprise operations, including IT service management, human resources, customer service, security operations, and more. It offers various applications designed to streamline workflows, automate repetitive tasks, and enhance collaboration within organizations."
+      }
+    ]
+  },
+  {
+    "title": "Do I need to use RISE to adopt S/4HANA on the cloud?",
+    "url": "/faq/do-i-need-to-use-rise-to-adopt-s-4hana-on-the-cloud",
+    "slug": "do-i-need-to-use-rise-to-adopt-s-4hana-on-the-cloud",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "SAP",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "RISE is SAP's main focus for growing S/4HANA on the cloud, but businesses can still choose other options to migrate to S/4HANA on the cloud without using RISE."
+      }
+    ]
+  },
+  {
+    "title": "Why move to SAP S/4 HANA?",
+    "url": "/faq/why-move-to-sap-s-4-hana",
+    "slug": "why-move-to-sap-s-4-hana",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "SAP",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "SAP S/4 HANA's in-memory technology simplifies the underlying data model and provides a modern interface to streamline processes and improve user experiences."
+      },
+      {
+        "type": "para",
+        "text": "Moving to SAP S/4HANA offers numerous benefits, including enhanced agility, real-time insights, and simplified processes. It enables businesses to streamline operations, improve decision-making with advanced analytics, and adapt quickly to changing market demands, ensuring long-term competitiveness and growth."
+      }
+    ]
+  },
+  {
+    "title": "What is SAP S/4HANA?",
+    "url": "/faq/what-is-sap-s-4hana",
+    "slug": "what-is-sap-s-4hana",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "SAP",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "SAP S/4HANA is an advanced ERP suite driving digital transformation. It harnesses the capabilities of SAP HANA, an in-memory platform that streamlines data structures and enhances performance. Offering seamless integration, SAP S/4HANA supports all business functions and scenarios."
+      }
+    ]
+  },
+  {
+    "title": "Which database is used by Salesforce?",
+    "url": "/faq/which-database-is-used-by-salesforce",
+    "slug": "which-database-is-used-by-salesforce",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Salesforce Services",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Salesforce uses the Oracle database to manage the intricate processing demands of CRM software and hundreds of millions of records. It also leverages PostgreSQL, Amazon RedShift, and a handful of other databases for specific purposes; the backbone of its operational infrastructure predominantly relies on Oracle databases."
+      }
+    ]
+  },
+  {
+    "title": "Which is the best Salesforce license for our company?",
+    "url": "/faq/which-is-the-best-salesforce-license-for-our-company",
+    "slug": "which-is-the-best-salesforce-license-for-our-company",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Salesforce Services",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Salesforce's cost and license type depend on various factors, such as migration, customization, integration, etc. Please contact our Salesforce expert for more information."
+      }
+    ]
+  },
+  {
+    "title": "Does Power Platform integrate with existing systems such as ERP or CRM?",
+    "url": "/faq/does-power-platform-integrate-with-existing-systems-such-as-erp-or-crm",
+    "slug": "does-power-platform-integrate-with-existing-systems-such-as-erp-or-crm",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Power Platform and RPA",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Yes. Power Platform has pre-built connectors and APIs, allowing it to easily integrate with ERP, CRM, or other third-party applications."
+      }
+    ]
+  },
+  {
+    "title": "How long does building and deploying an app/solution using Power Platform take?",
+    "url": "/faq/how-long-does-building-and-deploying-an-app-solution-using-power-platform-take",
+    "slug": "how-long-does-building-and-deploying-an-app-solution-using-power-platform-take",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Power Platform and RPA",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Solution or app development and deployment depend on their complexity. Power Platform, being a low-code/no-code solution, enables rapid development within weeks."
+      }
+    ]
+  },
+  {
+    "title": "What technical expertise is required to use Power Platform?",
+    "url": "/faq/what-technical-expertise-is-required-to-use-power-platform",
+    "slug": "what-technical-expertise-is-required-to-use-power-platform",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Power Platform and RPA",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "The level of technical proficiency needed for utilizing Power Platform varies depending on the specific business use case or problem you aim to address. Nonetheless, as a low-code/no-code solution, Power Platform empowers users to develop applications and workflows even with minimal coding experience."
+      }
+    ]
+  },
+  {
+    "title": "Can I use Copilot in SharePoint?",
+    "url": "/faq/can-i-use-copilot-in-sharepoint",
+    "slug": "can-i-use-copilot-in-sharepoint",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Microsoft Modern Workplace",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Copilot integrates with daily productivity apps such as Word, PPT, Excel, Outlook, and SharePoint. According to Microsoft, it is the biggest SharePoint advancement in recent years. Copilot enables SharePoint users to build sites, pages, and content easily. It also helps with real-time content editing using prompts."
+      }
+    ]
+  },
+  {
+    "title": "What is the license fee for Microsoft Copilot?",
+    "url": "/faq/what-is-the-license-fee-for-microsoft-copilot",
+    "slug": "what-is-the-license-fee-for-microsoft-copilot",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Microsoft Modern Workplace",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "The license fee for Copilot for Microsoft 365 is **$30/month**. Visit [the Microsoft site](<https://www.microsoft.com/en-us/microsoft-365/enterprise/copilot-for-microsoft-365#Pricing>) for more information."
+      }
+    ]
+  },
+  {
+    "title": "Can SPMT migrate content from one SharePoint tenant to another SharePoint tenant?",
+    "url": "/faq/can-spmt-migrate-content-from-one-sharepoint-tenant-to-another-sharepoint-tenant",
+    "slug": "can-spmt-migrate-content-from-one-sharepoint-tenant-to-another-sharepoint-tenant",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Microsoft Modern Workplace",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "The SPMT can transfer content from SharePoint on-premises Server; however, it does not support migration from one SharePoint Online tenant to another."
+      }
+    ]
+  },
+  {
+    "title": "What is the SharePoint Migration tool (SPMT)?",
+    "url": "/faq/what-is-the-sharepoint-migration-tool-spmt",
+    "slug": "what-is-the-sharepoint-migration-tool-spmt",
+    "published": "2024-04-20",
+    "modified": "2024-04-20",
+    "category": "Microsoft Modern Workplace",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "The SharePoint Migration Tool (SPMT) is a free tool for migrating files and folders from SharePoint on-premises or other cloud services to SharePoint Online. SPMT can also be used to migrate libraries, lists, and sites with minimal downtime and user impact."
+      }
+    ]
+  },
+  {
+    "title": "How much does data migration cost?",
+    "url": "/faq/how-much-does-data-migration-cost",
+    "slug": "how-much-does-data-migration-cost",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "category": "Data Analytics",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "The cost and duration of data migration depend on factors such as the complexity of the data environment, the size of the data being migrated, and the level of customization needed."
+      }
+    ]
+  },
+  {
+    "title": "How can AI help with migration services?",
+    "url": "/faq/how-can-ai-help-with-migration-services",
+    "slug": "how-can-ai-help-with-migration-services",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "category": "Data Analytics",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "With AI, data migration can become faster, more accurate, and more insightful. AI can intelligently map and match data, automate testing and validation, analyze unstructured data with NLP, train algorithms with machine learning, and support users with chatbots and virtual assistants."
+      }
+    ]
+  },
+  {
+    "title": "What is data estate modernization?",
+    "url": "/faq/what-is-data-estate-modernization",
+    "slug": "what-is-data-estate-modernization",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "category": "Data Analytics",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Data estate migration and modernization involve migrating and updating an organization's data workloads to a new platform or environment. This process includes transferring data from on-premises systems to the cloud or between different cloud platforms. Additionally, it may require upgrading data management, security processes, tools, and infrastructure."
+      }
+    ]
+  },
+  {
+    "title": "What are the different types of cloud modernization strategies available?",
+    "url": "/faq/what-are-the-different-types-of-cloud-modernization-strategies-available",
+    "slug": "what-are-the-different-types-of-cloud-modernization-strategies-available",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "category": "Cloud Migration and Modernization",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "There are three main types of cloud modernization:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Modernizing an on-premises application."
+          },
+          {
+            "text": "Modernizing an application that is hosted on the cloud."
+          }
+        ]
+      },
+      {
+        "type": "para",
+        "text": "Modernizing a legacy on-premises application – keep on on-premises but host on the cloud-native on-prem environment."
+      }
+    ]
+  },
+  {
+    "title": "What are the different types of cloud migration strategies available?",
+    "url": "/faq/what-are-the-different-types-of-cloud-migration-strategies-available",
+    "slug": "what-are-the-different-types-of-cloud-migration-strategies-available",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "category": "Cloud Migration and Modernization",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "There are multiple types of cloud migration, including:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Public Cloud Migration"
+          },
+          {
+            "text": "Private Cloud Migration"
+          },
+          {
+            "text": "Hybrid Cloud Migration"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Cloud Migration vs Cloud Modernization – Which approach is right for you?",
+    "url": "/faq/cloud-migration-vs-cloud-modernization-which-approach-is-right-for-you",
+    "slug": "cloud-migration-vs-cloud-modernization-which-approach-is-right-for-you",
+    "published": "2024-04-19",
+    "modified": "2024-04-19",
+    "category": "Cloud Migration and Modernization",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Cloud migration is the process of moving an on-premises application to the cloud without changing its architecture. It is simpler and doesn't require development resources."
+      },
+      {
+        "type": "para",
+        "text": "On the other hand, Cloud modernization involves updating or rewriting applications to fully take advantage of cloud-native architectures and cloud services. It requires major changes to the application's source code.   Cloud modernization yields enduring benefits. If you have the time and resources available, it's undoubtedly worthwhile to pursue cloud modernization."
+      }
+    ]
+  },
+  {
+    "title": "What applications does Dynamics 365 CRM include?",
+    "url": "/faq/what-applications-does-dynamics-365-crm-include",
+    "slug": "what-applications-does-dynamics-365-crm-include",
+    "published": "2024-04-18",
+    "modified": "2024-04-18",
+    "category": "Dynamics 365 CRM Applications",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Dynamics 365 CRM includes Sales, Marketing, Customer Insights, Field Service, Remote Assist, and Commerce."
+      }
+    ]
+  },
+  {
+    "title": "Why use Dynamics 365 for your CRM solution?",
+    "url": "/faq/why-use-dynamics-365-for-your-crm-solution",
+    "slug": "why-use-dynamics-365-for-your-crm-solution",
+    "published": "2024-04-18",
+    "modified": "2024-04-18",
+    "category": "Dynamics 365 CRM Applications",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Dynamics 365 CRM is an intelligent, integrated, data-driven solution that helps customers track leads, pipelines, and marketing. It streamlines business operations and processes to improve customer engagement. With Dynamics 365, you can select stand-alone or multiple applications suited to your business needs."
+      }
+    ]
+  },
+  {
+    "title": "How long does a typical application modernization process take?",
+    "url": "/faq/how-long-does-a-typical-application-modernization-process-take",
+    "slug": "how-long-does-a-typical-application-modernization-process-take",
+    "published": "2024-04-15",
+    "modified": "2024-04-25",
+    "category": "App Modernization",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "The duration of the application modernization process depends on its complexity and scale. It can range from a few months to a year or more"
+      }
+    ]
+  },
+  {
+    "title": "Why modernize legacy applications?",
+    "url": "/faq/why-modernize-legacy-applications",
+    "slug": "why-modernize-legacy-applications",
+    "published": "2024-04-15",
+    "modified": "2024-04-15",
+    "category": "App Modernization",
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Legacy applications are frequently monolithic, making updates challenging and scalability costly. Additionally, complexity and integration challenges hinder the integration of new features. Modernizing such applications to a microservices architecture allows for smaller, loosely coupled components that can be independently deployed and scaled, effectively addressing these issues."
+      }
+    ]
+  }
+]
