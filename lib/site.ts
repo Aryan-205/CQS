@@ -28,7 +28,12 @@ export type NavItem = {
   };
 };
 
-export const utilityNav: (NavLink & { marker?: "red" | "blue" })[] = [
+/**
+ * The old utility strip above the nav. The bar it belonged to is gone — the
+ * three destinations are reachable from the Practices and Careers panels and
+ * from the footer, so the strip was a third row of chrome for nothing.
+ */
+export const practiceEntries: (NavLink & { marker?: "red" | "blue" })[] = [
   { label: "Government", href: "/government-it-services", marker: "red" },
   { label: "Commercial", href: "/technologygroup", marker: "blue" },
   { label: "Employee Resources", href: "/employee-resources" },

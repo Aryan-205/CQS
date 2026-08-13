@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { primaryNav, utilityNav, type NavItem } from "@/lib/site";
+import { primaryNav, type NavItem } from "@/lib/site";
+import { navImage, navPanelImage } from "@/lib/media";
 import { Logo } from "@/components/logo";
 import { Arrow, ChevronDown, Close, Menu, Search } from "@/components/icons";
 
@@ -87,58 +89,28 @@ export function SiteHeader() {
   const text = onDark ? "text-on-black" : "text-ink";
   const mutedText = onDark ? "text-on-black-mute" : "text-muted";
   const hairline = onDark ? "border-white/15" : "border-line";
-  // Written out in full: Tailwind cannot see a class assembled at runtime.
-  const utilityLink = onDark
-    ? "text-on-black-mute hover:text-on-black"
-    : "text-muted hover:text-ink";
 
   return (
     <header
       className={`z-50 ${overlay ? "fixed inset-x-0 top-0" : "sticky top-0"}`}
       onMouseLeave={hoverClose}
     >
-      {/* Utility bar — the dual-practice split, at its smallest scale. */}
-      <div
-        className={`hidden border-b transition-colors duration-[240ms] ease-brand lg:block ${hairline} ${
-          solid ? "bg-tint-neutral" : "bg-black/25"
-        }`}
-      >
-        <div className="shell flex h-8 items-center justify-end gap-7">
-          {utilityNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex items-center gap-2 text-eyebrow uppercase transition-colors duration-150 ease-brand ${utilityLink}`}
-            >
-              {item.marker && (
-                <span
-                  className={`h-2.5 w-[3px] ${
-                    item.marker === "red" ? "bg-brand-red" : "bg-brand-blue"
-                  }`}
-                  aria-hidden
-                />
-              )}
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* Main bar */}
+      {/* One bar. The old utility strip is gone — Government, Commercial and
+          Employee Resources live in the panels and the footer instead. */}
       <div
         className={`border-b transition-[background-color,border-color,box-shadow] duration-[240ms] ease-brand ${hairline} ${
           solid ? "bg-bg" : "bg-transparent"
         } ${solid && scrolled ? "shadow-layer" : ""}`}
       >
         <div
-          className={`shell flex h-[68px] items-center justify-between transition-[height] duration-[240ms] ease-brand ${
+          className={`shell flex h-17 items-center justify-between transition-[height] duration-[240ms] ease-brand ${
             // Condensing is desktop-only: on mobile the bar height is what the
             // drawer offsets against, and a moving offset reads as a glitch.
             scrolled ? "lg:h-14" : ""
           }`}
         >
           <Link href="/" className="shrink-0" aria-label="CompQsoft home">
-            <Logo className="h-7 w-auto" />
+            <Logo className="h-8" tone={onDark ? "dark" : "light"} />
           </Link>
 
           <nav className="hidden lg:block" aria-label="Primary">
@@ -226,6 +198,14 @@ export function SiteHeader() {
   );
 }
 
+/**
+ * The panel: a picture on the left, the links on the right, nothing else.
+ *
+ * Every link carries its own image — pointing at one swaps the picture, so the
+ * reader sees the destination before they commit to the click. The image only
+ * ever changes on a deliberate hover, and it holds the last one on the way out
+ * rather than snapping back, which would read as a flicker.
+ */
 function MegaPanel({
   item,
   isActive,
@@ -239,56 +219,89 @@ function MegaPanel({
 }) {
   const government = item.practice === "government";
   const rule = government ? "bg-brand-red" : "bg-brand-blue";
-  const eyebrow = government ? "text-red-text" : "text-link";
-  const tint = government ? "bg-tint-red" : "bg-tint-blue";
+
+  const fallback = navPanelImage(item.label);
+  const [preview, setPreview] = useState<{ src: string; label: string }>({
+    src: fallback,
+    label: item.featured?.title ?? item.label,
+  });
 
   return (
     <div
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="absolute inset-x-0 top-full border-b border-line bg-bg shadow-layer"
+      className="absolute inset-x-0 top-full border-b border-line bg-bg shadow-layer py-2"
     >
-      <div className="shell grid gap-10 py-12 lg:grid-cols-4 lg:gap-14">
-        {item.columns?.map((column) => (
-          <div key={column.heading}>
-            <p className="mb-5 flex items-center gap-2.5 text-eyebrow uppercase text-muted">
-              <span className={`h-[3px] w-4 ${rule}`} aria-hidden />
-              {column.heading}
-            </p>
-            <ul className="space-y-1">
-              {column.links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`-mx-3 block rounded-[6px] px-3 py-2 text-base transition-colors duration-150 ease-brand hover:bg-tint-neutral hover:text-link ${
-                      isActive(link.href) ? "text-link" : "text-body"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div className="shell grid gap-8 lg:grid-cols-[minmax(0,16rem)_1fr] lg:gap-14">
+        {/* Left: the picture, plus whatever the panel wants to feature. */}
+        <div className="hidden lg:block py-8">
 
-        {item.featured && (
-          <Link
-            href={item.featured.href}
-            className={`group flex flex-col justify-between rounded-card ${tint} p-7 transition-colors duration-150 ease-brand hover:bg-tint-neutral lg:col-start-4`}
-          >
-            <div>
-              <p className={`mb-4 text-eyebrow uppercase ${eyebrow}`}>
-                {item.featured.eyebrow}
-              </p>
-              <p className="text-h4 text-ink">{item.featured.title}</p>
-            </div>
-            <span className="mt-6 inline-flex items-center gap-2 text-sm text-link">
-              Read more
+          {/* No key on the image: remounting per hover blanks the frame while
+              the next file loads, which reads as a flicker. Swapping src keeps
+              the last picture on screen until the new one is decoded. */}
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-tint-neutral">
+            <Image
+              src={preview.src}
+              alt=""
+              fill
+              sizes="480px"
+              className="graded object-cover"
+            />
+            <span
+              className={`absolute inset-x-0 bottom-0 h-1 ${rule}`}
+              aria-hidden
+            />
+          </div>
+
+          <p className="mt-4 text-base text-ink">{preview.label}</p>
+
+          {item.featured && (
+            <Link
+              href={item.featured.href}
+              className="group mt-3 inline-flex items-center gap-2 border-b-2 border-brand-blue pb-1 text-sm text-link transition-colors duration-150 ease-brand hover:text-link-hover"
+            >
+              {item.featured.eyebrow}
               <Arrow className="h-3 w-3 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
-            </span>
-          </Link>
-        )}
+            </Link>
+          )}
+        </div>
+
+        {/* Right: the links, set large and quiet. */}
+        <div className="grid gap-x-12 gap-y-7 sm:grid-cols-2 lg:pt-7">
+          {item.columns?.map((column) => (
+            <div key={column.heading}>
+              <p className="mb-3 text-eyebrow uppercase text-muted">
+                {column.heading}
+              </p>
+              <ul>
+                {column.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onMouseEnter={() =>
+                        setPreview({
+                          src: navImage(link.href) ?? fallback,
+                          label: link.label,
+                        })
+                      }
+                      onFocus={() =>
+                        setPreview({
+                          src: navImage(link.href) ?? fallback,
+                          label: link.label,
+                        })
+                      }
+                      className={`block py-1.5 text-sm transition-colors duration-150 ease-brand hover:text-link ${
+                        isActive(link.href) ? "text-link" : "text-body"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -300,7 +313,7 @@ function MobileDrawer({ isActive }: { isActive: (href?: string) => boolean }) {
       <div className="shell py-6">
         {primaryNav.map((item) => (
           <details key={item.label} className="group border-b border-line">
-            <summary className="flex cursor-pointer list-none items-center justify-between py-5 text-h4 text-ink marker:hidden">
+            <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-base text-ink marker:hidden">
               {item.label}
               <ChevronDown className="h-4 w-4 text-muted transition-transform duration-[180ms] ease-brand group-open:rotate-180" />
             </summary>
@@ -337,26 +350,6 @@ function MobileDrawer({ isActive }: { isActive: (href?: string) => boolean }) {
             </div>
           </details>
         ))}
-
-        <div className="mt-8 space-y-4">
-          {utilityNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="flex items-center gap-2 text-eyebrow uppercase text-muted"
-            >
-              {item.marker && (
-                <span
-                  className={`h-2.5 w-[3px] ${
-                    item.marker === "red" ? "bg-brand-red" : "bg-brand-blue"
-                  }`}
-                  aria-hidden
-                />
-              )}
-              {item.label}
-            </Link>
-          ))}
-        </div>
 
         <Link
           href="/contact-us"

@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Block, Practice, Record } from "@/lib/content";
-import { eyebrowClass, ruleClass, tintClass } from "@/lib/content";
+import { eyebrowClass, glowClass, ruleClass } from "@/lib/content";
 import { Blocks } from "@/components/blocks";
 import { Arrow } from "@/components/icons";
 
 /* =========================================================================
-   Band — every section is one of these. White and tint alternate down the
-   page; the tint is the practice colour. Never two tints adjacent.
+   Band — every section is one of these. The ground is white the whole way
+   down; `tone="tint"` no longer paints a tinted band, it drops a very light
+   red/blue bloom behind the content. Rhythm without a change of ground.
    ========================================================================= */
 export function Band({
   children,
@@ -25,12 +26,22 @@ export function Band({
   wide?: boolean;
   id?: string;
 }) {
-  const bg = tone === "tint" ? tintClass(practice) : "bg-bg";
-  const pad = size === "large" ? "py-20 sm:py-32" : "py-16 sm:py-24";
+  const pad = size === "large" ? "py-28 sm:py-40" : "py-24 sm:py-32";
   return (
-    <section id={id} className={`${bg} ${pad}`}>
+    <section id={id} className={`relative isolate bg-bg ${pad}`}>
+      {tone === "tint" && <Glow practice={practice} />}
       <div className={wide ? "shell-wide" : "shell"}>{children}</div>
     </section>
+  );
+}
+
+/** The scattered brand bloom. Static, pointer-transparent, behind everything. */
+export function Glow({ practice = "neutral" }: { practice?: Practice }) {
+  return (
+    <div
+      className={`pointer-events-none absolute inset-0 -z-10 ${glowClass(practice)}`}
+      aria-hidden
+    />
   );
 }
 
@@ -79,7 +90,7 @@ export function SectionHead({
 
   return (
     <div
-      className={`mb-12 ${
+      className={`mb-14 sm:mb-16 ${
         align === "split"
           ? "flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
           : ""
@@ -93,7 +104,7 @@ export function SectionHead({
         )}
         {title && (
           <h2
-            className={`measure mt-5 text-h2 ${onDark ? "text-on-black" : "text-ink"}`}
+            className={`measure mt-5 text-h1 ${onDark ? "text-on-black" : "text-ink"}`}
           >
             {title}
           </h2>
@@ -217,7 +228,9 @@ export function Hero({
 
       <div
         className={`shell relative flex flex-col justify-end ${
-          compact ? "min-h-[300px] py-16 sm:min-h-[360px]" : "min-h-[420px] py-20 sm:min-h-[520px] sm:py-28"
+          compact
+            ? "min-h-[300px] py-16 sm:min-h-[360px]"
+            : "min-h-[420px] py-20 sm:min-h-[520px] sm:py-28"
         }`}
       >
         {eyebrow && (
@@ -530,17 +543,17 @@ export function PartnerGrid({
         {logos.map((logo) => (
           <li
             key={logo.alt}
-            className="group grid h-28 place-items-center bg-bg px-6 transition-colors duration-150 ease-brand hover:bg-tint-neutral"
+            className="group grid h-32 place-items-center bg-bg px-6 transition-colors duration-150 ease-brand hover:bg-tint-neutral"
           >
-            {/* The supplied marks are white-on-transparent, cut for a dark
-                band. Inverting gives a true black mark on the white page —
-                uniform, because every mark in the set is monochrome. */}
+            {/* Full-colour marks — the alliance-partner set, which is the only
+                colour artwork the media library holds. No filter of any kind:
+                a partner mark is the partner's, not ours to recolour. */}
             <Image
               src={logo.src}
               alt={logo.alt}
               width={logo.width}
               height={logo.height}
-              className="h-auto max-h-10 w-auto max-w-[140px] object-contain opacity-60 invert transition-opacity duration-150 ease-brand group-hover:opacity-100"
+              className="h-auto max-h-14 w-auto max-w-[150px] object-contain mix-blend-multiply"
               unoptimized
             />
           </li>
@@ -589,19 +602,29 @@ export function FaqAccordion({
   faqs,
   practice = "neutral",
   tone = "white",
+  limit = 6,
 }: {
   title?: string;
   faqs: Record[];
   practice?: Practice;
   tone?: "white" | "tint";
+  /**
+   * Six is the whole accordion. Callers pass everything they have and the cut
+   * happens here, in the order they supplied — service-specific questions
+   * first, the generic ones last — so what survives is the half a visitor
+   * came for. The schema below is cut with it: marking up questions that are
+   * not on the page is exactly what the FAQPage spec forbids.
+   */
+  limit?: number;
 }) {
-  if (!faqs.length) return null;
+  const shown = faqs.slice(0, limit);
+  if (!shown.length) return null;
 
   return (
     <Band id="faq" tone={tone} practice={practice}>
       <SectionHead eyebrow="Questions" title={title} practice={practice} />
       <div className="divide-y divide-line border-y border-line">
-        {faqs.map((faq) => (
+        {shown.map((faq) => (
           <details key={faq.slug} className="group py-6">
             <summary className="flex cursor-pointer list-none items-start justify-between gap-8 text-h4 text-ink transition-colors duration-150 ease-brand marker:hidden hover:text-link">
               {faq.title}
@@ -626,7 +649,7 @@ export function FaqAccordion({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
+            mainEntity: shown.map((faq) => ({
               "@type": "Question",
               name: faq.title,
               acceptedAnswer: {
@@ -663,17 +686,18 @@ export function CtaBand({
   practice?: Practice;
 }) {
   return (
-    <section className={`${tintClass(practice)} py-20 sm:py-32`}>
-      <div className="shell flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <span
-            className={`mb-8 block h-[3px] w-16 ${ruleClass(practice)}`}
-            aria-hidden
-          />
-          <h2 className="measure text-h1 text-ink">{title}</h2>
-          {lead && <p className="measure mt-5 text-lg text-body">{lead}</p>}
-        </div>
-        <div className="flex shrink-0 flex-wrap gap-3">
+    <section className="relative isolate bg-bg py-32 sm:py-44">
+      <Glow practice={practice} />
+      <div className="shell flex flex-col items-center text-center">
+        <span
+          className={`mb-10 block h-[3px] w-16 ${ruleClass(practice)}`}
+          aria-hidden
+        />
+        <h2 className="max-w-[18ch] text-display text-ink">{title}</h2>
+        {lead && (
+          <p className="mt-7 max-w-[58ch] text-lg text-body">{lead}</p>
+        )}
+        <div className="mt-12 flex flex-wrap justify-center gap-3">
           <Button href={action.href}>{action.label}</Button>
           {secondary && (
             <Button href={secondary.href} variant="secondary">
@@ -719,7 +743,7 @@ export function ListingGrid({
   return (
     <Band tone={tone} practice={practice}>
       <div
-        className={`grid gap-x-8 gap-y-12 ${columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}
+        className={`grid gap-x-10 gap-y-16 ${columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}
       >
         {records.map((record) => (
           <EditorialCard
@@ -733,7 +757,7 @@ export function ListingGrid({
             }
             title={record.title}
             date={record.published}
-            practice={practice}
+            size="compact"
           />
         ))}
       </div>
@@ -741,7 +765,11 @@ export function ListingGrid({
   );
 }
 
-/** The site's repeating editorial unit — image over a category, title, date. */
+/**
+ * The site's repeating editorial unit — image, then a quiet meta line, then
+ * the title. Meta sits above the title by default: it is the label a scanning
+ * reader uses to decide whether the headline is theirs to read.
+ */
 export function EditorialCard({
   href,
   image,
@@ -749,8 +777,9 @@ export function EditorialCard({
   title,
   date,
   excerpt,
-  practice = "neutral",
+  cta,
   size = "normal",
+  meta = "above",
 }: {
   href: string;
   image?: string;
@@ -758,48 +787,73 @@ export function EditorialCard({
   title: string;
   date?: string;
   excerpt?: string;
-  practice?: Practice;
-  size?: "normal" | "large";
+  /** Reading cue under the copy. The first word carries the brand underline. */
+  cta?: string;
+  size?: "normal" | "large" | "compact";
+  meta?: "above" | "below";
 }) {
+  const formatted =
+    date &&
+    new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    });
+
+  const metaLine = (category || formatted) && (
+    <p className="text-stat-label uppercase text-muted">
+      {[category, formatted].filter(Boolean).join(" · ")}
+    </p>
+  );
+
   return (
     <Link href={href} className="group flex flex-col">
       {image && (
         <div
-          className={`relative mb-6 w-full overflow-hidden rounded-card bg-tint-neutral ${
+          className={`relative w-full overflow-hidden bg-tint-neutral ${
             size === "large" ? "aspect-[16/10]" : "aspect-[4/3]"
-          }`}
+          } ${meta === "above" ? "mb-5" : "mb-6"}`}
         >
           <Image
             src={image}
             alt=""
             fill
-            sizes={size === "large" ? "(min-width: 1024px) 60vw, 100vw" : "(min-width: 640px) 33vw, 100vw"}
+            sizes={
+              size === "large"
+                ? "(min-width: 1024px) 60vw, 100vw"
+                : size === "compact"
+                  ? "(min-width: 1024px) 25vw, 100vw"
+                  : "(min-width: 640px) 33vw, 100vw"
+            }
             className="graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.03]"
           />
         </div>
       )}
-      {category && (
-        <p className={`mb-3 text-eyebrow uppercase ${eyebrowClass(practice)}`}>
-          {category}
-        </p>
-      )}
+
+      {meta === "above" && metaLine}
+
       <h3
         className={`text-ink transition-colors duration-150 ease-brand group-hover:text-link ${
-          size === "large" ? "text-h2" : "text-h4"
-        }`}
+          meta === "above" ? "mt-2.5" : ""
+        } ${size === "large" ? "text-h2" : size === "compact" ? "text-h4" : "text-h3"}`}
       >
         {title}
       </h3>
-      {excerpt && <p className="mt-3 text-sm text-body">{excerpt}</p>}
-      {date && (
-        <p className="mt-4 text-stat-label uppercase text-muted">
-          {new Date(date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            timeZone: "UTC",
-          })}
-        </p>
+
+      {excerpt && <p className="mt-4 text-base text-body">{excerpt}</p>}
+
+      {meta === "below" && (category || formatted) && (
+        <div className="mt-4">{metaLine}</div>
+      )}
+
+      {cta && (
+        <span className="mt-6 inline-flex items-center gap-1.5 text-base text-body transition-colors duration-150 ease-brand group-hover:text-link">
+          <span className="border-b-2 border-brand-blue pb-0.5">
+            {cta.split(" ")[0]}
+          </span>
+          {cta.split(" ").slice(1).join(" ")}
+        </span>
       )}
     </Link>
   );
@@ -923,8 +977,9 @@ export function FeatureSplit({
 }
 
 /* =========================================================================
-   14. CredentialBand — the federal proof block. Black, because a contracting
-   officer scanning for UEI and CAGE should not have to hunt.
+   14. CredentialBand — the federal proof block. White like every other band;
+   what makes it findable is the mono type, the rules and the isolation, not
+   a change of ground.
    ========================================================================= */
 export function CredentialBand({
   eyebrow = "Contracting",
@@ -944,52 +999,44 @@ export function CredentialBand({
   action?: { label: string; href: string };
 }) {
   return (
-    <section className="relative isolate overflow-hidden grad-hero py-20 sm:py-28">
-      <div className="absolute inset-0 hairline-grid opacity-60" aria-hidden />
-      <div className="shell relative grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
+    <section className="relative isolate bg-bg py-24 sm:py-32">
+      <Glow practice="government" />
+      <div className="shell relative grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-24">
         <div>
-          <Eyebrow practice="government" onDark>
-            {eyebrow}
-          </Eyebrow>
-          <h2 className="measure mt-5 text-h2 text-on-black">{title}</h2>
-          {lead && (
-            <p className="measure mt-5 text-lg text-on-black-mute">{lead}</p>
-          )}
+          <Eyebrow practice="government">{eyebrow}</Eyebrow>
+          <h2 className="measure mt-5 text-h1 text-ink">{title}</h2>
+          {lead && <p className="measure mt-5 text-lg text-body">{lead}</p>}
 
-          <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3">
+          <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3">
             {identifiers.map((id) => (
               <div key={id.label}>
-                <dt className="text-stat-label uppercase text-on-black-mute">
+                <dt className="text-stat-label uppercase text-muted">
                   {id.label}
                 </dt>
-                <dd className="mt-1.5 font-mono text-code text-on-black">
-                  {id.value}
-                </dd>
+                <dd className="mt-2 font-mono text-code text-ink">{id.value}</dd>
               </div>
             ))}
           </dl>
 
           {action && (
-            <div className="mt-10">
-              <Button href={action.href} onDark>
-                {action.label}
-              </Button>
+            <div className="mt-12">
+              <Button href={action.href}>{action.label}</Button>
             </div>
           )}
         </div>
 
-        <div className="space-y-10">
+        <div className="space-y-12">
           {vehicles && vehicles.length > 0 && (
             <div>
-              <p className="mb-5 text-stat-label uppercase text-on-black-mute">
+              <p className="mb-5 text-stat-label uppercase text-muted">
                 Contract vehicles
               </p>
-              <ul className="divide-y divide-white/10 border-y border-white/10">
+              <ul className="divide-y divide-line border-y border-line">
                 {vehicles.map((vehicle) => (
                   <li key={vehicle.href}>
                     <Link
                       href={vehicle.href}
-                      className="group flex items-center justify-between gap-6 py-4 text-base text-on-black transition-colors duration-150 ease-brand hover:text-brand-blue"
+                      className="group flex items-center justify-between gap-6 py-4 text-base text-body transition-colors duration-150 ease-brand hover:text-link"
                     >
                       {vehicle.label}
                       <Arrow className="h-3.5 w-3.5 shrink-0 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
@@ -1002,14 +1049,14 @@ export function CredentialBand({
 
           {certifications && certifications.length > 0 && (
             <div>
-              <p className="mb-5 text-stat-label uppercase text-on-black-mute">
+              <p className="mb-5 text-stat-label uppercase text-muted">
                 Certifications and set-asides
               </p>
               <ul className="flex flex-wrap gap-2.5">
                 {certifications.map((cert) => (
                   <li
                     key={cert}
-                    className="rounded-pill border border-white/20 px-4 py-2 text-sm text-on-black"
+                    className="rounded-pill border border-line px-4 py-2 text-sm text-ink"
                   >
                     {cert}
                   </li>

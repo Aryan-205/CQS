@@ -20,8 +20,10 @@ export type Media = { src: string; alt: string };
 ------------------------------------------------------------------------- */
 export const heroVideo = "/media/hero.mp4";
 
+/** A frame lifted straight out of hero.mp4, so the still and the footage are
+ *  the same shot rather than two different pictures fighting each other. */
 export const heroPoster: Media = {
-  src: `${CDN}/2025/03/cyber-banner-scaled-1.jpg`,
+  src: "/media/hero-poster.jpg",
   alt: "",
 };
 
@@ -85,6 +87,29 @@ export const serviceBanner = (slug: string): string | undefined =>
   SERVICE_BANNERS[slug];
 
 /* -------------------------------------------------------------------------
+   Mega-menu imagery. Every link in a panel resolves to its own picture, so
+   the panel shows the destination rather than one decorative still. Links
+   with no asset of their own fall back to the panel's own image.
+------------------------------------------------------------------------- */
+const NAV_PANEL_IMAGES: Record<string, string> = {
+  Services: `${CDN}/2024/12/technologygroup-banner.jpg`,
+  Practices: `${CDN}/2024/04/government-it-services-banner.webp`,
+  Insights: `${CDN}/2024/04/blog-banner.jpg`,
+  Careers: `${CDN}/2024/04/careers-banner.jpg`,
+  About: `${CDN}/2024/04/about-us-bg.jpg`,
+};
+
+export const navPanelImage = (label: string): string =>
+  NAV_PANEL_IMAGES[label] ?? `${CDN}/2024/12/compqsoft-banner.jpg`;
+
+export const navImage = (href: string): string | undefined => {
+  const path = href.replace(/\/$/, "");
+  if (path.startsWith("/services/"))
+    return SERVICE_BANNERS[path.slice("/services/".length)];
+  return BANNERS[path];
+};
+
+/* -------------------------------------------------------------------------
    Practice panels — the dual-audience split, the first choice a visitor makes.
 ------------------------------------------------------------------------- */
 export const practiceMedia = {
@@ -101,17 +126,23 @@ export const practiceMedia = {
 /* -------------------------------------------------------------------------
    Technology partners — content.md:617, in the order the live site runs them.
 ------------------------------------------------------------------------- */
+/**
+ * The homepage marks come from the alliance-partner records, not the
+ * `client-logo-*.png` set: those PNGs are white-on-transparent artwork cut for
+ * a dark band and carry no colour at all. These JPGs are the full-colour
+ * originals, on white, so they need no filter on a white page.
+ */
 export const partnerLogos: (Media & { width: number; height: number })[] = [
-  { src: `${CDN}/2024/04/client-logo-1.png`, alt: "Microsoft", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/client-logo-5.png`, alt: "Salesforce", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/client-logo-2.png`, alt: "Accenture", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/client-logo-3.png`, alt: "SAP", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/client-logo-6.png`, alt: "ServiceNow", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/ibm.png`, alt: "IBM", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/client-logo-4.png`, alt: "Oracle", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/general.png`, alt: "General Dynamics", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/bylight.png`, alt: "By Light", width: 157, height: 47 },
-  { src: `${CDN}/2024/04/casi.png`, alt: "CASI", width: 157, height: 47 },
+  { src: `${CDN}/2024/04/logo-01-1.jpg`, alt: "Microsoft", width: 175, height: 92 },
+  { src: `${CDN}/2024/04/logo-02.jpg`, alt: "Salesforce", width: 175, height: 92 },
+  { src: `${CDN}/2024/04/logo-06.jpg`, alt: "Accenture", width: 175, height: 92 },
+  { src: `${CDN}/2024/04/logo-03.jpg`, alt: "SAP", width: 175, height: 92 },
+  { src: `${CDN}/2024/04/logo-04.jpg`, alt: "ServiceNow", width: 175, height: 92 },
+  { src: `${CDN}/2024/04/logo-07.jpg`, alt: "IBM", width: 175, height: 92 },
+  { src: `${CDN}/2024/04/logo-08.jpg`, alt: "Oracle", width: 175, height: 92 },
+  { src: `${CDN}/2024/04/logo-15.jpg`, alt: "General Dynamics", width: 175, height: 92 },
+  { src: `${CDN}/2024/05/aws.jpg`, alt: "AWS", width: 175, height: 92 },
+  { src: `${CDN}/2024/05/splunk.jpg`, alt: "Splunk", width: 175, height: 92 },
 ];
 
 /* -------------------------------------------------------------------------

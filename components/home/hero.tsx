@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Eyebrow } from "@/components/sections";
 import { Arrow, ChevronDown } from "@/components/icons";
 import { heroPoster, heroVideo } from "@/lib/media";
@@ -16,6 +16,9 @@ import { heroPoster, heroVideo } from "@/lib/media";
  */
 export function HomeHero() {
   const video = useRef<HTMLVideoElement>(null);
+  // The poster clears once the footage can paint. Leaving both up composites
+  // two different frames at partial opacity, which reads as a smear.
+  const [playing, setPlaying] = useState(false);
 
   // Reduced motion holds the poster frame rather than the moving image.
   useEffect(() => {
@@ -32,17 +35,20 @@ export function HomeHero() {
   }, []);
 
   return (
-    <section className="relative isolate flex min-h-svh flex-col overflow-hidden grad-hero">
-      {/* Poster carries mobile, slow connections and reduced motion. It has to
-          work as a finished still on its own, so it sits under the video
-          rather than only inside the poster attribute. */}
+    <section className="relative isolate flex min-h-svh flex-col overflow-hidden bg-black">
+      {/* The footage runs clean: no brand gradient, no blooms, no grid, no
+          grade, full opacity. Poster carries mobile, slow connections and
+          reduced motion, so it sits under the video rather than only inside
+          the poster attribute. */}
       <Image
         src={heroPoster.src}
         alt={heroPoster.alt}
         fill
         priority
         sizes="100vw"
-        className="graded -z-10 object-cover opacity-45"
+        className={`-z-10 object-cover transition-opacity duration-[240ms] ease-brand ${
+          playing ? "opacity-0" : "opacity-100"
+        }`}
       />
       <video
         ref={video}
@@ -52,15 +58,16 @@ export function HomeHero() {
         playsInline
         poster={heroPoster.src}
         aria-hidden
-        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+        onCanPlay={() => setPlaying(true)}
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
       >
         <source src={heroVideo} type="video/mp4" />
       </video>
 
-      {/* Brand over footage, then a scrim to hold the headline at 21:1. */}
-      <div className="absolute inset-0 -z-10 grad-bloom" aria-hidden />
-      <div className="absolute inset-0 -z-10 scrim" aria-hidden />
-      <div className="absolute inset-0 -z-10 hairline-grid opacity-50" aria-hidden />
+      {/* The one layer left, and only where the type sits: a neutral black
+          wash rising from the foot of the band. Without it the white headline
+          lands on open sky and salt flat and drops under 2:1. */}
+      <div className="absolute inset-0 -z-10 scrim-plain" aria-hidden />
 
       {/* Headline sits bottom-left, clear of the fixed header. */}
       <div className="shell flex flex-1 flex-col justify-end pt-[calc(var(--header-h)+3rem)] pb-14 sm:pb-20">
@@ -72,7 +79,10 @@ export function HomeHero() {
           The IT Edge for Lean Government
         </h1>
 
-        <p className="mt-7 max-w-[54ch] text-lg text-on-black-mute">
+        {/* White, not the muted grey the dark bands use: with the gradient
+            layers gone the standfirst sits on live footage, and #A6ACB2 drops
+            out of it on the bright frames. */}
+        <p className="mt-7 max-w-[54ch] text-lg text-on-black">
           Unified communications, network engineering, cybersecurity and
           software sustainment for federal missions — and Microsoft-estate
           digital transformation for the enterprises that run alongside them.

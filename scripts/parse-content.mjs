@@ -10,7 +10,18 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const raw = readFileSync(join(root, "content.md"), "utf8");
+
+/**
+ * Known errors in the archive, corrected on the way through rather than
+ * carried into the rebuild. See CLAUDE.md, "Content notes": the live site says
+ * "Department of War" throughout, which is not the name of the department.
+ */
+const CORRECTIONS = [[/Department of War/g, "Department of Defense"]];
+
+const raw = CORRECTIONS.reduce(
+  (text, [from, to]) => text.replace(from, to),
+  readFileSync(join(root, "content.md"), "utf8"),
+);
 const lines = raw.split("\n");
 
 const outDir = join(root, "content");

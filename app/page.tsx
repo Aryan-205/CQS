@@ -2,18 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { blogs, caseStudies, excerpt, seoFor } from "@/lib/content";
-import { company } from "@/lib/site";
 import {
+  bannerFor,
   blogImage,
   caseStudyImage,
   partnerLogos,
   practiceMedia,
-  serviceIcons,
+  serviceBanner,
 } from "@/lib/media";
 import {
   Band,
   Counters,
-  CredentialBand,
   CtaBand,
   EditorialCard,
   Eyebrow,
@@ -23,7 +22,16 @@ import {
 } from "@/components/sections";
 import { Arrow } from "@/components/icons";
 import { HomeHero } from "@/components/home/hero";
+import { Featured } from "@/components/home/featured";
 import { ServiceTabs, type ServiceTab } from "@/components/home/service-tabs";
+
+/** CMS titles run to full sentences; past this they stop being headlines. */
+function headline(text: string, max = 84) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const boundary = cut.lastIndexOf(" ");
+  return `${(boundary > max * 0.6 ? cut.slice(0, boundary) : cut).replace(/[,;:.\s]+$/, "")}…`;
+}
 
 const seo = seoFor("/");
 
@@ -49,28 +57,28 @@ const SERVICE_TABS: ServiceTab[] = [
         description:
           "Build custom software solutions to innovate, streamline operations, and seamless digital transformation.",
         href: "/government-it-services",
-        icon: serviceIcons.softwareDevelopment,
+        image: serviceBanner("application-modernization")!,
       },
       {
         title: "Unified Communication",
         description:
           "Seamlessly integrate communication channels, enhance collaboration, and boost productivity with our unified communication solutions.",
         href: "/government-it-services",
-        icon: serviceIcons.unifiedCommunication,
+        image: serviceBanner("modern-workplace")!,
       },
       {
         title: "Cybersecurity",
         description:
           "Protect critical assets and data from cyber threats with our comprehensive cybersecurity solutions, ensuring business continuity.",
         href: "/services/cyber-security-services",
-        icon: serviceIcons.cybersecurity,
+        image: serviceBanner("cyber-security-services")!,
       },
       {
         title: "Network Management and Engineering",
         description:
           "Optimize network performance, ensure reliability, and drive efficiency with our expert network management and engineering services.",
         href: "/government-it-services",
-        icon: serviceIcons.networkManagement,
+        image: bannerFor("/government-it-services")!,
       },
     ],
   },
@@ -84,27 +92,27 @@ const SERVICE_TABS: ServiceTab[] = [
         description:
           "Elevate your business by migrating and modernizing your workloads to the cloud.",
         href: "/services/cloud-migration-and-modernization",
-        icon: serviceIcons.cloud,
+        image: serviceBanner("cloud-migration-and-modernization")!,
       },
       {
         title: "Application Modernization",
         description: "Modernize applications to unlock the full value of cloud.",
         href: "/services/application-modernization",
-        icon: serviceIcons.appModernization,
+        image: serviceBanner("power-platform-and-rpa")!,
       },
       {
         title: "Data, Analytics and AI",
         description:
           "Leverage advanced analytics and AI to uncover deep insights, make data-driven decisions, and drive smarter business outcomes.",
         href: "/services/data-analytics-ai",
-        icon: serviceIcons.dataAnalytics,
+        image: serviceBanner("data-analytics-ai")!,
       },
       {
         title: "Business Applications",
         description:
           "Enhance your CRM and ERP applications using Dynamics 365 for improved efficiency, streamlined operations, and seamless customer experiences.",
         href: "/services/dynamics-365-crm-applications",
-        icon: serviceIcons.businessApplications,
+        image: serviceBanner("dynamics-365-crm-applications")!,
       },
     ],
   },
@@ -145,27 +153,11 @@ const PRACTICES = [
   },
 ];
 
-const VEHICLES = [
-  { label: "DISA ENCORE III", href: "/disa-encoreiii" },
-  { label: "NIH CIO-SP3", href: "/cio-sp3" },
-  { label: "GSA OASIS SB Pool 3", href: "/oasis" },
-  { label: "CMS SPARC", href: "/cms-sparc" },
-  { label: "DLA JETS", href: "/dlajets" },
-];
-
-const CERTIFICATIONS = [
-  "CMMI Level 3",
-  "ISO 9001",
-  "ISO/IEC 27001",
-  "ISO/IEC 20000-1",
-  "HUBZone Small Business",
-  "Minority-Owned",
-];
-
 export default function HomePage() {
   const featuredCase = caseStudies[0];
   const supportingCases = caseStudies.slice(1, 3);
-  const [leadPost, ...morePosts] = blogs.slice(0, 4);
+  const [featuredPost, ...featuredRail] = blogs.slice(0, 4);
+  const latestPosts = blogs.slice(4, 8);
 
   return (
     <main>
@@ -243,96 +235,113 @@ export default function HomePage() {
       <ServiceTabs tabs={SERVICE_TABS} />
 
       {/* ---- Work -------------------------------------------------------- */}
+      {/* One story told at full size, two more beside it. The asymmetry is
+          the editing: it says which piece of work we would show first. */}
       <Band id="work" tone="tint" practice="commercial">
         <SectionHead
-          eyebrow="Our work"
-          title="Transformational stories"
+          eyebrow="Case studies"
+          title="Performance, proven in the field"
           practice="commercial"
-          action={{ label: "All case studies", href: "/case-studies" }}
+          action={{ label: "View all case studies", href: "/case-studies" }}
           align="split"
         />
 
-        <div className="grid gap-x-10 gap-y-12 lg:grid-cols-[1.25fr_1fr]">
-          {featuredCase && (
-            <EditorialCard
-              href={`/case-study/${featuredCase.slug}`}
-              image={caseStudyImage(featuredCase)}
-              title={featuredCase.title}
-              excerpt={excerpt(featuredCase, 200)}
-              practice="commercial"
-              size="large"
-            />
-          )}
+        {/* One picture the full width of the shell, its headline and its
+            standfirst side by side underneath. The old two-column split put a
+            four-line title next to a four-line excerpt next to two more cards,
+            and every block fought the others for the eye. */}
+        {featuredCase && (
+          <Link href={`/case-study/${featuredCase.slug}`} className="group block">
+            <div className="relative aspect-[21/9] w-full overflow-hidden bg-tint-neutral">
+              <Image
+                src={caseStudyImage(featuredCase)}
+                alt=""
+                fill
+                priority={false}
+                sizes="100vw"
+                className="graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.02]"
+              />
+            </div>
 
-          <div className="divide-y divide-line border-t border-line">
-            {supportingCases.map((study) => (
-              <Link
-                key={study.slug}
-                href={`/case-study/${study.slug}`}
-                className="group flex flex-col py-7 first:pt-7"
-              >
-                <h3 className="text-h4 text-ink transition-colors duration-150 ease-brand group-hover:text-link">
-                  {study.title}
-                </h3>
-                <p className="mt-3 text-sm text-body">{excerpt(study, 140)}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm text-link">
+            <div className="mt-10 grid gap-x-16 gap-y-6 lg:grid-cols-[1.1fr_1fr]">
+              <h3 className="max-w-[22ch] text-h1 text-ink transition-colors duration-150 ease-brand group-hover:text-link">
+                {headline(featuredCase.title, 72)}
+              </h3>
+              <div>
+                <p className="text-lg text-body">
+                  {excerpt(featuredCase, 210)}
+                </p>
+                <span className="mt-6 inline-flex items-center gap-2 text-base text-link">
                   Read case study
-                  <Arrow className="h-3 w-3 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
+                  <Arrow className="h-3.5 w-3.5 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
                 </span>
-              </Link>
-            ))}
-          </div>
+              </div>
+            </div>
+          </Link>
+        )}
+
+        <div className="mt-24 grid gap-x-16 gap-y-14 sm:grid-cols-2">
+          {supportingCases.map((study) => (
+            <EditorialCard
+              key={study.slug}
+              href={`/case-study/${study.slug}`}
+              image={caseStudyImage(study)}
+              category="Case study"
+              title={headline(study.title, 68)}
+              size="compact"
+            />
+          ))}
         </div>
       </Band>
 
+      {/* ---- Featured ---------------------------------------------------- */}
+      {featuredPost && (
+        <Featured
+          eyebrow="Featured"
+          title="What we are working on"
+          action={{ label: "View all updates", href: "/blogs" }}
+          lead={{
+            href: `/blog/${featuredPost.slug}`,
+            image: blogImage(featuredPost),
+            label: featuredPost.category?.split(",")[0] ?? "Insight",
+            title: headline(featuredPost.title, 76),
+          }}
+          items={featuredRail.map((post) => ({
+            href: `/blog/${post.slug}`,
+            image: blogImage(post),
+            label: post.category?.split(",")[0] ?? "Insight",
+            title: headline(post.title, 64),
+          }))}
+        />
+      )}
+
       {/* ---- Latest ------------------------------------------------------ */}
+      {/* Four equal columns — nothing here outranks anything else, so the row
+          reads as a shelf rather than a hierarchy. */}
       <Band id="latest" tone="white">
         <SectionHead
           eyebrow="Latest"
-          title="News and perspectives"
-          action={{ label: "All insights", href: "/blogs" }}
+          title="Expert insights from every angle"
+          action={{ label: "Explore more insights", href: "/blogs" }}
           align="split"
         />
 
-        <div className="grid gap-x-10 gap-y-12 lg:grid-cols-3">
-          {leadPost && (
-            <div className="lg:col-span-2">
-              <EditorialCard
-                href={`/blog/${leadPost.slug}`}
-                image={blogImage(leadPost)}
-                category={
-                  leadPost.category && leadPost.category !== "Uncategorized"
-                    ? leadPost.category
-                    : "Insight"
-                }
-                title={leadPost.title}
-                excerpt={excerpt(leadPost, 220)}
-                date={leadPost.published}
-                size="large"
-              />
-            </div>
-          )}
-
-          <ul className="divide-y divide-line border-t border-line">
-            {morePosts.map((post) => (
-              <li key={post.slug}>
-                <Link href={`/blog/${post.slug}`} className="group block py-6">
-                  <p className="text-stat-label uppercase text-muted">
-                    {post.published &&
-                      new Date(post.published).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                        timeZone: "UTC",
-                      })}
-                  </p>
-                  <h3 className="mt-2.5 text-h4 text-ink transition-colors duration-150 ease-brand group-hover:text-link">
-                    {post.title}
-                  </h3>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+          {latestPosts.map((post) => (
+            <EditorialCard
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              image={blogImage(post)}
+              category={
+                post.category && post.category !== "Uncategorized"
+                  ? post.category
+                  : "Insight"
+              }
+              title={headline(post.title, 64)}
+              date={post.published}
+              size="compact"
+            />
+          ))}
         </div>
       </Band>
 
@@ -346,33 +355,10 @@ export default function HomePage() {
         action={{ label: "All alliance partners", href: "/alliance-partners" }}
       />
 
-      {/* ---- Federal credentials ---------------------------------------- */}
-      <CredentialBand
-        eyebrow="For contracting officers"
-        title="Registered, certified and on contract"
-        lead="Everything needed to qualify CompQsoft as a prime or subcontract partner, in one place."
-        identifiers={company.identifiers}
-        vehicles={VEHICLES}
-        certifications={CERTIFICATIONS}
-        action={{ label: "View prime contracts", href: "/primecontracts" }}
-      />
-
-      {/* ---- Careers ----------------------------------------------------- */}
-      <Band tone="white">
-        <div className="flex flex-col gap-8 border-l-4 border-brand-blue pl-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <Eyebrow>Careers</Eyebrow>
-            <h2 className="measure mt-5 text-h2 text-ink">
-              Transform your career
-            </h2>
-            <p className="measure mt-5 text-lg text-body">
-              Contribute, collaborate, and lead with CompQsoft. Check out our
-              open positions.
-            </p>
-          </div>
-          <TextLink href="/openings">Explore jobs</TextLink>
-        </div>
-      </Band>
+      {/* The contracting-officer credential band and the careers band both came
+          off this page. The credentials live on /primecontracts and /compliance,
+          which is where a capture manager is already headed; careers live on
+          /life-at-compqsoft and /openings, linked from the nav and the footer. */}
 
       <CtaBand
         title="Connect with CompQsoft"

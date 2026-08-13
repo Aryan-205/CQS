@@ -56,20 +56,20 @@
   --text-h1: clamp(2rem, 4.5vw, 2.875rem); /* 32 → 46 */
   --text-h1--line-height: 1.08;
   --text-h1--letter-spacing: -0.015em;
-  --text-h1--font-weight: 500;
+  --text-h1--font-weight: 400;
 
   --text-h2: clamp(1.625rem, 3.2vw, 2.125rem); /* 26 → 34 */
   --text-h2--line-height: 1.15;
   --text-h2--letter-spacing: -0.01em;
-  --text-h2--font-weight: 500;
+  --text-h2--font-weight: 400;
 
   --text-h3: 1.5rem; /* 24 */
   --text-h3--line-height: 1.3;
-  --text-h3--font-weight: 500;
+  --text-h3--font-weight: 400;
 
   --text-h4: 1.1875rem; /* 19 */
   --text-h4--line-height: 1.4;
-  --text-h4--font-weight: 500;
+  --text-h4--font-weight: 400;
 
   /* Body sizes override Tailwind's native scale names so `text-body` stays
      free for the text *color*. text-lg = lead paragraphs, text-base = default. */
@@ -118,14 +118,9 @@
 @layer base {
   :root {
     /* The sticky header's own height, published so full-bleed heroes can
-       reserve space for it without measuring the DOM. */
+       reserve space for it without measuring the DOM. One bar only — the
+       utility strip is gone. */
     --header-h: 68px;
-  }
-
-  @media (width >= 64rem) {
-    :root {
-      --header-h: 100px; /* 32px utility bar + 68px main bar */
-    }
   }
 }
 
@@ -152,7 +147,10 @@
   h5,
   h6 {
     color: var(--color-ink);
-    font-weight: 500;
+    /* 400 everywhere. The ladder is size and colour; weight is not part of it,
+       and 500 at display size reads as heavy rather than as hierarchy. Only the
+       12–13px labels keep 500, where 400 goes muddy. */
+    font-weight: 400;
     text-wrap: balance;
   }
 
@@ -241,6 +239,18 @@
     );
   }
 
+  /* Legibility only, no colour: transparent across the top two-thirds of the
+     band, darkening into the corner the headline occupies. */
+  .scrim-plain {
+    background: linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0.25) 0%,
+      rgb(0 0 0 / 0.1) 34%,
+      rgb(0 0 0 / 0.62) 82%,
+      rgb(0 0 0 / 0.82) 100%
+    );
+  }
+
   /* Faint structural grid on dark bands — structure without ornament. */
   .hairline-grid {
     background-image:
@@ -249,10 +259,44 @@
     background-size: 96px 96px;
   }
 
+  /* ---------------------------------------------------------------------
+     Glow bands. The page ground is white end to end — no tinted or grey
+     bands. Rhythm comes from very light brand blooms scattered behind the
+     content instead: red and blue at 5–10% alpha, static, never a hard edge.
+  --------------------------------------------------------------------- */
+  /* Both blooms are centred inside the band and fade to nothing well before
+     its top and bottom edges — a gradient whose centre sits outside the box
+     is cut off by the next white band and reads as a hard seam. Only the left
+     and right edges may be crossed: those are the viewport, not a neighbour. */
+  .glow-blue {
+    background:
+      radial-gradient(58% 44% at 14% 46%, rgb(1 167 229 / 0.10) 0%, transparent 72%),
+      radial-gradient(46% 36% at 88% 66%, rgb(238 71 67 / 0.05) 0%, transparent 72%);
+  }
+
+  .glow-red {
+    background:
+      radial-gradient(58% 44% at 86% 44%, rgb(238 71 67 / 0.08) 0%, transparent 72%),
+      radial-gradient(46% 36% at 8% 68%, rgb(1 167 229 / 0.06) 0%, transparent 72%);
+  }
+
+  .glow-neutral {
+    background:
+      radial-gradient(54% 40% at 74% 40%, rgb(1 167 229 / 0.08) 0%, transparent 72%),
+      radial-gradient(44% 34% at 12% 72%, rgb(238 71 67 / 0.04) 0%, transparent 72%);
+  }
+
   /* Editorial media: real mission photography graded cool and desaturated so
      it sits with the palette. Never warm, never stock-lifestyle. */
   .graded {
     filter: saturate(0.72) contrast(1.06) brightness(0.94);
+  }
+
+  /* The hero grade. Footage there is bright daylight — salt flat, open sky —
+     and the scrim alone cannot hold a white headline over it, so the moving
+     image is pulled down hard before the scrim ever sees it. */
+  .graded-deep {
+    filter: saturate(0.7) contrast(1.08) brightness(0.62);
   }
 }
 

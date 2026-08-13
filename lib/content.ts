@@ -118,12 +118,17 @@ export function excerpt(record: Record, max = 180) {
 /** Practice coding drives tint bands, card rules and eyebrow colour. */
 export type Practice = "government" | "commercial" | "neutral";
 
-export const tintClass = (practice: Practice) =>
+/**
+ * The page ground is white everywhere — there are no tinted or grey bands.
+ * Band rhythm comes from this instead: a very light brand bloom behind the
+ * content, scattered so no two adjacent bands read the same.
+ */
+export const glowClass = (practice: Practice) =>
   practice === "government"
-    ? "bg-tint-red"
+    ? "glow-red"
     : practice === "commercial"
-      ? "bg-tint-blue"
-      : "bg-tint-neutral";
+      ? "glow-blue"
+      : "glow-neutral";
 
 export const ruleClass = (practice: Practice) =>
   practice === "government" ? "bg-brand-red" : "bg-brand-blue";

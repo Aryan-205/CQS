@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import type { Practice } from "@/lib/content";
-import { ruleClass, tintClass } from "@/lib/content";
+import { glowClass, ruleClass } from "@/lib/content";
 
 const DURATION_MS = 900;
 
@@ -108,21 +108,22 @@ export function Counters({
   tone?: "white" | "tint" | "dark";
 }) {
   const onDark = tone === "dark";
-  const bg =
-    tone === "dark"
-      ? "grad-hero"
-      : tone === "tint"
-        ? tintClass(practice)
-        : "bg-bg";
 
   return (
-    <section className={`relative isolate overflow-hidden ${bg} py-16 sm:py-24`}>
-      {onDark && (
+    <section
+      className={`relative isolate overflow-hidden ${onDark ? "grad-hero" : "bg-bg"} py-24 sm:py-32`}
+    >
+      {onDark ? (
         <div className="absolute inset-0 hairline-grid opacity-60" aria-hidden />
-      )}
+      ) : tone === "tint" ? (
+        <div
+          className={`pointer-events-none absolute inset-0 -z-10 ${glowClass(practice)}`}
+          aria-hidden
+        />
+      ) : null}
       <div className="shell relative">
         {(eyebrow || title || lead) && (
-          <div className="mb-14">
+          <div className="mb-16">
             {eyebrow && (
               <p
                 className={`flex items-center gap-3 text-eyebrow uppercase ${
@@ -139,7 +140,7 @@ export function Counters({
             )}
             {title && (
               <h2
-                className={`measure mt-5 text-h2 ${onDark ? "text-on-black" : "text-ink"}`}
+                className={`measure mt-5 text-h1 ${onDark ? "text-on-black" : "text-ink"}`}
               >
                 {title}
               </h2>
