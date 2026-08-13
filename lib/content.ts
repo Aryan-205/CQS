@@ -108,7 +108,11 @@ export function excerpt(record: Record, max = 180) {
   const para = record.blocks.find((b) => b.type === "para");
   if (!para) return "";
   const text = para.text.replace(/\*\*/g, "");
-  return text.length > max ? `${text.slice(0, max).trimEnd()}…` : text;
+  if (text.length <= max) return text;
+  // Cut on a word boundary — a teaser that stops mid-word reads as a bug.
+  const cut = text.slice(0, max);
+  const boundary = cut.lastIndexOf(" ");
+  return `${(boundary > max * 0.6 ? cut.slice(0, boundary) : cut).replace(/[,;:.\s]+$/, "")}…`;
 }
 
 /** Practice coding drives tint bands, card rules and eyebrow colour. */

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { excerpt, leadership, seoFor } from "@/lib/content";
 import { CardGrid, CtaBand, Hero } from "@/components/sections";
+import { bannerFor } from "@/lib/media";
 
 const PATH = "/leadership-team";
 const seo = seoFor(PATH);
@@ -17,6 +18,7 @@ export default function LeadershipIndexPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         eyebrow="About"
         title="Leadership team"

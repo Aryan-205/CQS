@@ -46,6 +46,13 @@
   --text-display--letter-spacing: -0.02em;
   --text-display--font-weight: 400;
 
+  /* Full-bleed hero only. Runs larger than --text-display because it sits on
+     a dark, full-viewport surface with nothing beside it to hold the scale. */
+  --text-hero: clamp(2.75rem, 6.6vw, 5rem); /* 44 → 80 */
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 400;
+
   --text-h1: clamp(2rem, 4.5vw, 2.875rem); /* 32 → 46 */
   --text-h1--line-height: 1.08;
   --text-h1--letter-spacing: -0.015em;
@@ -105,6 +112,21 @@
 
   /* -- Shell -------------------------------------------------------------- */
   --container-shell: 80rem; /* 1280px */
+  --container-wide: 96rem; /* 1536px — full-bleed bands and the hero */
+}
+
+@layer base {
+  :root {
+    /* The sticky header's own height, published so full-bleed heroes can
+       reserve space for it without measuring the DOM. */
+    --header-h: 68px;
+  }
+
+  @media (width >= 64rem) {
+    :root {
+      --header-h: 100px; /* 32px utility bar + 68px main bar */
+    }
+  }
 }
 
 @layer base {
@@ -116,7 +138,7 @@
     background-color: var(--color-bg);
     color: var(--color-body);
     font-family: var(--font-sans);
-    font-size: var(--text-body);
+    font-size: var(--text-base);
     line-height: 1.75;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -162,16 +184,75 @@
   }
 
   /* Page shell: 1280px, 24px gutters, 16px on mobile. */
-  .shell {
+  .shell,
+  .shell-wide {
     margin-inline: auto;
     max-width: var(--container-shell);
     padding-inline: 1rem;
   }
 
+  .shell-wide {
+    max-width: var(--container-wide);
+  }
+
   @media (width >= 40rem) {
-    .shell {
+    .shell,
+    .shell-wide {
       padding-inline: 1.5rem;
     }
+  }
+
+  /* ---------------------------------------------------------------------
+     Dark surfaces. Black is never the page — it is the hero, the footer and
+     the contained bands that carry the brand gradient. The blooms are static;
+     animating them is explicitly out of bounds.
+  --------------------------------------------------------------------- */
+  .grad-hero {
+    background:
+      radial-gradient(90% 90% at 0% 0%, #ee4743 0%, transparent 62%),
+      radial-gradient(90% 90% at 0% 100%, #01a7e5 0%, transparent 62%),
+      #000000;
+  }
+
+  /* The deck's two blooms, re-laid over footage so the brand survives the
+     photography instead of being washed out by it. Static, never animated. */
+  .grad-bloom {
+    background:
+      radial-gradient(72% 72% at 6% 10%, rgb(238 71 67 / 0.5) 0%, transparent 58%),
+      radial-gradient(72% 72% at 2% 94%, rgb(1 167 229 / 0.45) 0%, transparent 58%);
+  }
+
+  .grad-red {
+    background: linear-gradient(180deg, #000000 0%, #ee4743 100%);
+  }
+
+  .grad-blue {
+    background: linear-gradient(180deg, #000000 0%, #01a7e5 100%);
+  }
+
+  /* Scrim over hero footage — keeps the headline at 21:1 no matter what
+     frame the video happens to be on. */
+  .scrim {
+    background: linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0.72) 0%,
+      rgb(0 0 0 / 0.45) 45%,
+      rgb(0 0 0 / 0.86) 100%
+    );
+  }
+
+  /* Faint structural grid on dark bands — structure without ornament. */
+  .hairline-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+    background-size: 96px 96px;
+  }
+
+  /* Editorial media: real mission photography graded cool and desaturated so
+     it sits with the palette. Never warm, never stock-lifestyle. */
+  .graded {
+    filter: saturate(0.72) contrast(1.06) brightness(0.94);
   }
 }
 

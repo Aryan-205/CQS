@@ -10,6 +10,7 @@ import {
   LogoStrip,
 } from "@/components/sections";
 import { PageProse } from "@/components/page-content";
+import { bannerFor } from "@/lib/media";
 
 const PATH = "/about-us";
 const seo = seoFor(PATH);
@@ -75,6 +76,7 @@ export default function AboutPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         eyebrow="About us"
         title="Technology partner to the government and commercial sectors"
         lead="CompQsoft is a CMMI Level 3 certified digital platform and IT services company. Founded in 1997 in Houston as a minority-owned HUBZone small business, we now operate across 240+ locations."

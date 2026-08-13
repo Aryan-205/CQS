@@ -19,16 +19,17 @@ export function PageBlocks({
   practice?: Practice;
   skipFirstHeading?: boolean;
 }) {
-  let seenH1 = !skipFirstHeading;
+  // Resolved up front rather than tracked while mapping, so the render stays
+  // a pure function of its props.
+  const droppedH1 = skipFirstHeading
+    ? blocks.findIndex((b) => b.type === "heading" && b.level === 1)
+    : -1;
 
   return (
     <div className="measure space-y-6">
       {blocks.map((block, i) => {
         if (block.type === "heading") {
-          if (!seenH1 && block.level === 1) {
-            seenH1 = true;
-            return null;
-          }
+          if (i === droppedH1) return null;
           // The archive uses H2-H6 fairly loosely; map everything to two
           // visual levels so the three-level hierarchy rule holds.
           const Tag = block.level <= 2 ? "h2" : "h3";

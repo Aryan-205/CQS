@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { bySlug, caseStudies, excerpt, seoFor } from "@/lib/content";
 import { CtaBand, Hero, ListingGrid, Prose } from "@/components/sections";
+import { caseStudyImage } from "@/lib/media";
 
 const PRACTICE = "commercial" as const;
 
@@ -37,6 +38,7 @@ export default async function CaseStudyPage(
   return (
     <main>
       <Hero
+        image={caseStudyImage(study)}
         compact
         practice={PRACTICE}
         eyebrow="Case study"

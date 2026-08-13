@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { blogs, bySlug, excerpt, seoFor } from "@/lib/content";
 import { CtaBand, Hero, ListingGrid, Prose } from "@/components/sections";
+import { blogImage } from "@/lib/media";
 
 const PRACTICE = "neutral" as const;
 
@@ -38,6 +39,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
   return (
     <main>
       <Hero
+        image={blogImage(post)}
         compact
         practice={PRACTICE}
         eyebrow={

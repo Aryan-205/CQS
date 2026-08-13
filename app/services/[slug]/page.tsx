@@ -18,6 +18,7 @@ import {
   ProcessSteps,
   Prose,
 } from "@/components/sections";
+import { serviceBanner } from "@/lib/media";
 
 /** Services sit on the commercial side of the IA, so panels run blue. */
 const PRACTICE = "commercial" as const;
@@ -79,6 +80,7 @@ export default async function ServicePage(
   return (
     <main>
       <Hero
+        image={serviceBanner(slug)}
         eyebrow="Services"
         title={service.title}
         lead={excerpt(service, 220)}

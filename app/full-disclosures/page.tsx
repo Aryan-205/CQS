@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageFor, seoFor } from "@/lib/content";
 import { CtaBand, Hero } from "@/components/sections";
 import { PageProse } from "@/components/page-content";
+import { bannerFor } from "@/lib/media";
 
 const PRACTICE = "neutral" as const;
 const PATH = "/full-disclosures";
@@ -19,6 +20,7 @@ export default function FullDisclosuresPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         practice={PRACTICE}
         eyebrow="Corporate"

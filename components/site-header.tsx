@@ -5,27 +5,39 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { primaryNav, utilityNav, type NavItem } from "@/lib/site";
 import { Logo } from "@/components/logo";
+import { Arrow, ChevronDown, Close, Menu, Search } from "@/components/icons";
 
 /** Desktop mega-menu opens on hover after a short intent delay, so a cursor
  *  crossing the bar on its way elsewhere does not fire every panel. */
 const HOVER_INTENT_MS = 100;
 
+/** Routes whose hero is a full-viewport dark band, so the bar rides over it. */
+const OVERLAY_ROUTES = new Set(["/"]);
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState<string | null>(null);
   const [drawer, setDrawer] = useState(false);
-  const [condensed, setCondensed] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const headerRef = useRef<HTMLElement>(null);
+
+  // Transparent over the hero, solid the moment it leaves — or the moment a
+  // panel opens, because a mega-menu over moving footage is unreadable.
+  const overlay = OVERLAY_ROUTES.has(pathname);
+  const solid = !overlay || scrolled || Boolean(open) || drawer;
 
   // Route change closes everything — the panel must never survive navigation.
-  useEffect(() => {
+  // Adjusted during render rather than in an effect, so the new route never
+  // paints once with the old route's panel still open.
+  const [route, setRoute] = useState(pathname);
+  if (route !== pathname) {
+    setRoute(pathname);
     setOpen(null);
     setDrawer(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
-    const onScroll = () => setCondensed(window.scrollY > 80);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -67,22 +79,36 @@ export function SiteHeader() {
   };
 
   const isActive = (href?: string) =>
-    href && href !== "/" && pathname.startsWith(href);
+    Boolean(href && href !== "/" && pathname.startsWith(href));
+
+  // One switch drives every colour in the bar, so the transparent and solid
+  // states can never drift apart.
+  const onDark = !solid;
+  const text = onDark ? "text-on-black" : "text-ink";
+  const mutedText = onDark ? "text-on-black-mute" : "text-muted";
+  const hairline = onDark ? "border-white/15" : "border-line";
+  // Written out in full: Tailwind cannot see a class assembled at runtime.
+  const utilityLink = onDark
+    ? "text-on-black-mute hover:text-on-black"
+    : "text-muted hover:text-ink";
 
   return (
     <header
-      ref={headerRef}
-      className="sticky top-0 z-50 bg-bg"
+      className={`z-50 ${overlay ? "fixed inset-x-0 top-0" : "sticky top-0"}`}
       onMouseLeave={hoverClose}
     >
       {/* Utility bar — the dual-practice split, at its smallest scale. */}
-      <div className="hidden border-b border-line bg-tint-neutral lg:block">
-        <div className="shell flex h-8 items-center justify-end gap-6">
+      <div
+        className={`hidden border-b transition-colors duration-[240ms] ease-brand lg:block ${hairline} ${
+          solid ? "bg-tint-neutral" : "bg-black/25"
+        }`}
+      >
+        <div className="shell flex h-8 items-center justify-end gap-7">
           {utilityNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-2 text-eyebrow uppercase text-muted transition-colors duration-150 ease-brand hover:text-ink"
+              className={`flex items-center gap-2 text-eyebrow uppercase transition-colors duration-150 ease-brand ${utilityLink}`}
             >
               {item.marker && (
                 <span
@@ -100,13 +126,15 @@ export function SiteHeader() {
 
       {/* Main bar */}
       <div
-        className={`border-b border-line bg-bg transition-shadow duration-[240ms] ease-brand ${
-          condensed ? "shadow-layer" : ""
-        }`}
+        className={`border-b transition-[background-color,border-color,box-shadow] duration-[240ms] ease-brand ${hairline} ${
+          solid ? "bg-bg" : "bg-transparent"
+        } ${solid && scrolled ? "shadow-layer" : ""}`}
       >
         <div
-          className={`shell flex items-center justify-between transition-[height] duration-[240ms] ease-brand ${
-            condensed ? "h-14" : "h-[68px]"
+          className={`shell flex h-[68px] items-center justify-between transition-[height] duration-[240ms] ease-brand ${
+            // Condensing is desktop-only: on mobile the bar height is what the
+            // drawer offsets against, and a moving offset reads as a glitch.
+            scrolled ? "lg:h-14" : ""
           }`}
         >
           <Link href="/" className="shrink-0" aria-label="CompQsoft home">
@@ -115,53 +143,69 @@ export function SiteHeader() {
 
           <nav className="hidden lg:block" aria-label="Primary">
             <ul className="flex items-center gap-1">
-              {primaryNav.map((item) => (
-                <li
-                  key={item.label}
-                  onMouseEnter={() => hoverOpen(item.label)}
-                  onMouseLeave={hoverClose}
-                >
-                  <button
-                    type="button"
-                    aria-expanded={open === item.label}
-                    onClick={() =>
-                      setOpen(open === item.label ? null : item.label)
-                    }
-                    className={`px-4 py-2 text-base transition-colors duration-150 ease-brand ${
-                      open === item.label ? "text-link" : "text-ink"
-                    } hover:text-link`}
+              {primaryNav.map((item) => {
+                const expanded = open === item.label;
+                return (
+                  <li
+                    key={item.label}
+                    onMouseEnter={() => hoverOpen(item.label)}
+                    onMouseLeave={hoverClose}
                   >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      onClick={() => setOpen(expanded ? null : item.label)}
+                      className={`relative flex items-center gap-1.5 px-4 py-2.5 text-base transition-colors duration-150 ease-brand ${
+                        expanded ? "text-link" : text
+                      } hover:text-link`}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={`h-3.5 w-3.5 transition-transform duration-[180ms] ease-brand ${expanded ? "rotate-180" : ""}`}
+                      />
+                      {/* Active-route underline, 2px brand blue. */}
+                      <span
+                        className={`absolute inset-x-4 bottom-0 h-0.5 bg-brand-blue transition-opacity duration-150 ease-brand ${
+                          expanded ? "opacity-100" : "opacity-0"
+                        }`}
+                        aria-hidden
+                      />
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             <Link
               href="/sitemap"
-              className="p-2 text-muted transition-colors duration-150 ease-brand hover:text-ink"
+              className={`p-2.5 transition-colors duration-150 ease-brand ${mutedText} hover:text-link`}
               aria-label="Search the site"
             >
-              <SearchIcon />
+              <Search />
             </Link>
             <Link
               href="/contact-us"
-              className="rounded-pill bg-black px-6 py-2.5 text-base text-on-black transition-colors duration-150 ease-brand hover:bg-body"
+              className={`group inline-flex items-center gap-2 rounded-pill px-6 py-2.5 text-base transition-colors duration-150 ease-brand ${
+                onDark
+                  ? "bg-bg text-ink hover:bg-on-black-mute"
+                  : "bg-black text-on-black hover:bg-body"
+              }`}
             >
               Contact us
+              <Arrow className="h-3.5 w-3.5 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
             </Link>
           </div>
 
           <button
             type="button"
-            className="p-2 text-ink lg:hidden"
+            className={`p-2 lg:hidden ${text}`}
             aria-expanded={drawer}
             aria-label={drawer ? "Close menu" : "Open menu"}
             onClick={() => setDrawer(!drawer)}
           >
-            {drawer ? <CloseIcon /> : <MenuIcon />}
+            {drawer ? <Close /> : <Menu />}
           </button>
         </div>
       </div>
@@ -170,6 +214,7 @@ export function SiteHeader() {
       {open && (
         <MegaPanel
           item={primaryNav.find((i) => i.label === open)!}
+          isActive={isActive}
           onEnter={clearTimer}
           onLeave={hoverClose}
         />
@@ -183,17 +228,19 @@ export function SiteHeader() {
 
 function MegaPanel({
   item,
+  isActive,
   onEnter,
   onLeave,
 }: {
   item: NavItem;
+  isActive: (href?: string) => boolean;
   onEnter: () => void;
   onLeave: () => void;
 }) {
-  const rule =
-    item.practice === "government" ? "bg-brand-red" : "bg-brand-blue";
-  const eyebrow =
-    item.practice === "government" ? "text-red-text" : "text-link";
+  const government = item.practice === "government";
+  const rule = government ? "bg-brand-red" : "bg-brand-blue";
+  const eyebrow = government ? "text-red-text" : "text-link";
+  const tint = government ? "bg-tint-red" : "bg-tint-blue";
 
   return (
     <div
@@ -201,19 +248,21 @@ function MegaPanel({
       onMouseLeave={onLeave}
       className="absolute inset-x-0 top-full border-b border-line bg-bg shadow-layer"
     >
-      <div className="shell grid gap-10 py-10 lg:grid-cols-4">
+      <div className="shell grid gap-10 py-12 lg:grid-cols-4 lg:gap-14">
         {item.columns?.map((column) => (
           <div key={column.heading}>
-            <p className="mb-4 flex items-center gap-2 text-eyebrow uppercase text-muted">
+            <p className="mb-5 flex items-center gap-2.5 text-eyebrow uppercase text-muted">
               <span className={`h-[3px] w-4 ${rule}`} aria-hidden />
               {column.heading}
             </p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1">
               {column.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-base text-body transition-colors duration-150 ease-brand hover:text-link"
+                    className={`-mx-3 block rounded-[6px] px-3 py-2 text-base transition-colors duration-150 ease-brand hover:bg-tint-neutral hover:text-link ${
+                      isActive(link.href) ? "text-link" : "text-body"
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -226,17 +275,18 @@ function MegaPanel({
         {item.featured && (
           <Link
             href={item.featured.href}
-            className="group rounded-card border border-line border-l-4 p-6 transition-colors duration-150 ease-brand hover:border-ink lg:col-start-4"
-            style={{
-              borderLeftColor:
-                item.practice === "government" ? "#EE4743" : "#01A7E5",
-            }}
+            className={`group flex flex-col justify-between rounded-card ${tint} p-7 transition-colors duration-150 ease-brand hover:bg-tint-neutral lg:col-start-4`}
           >
-            <p className={`text-eyebrow uppercase ${eyebrow} mb-3`}>
-              {item.featured.eyebrow}
-            </p>
-            <p className="text-base text-ink">{item.featured.title}</p>
-            <p className="mt-4 text-sm text-link">Read more →</p>
+            <div>
+              <p className={`mb-4 text-eyebrow uppercase ${eyebrow}`}>
+                {item.featured.eyebrow}
+              </p>
+              <p className="text-h4 text-ink">{item.featured.title}</p>
+            </div>
+            <span className="mt-6 inline-flex items-center gap-2 text-sm text-link">
+              Read more
+              <Arrow className="h-3 w-3 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
+            </span>
           </Link>
         )}
       </div>
@@ -244,19 +294,28 @@ function MegaPanel({
   );
 }
 
-function MobileDrawer({ isActive }: { isActive: (href?: string) => unknown }) {
+function MobileDrawer({ isActive }: { isActive: (href?: string) => boolean }) {
   return (
-    <div className="fixed inset-x-0 bottom-0 top-[57px] overflow-y-auto bg-bg lg:hidden">
-      <div className="shell py-8">
+    <div className="fixed inset-x-0 bottom-0 top-[var(--header-h)] overflow-y-auto bg-bg lg:hidden">
+      <div className="shell py-6">
         {primaryNav.map((item) => (
-          <details key={item.label} className="border-b border-line py-4">
-            <summary className="cursor-pointer list-none text-h4 text-ink marker:hidden">
+          <details key={item.label} className="group border-b border-line">
+            <summary className="flex cursor-pointer list-none items-center justify-between py-5 text-h4 text-ink marker:hidden">
               {item.label}
+              <ChevronDown className="h-4 w-4 text-muted transition-transform duration-[180ms] ease-brand group-open:rotate-180" />
             </summary>
-            <div className="mt-4 space-y-6">
+            <div className="space-y-6 pb-6">
               {item.columns?.map((column) => (
                 <div key={column.heading}>
-                  <p className="mb-3 text-eyebrow uppercase text-muted">
+                  <p className="mb-3 flex items-center gap-2 text-eyebrow uppercase text-muted">
+                    <span
+                      className={`h-[3px] w-4 ${
+                        item.practice === "government"
+                          ? "bg-brand-red"
+                          : "bg-brand-blue"
+                      }`}
+                      aria-hidden
+                    />
                     {column.heading}
                   </p>
                   <ul className="space-y-3">
@@ -301,60 +360,13 @@ function MobileDrawer({ isActive }: { isActive: (href?: string) => unknown }) {
 
         <Link
           href="/contact-us"
-          className="mt-8 block rounded-pill bg-black px-6 py-3.5 text-center text-base text-on-black"
+          className="mt-8 flex items-center justify-center gap-2 rounded-pill bg-black px-6 py-3.5 text-base text-on-black"
         >
           Contact us
+          <Arrow className="h-3.5 w-3.5" />
         </Link>
       </div>
     </div>
   );
 }
 
-function SearchIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      aria-hidden
-    >
-      <circle cx="9" cy="9" r="6" />
-      <path d="m13.5 13.5 4 4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function MenuIcon() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      aria-hidden
-    >
-      <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      aria-hidden
-    >
-      <path d="m6 6 12 12M18 6 6 18" strokeLinecap="round" />
-    </svg>
-  );
-}

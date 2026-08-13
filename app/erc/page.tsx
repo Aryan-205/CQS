@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { pageFor, seoFor } from "@/lib/content";
 import { CtaBand, Hero } from "@/components/sections";
+import { bannerFor } from "@/lib/media";
 
 const PRACTICE = "neutral" as const;
 const PATH = "/erc";
@@ -18,6 +19,7 @@ export default function ErcPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         practice={PRACTICE}
         eyebrow="Corporate"

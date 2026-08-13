@@ -59,7 +59,7 @@ The logo is the blue wordmark `COMP_SOFT` with the `Q` in red. It works unmodifi
 
 ### The two rules that govern color
 
-**1. White is the page. Black is never a page background.** Black survives only inside contained elements — the hero media card, primary button fills, and the footer. Nothing else. Scrolling any page, the reader is on white or a faint brand tint the entire way down.
+**1. White is the page. Black is never a page background.** Black survives only inside contained elements — the hero band, the credential band, primary button fills, and the footer. Nothing else. Below the hero, scrolling any page, the reader is on white or a faint brand tint the entire way down.
 
 **2. Brand colors are fills, not text.** At full saturation they fail contrast as text on white but pass strongly as backgrounds with **black text** on them:
 
@@ -147,7 +147,8 @@ font-family: "Codec Pro", "Outfit", system-ui, sans-serif;
 ```
 
 ```
-display   64 / 1.02  400  ink / on-deep   hero H1, letter-spacing -0.02em
+hero      80 / 1.00  400  on-black        full-bleed homepage H1 only, -0.03em
+display   64 / 1.02  400  ink / on-deep   interior hero H1, letter-spacing -0.02em
 h1        46 / 1.08  500  ink
 h2        34 / 1.15  500  ink             uppercase on dark bands, per deck
 h3        24 / 1.30  500  ink
@@ -207,15 +208,19 @@ Not permitted: parallax, scroll-jacking, entrance animations on section reveal, 
 
 `prefers-reduced-motion: reduce` collapses all durations to 0.01ms, pauses the hero video, and renders stat counters at their final value immediately.
 
+The counter writes its figure straight to the DOM through a ref rather than through React state: the server-rendered markup already carries the final value, so there is nothing to reconcile, no hydration mismatch, and the number is present for a crawler or a screen reader from the first paint.
+
 ### Hero
 
-**White band.** Display headline in `--color-ink` on white, left-aligned, 400 weight, with a brand eyebrow above it. Beside or below it sits the **media card**: a `--radius-card` black rectangle carrying `--grad-hero` with the video composited over it at 30–45% opacity, so the red and blue blooms read through the footage. The gradient is the brand; the footage is texture.
+**Full-bleed black band carrying `--grad-hero`.** This is the one surface where black runs edge to edge above the fold; everything below it is white. The reference set is GDIT, RTX and Lockheed Martin — a dark banner, real mission photography, headline bottom-left over a scrim.
 
-Homepage: `<video muted loop playsinline autoplay>` with a `poster` image. The poster is what mobile, slow connections, and reduced-motion users see, so it must work as a finished still.
+Layer order, bottom to top: `--grad-hero` → photography or video, graded cool, 40–55% opacity → `.grad-bloom` (the deck's red and blue blooms re-laid so the brand survives the footage) → `.scrim` (holds the headline at 21:1 whatever frame the video is on) → `.hairline-grid`. A 4px practice-coloured rule closes the bottom edge.
 
-Interior pages: same white band, no video — the media card carries a graded still, or is dropped entirely in favour of a brand-colored rule under the headline. Roughly half height.
+**Homepage** (`components/home/hero.tsx`): `min-h-svh`, `<video muted loop playsinline autoplay>` over a poster still. The poster is what mobile, slow connections and reduced-motion users see, so it must work as a finished still — it renders as a real `<Image>` under the video, not only in the `poster` attribute. Reduced motion pauses the video. The dual-practice split is pinned to the foot of the band: Government with a red marker, Commercial with a blue one — the first choice a visitor makes, before they read a word.
 
-The effect to aim for: the deck's dark gradient look survives as a framed object on a white page, rather than swallowing the page.
+The header rides transparently over this band and turns solid past 80px of scroll, or the moment a mega panel opens. Routes that opt in are listed in `OVERLAY_ROUTES` in `components/site-header.tsx`; every other route gets the ordinary sticky white bar.
+
+**Interior pages** (`Hero` in `components/sections.tsx`): the same band at roughly half height, banner photography instead of video, no split. Banners resolve through `lib/media.ts` — `bannerFor(path)` for hand-built pages, `serviceBanner(slug)` for services. Records use the wide 1500×468 / 2250×702 crops, never the 773×915 portraits: a portrait cropped to a banner loses its subject. Pages with no banner fall through to the gradient alone, which is a finished treatment, not a placeholder. `compact` halves it again for record pages, where the body copy is the point.
 
 ### CTA band
 
@@ -223,7 +228,11 @@ Tint ground, not black. Headline in `--color-ink`, black pill primary button, br
 
 ### Imagery
 
-Real mission photography — DoD operations centers, naval vessels, network operations floors. Graded cool and slightly desaturated so it sits with the palette; never warm, never stock-lifestyle. When the logo appears over an image it goes in a `--radius-card` white or black container with generous padding, per the deck.
+Real mission photography — DoD operations centers, naval vessels, network operations floors. Graded cool and slightly desaturated so it sits with the palette; never warm, never stock-lifestyle. The `.graded` utility (`saturate(0.72) contrast(1.06) brightness(0.94)`) applies it; every photograph on the site carries it. When the logo appears over an image it goes in a `--radius-card` white or black container with generous padding, per the deck.
+
+Every URL comes from `lib/media.ts`, transcribed from content.md Section 7 — no component holds a raw CDN URL. The host is allow-listed in `next.config.ts` so `next/image` can optimise it; when the assets migrate into `/public`, only the `CDN` constant changes.
+
+**Partner marks are white-on-transparent PNGs**, cut for a dark band, so they are invisible on the white page. `PartnerGrid` inverts them to true black. That works only because every mark in the set is monochrome — check any new logo before adding it, and if it is full-colour, drop the invert for that grid rather than recolouring the mark.
 
 ### Navbar
 
@@ -270,7 +279,11 @@ The old site has 328 URLs because WordPress auto-published a page for every CMS 
 
 The `/blogs` listing takes a `?category=` query param and absorbs the taxonomy in Section 6; it is one of the 29 hand-built pages, not a separate template.
 
-**29 hand-built pages + 7 `[slug]` templates = 36 route files.** The real work is not the routes — it is the twelve repeatable section components every page is assembled from: `Hero`, `Intro`, `CardGrid`, `ProcessSteps`, `Counters`, `LogoStrip`, `CertStrip`, `FaqAccordion`, `CtaBand`, `ListingGrid`, `Prose`, `ContactForm`.
+**29 hand-built pages + 7 `[slug]` templates = 36 route files.** The real work is not the routes — it is the repeatable section components every page is assembled from, in `components/sections.tsx`: `Hero`, `Intro`, `CardGrid`, `ProcessSteps`, `Counters`, `LogoStrip`, `PartnerGrid`, `CertStrip`, `FaqAccordion`, `CtaBand`, `ListingGrid`, `EditorialCard`, `Prose`, `SpecTable`, `FeatureSplit`, `CredentialBand`, plus `ContactForm`.
+
+`Band` wraps all of them and owns the white/tint alternation. `SectionHead` owns the eyebrow → heading → lead trio, so the three-level rule cannot drift band to band. `EditorialCard` is the repeating image-led unit behind every listing and the homepage work and latest sections. `CredentialBand` is the federal proof block — black, because a contracting officer scanning for UEI and CAGE should not have to hunt.
+
+Homepage-only pieces live in `components/home/`: the video hero and the Government/Commercial service tabs.
 
 ### Redirects — decided, do not rebuild these as pages
 

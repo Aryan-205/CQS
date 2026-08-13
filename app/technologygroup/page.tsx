@@ -9,6 +9,7 @@ import {
   ProcessSteps,
 } from "@/components/sections";
 import { PageProse } from "@/components/page-content";
+import { bannerFor } from "@/lib/media";
 
 const PRACTICE = "commercial" as const;
 const PATH = "/technologygroup";
@@ -30,6 +31,7 @@ export default function CommercialPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         practice={PRACTICE}
         eyebrow="Commercial"
         title="Harness the power of digital technologies"

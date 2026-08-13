@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { partners, seoFor } from "@/lib/content";
 import { CardGrid, CtaBand, Hero, Intro } from "@/components/sections";
+import { bannerFor } from "@/lib/media";
 
 const PRACTICE = "commercial" as const;
 const PATH = "/alliance-partners";
@@ -18,6 +19,7 @@ export default function AlliancePartnersPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         practice={PRACTICE}
         eyebrow="About"

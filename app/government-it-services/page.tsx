@@ -11,6 +11,7 @@ import {
   SpecTable,
 } from "@/components/sections";
 import { PageProse } from "@/components/page-content";
+import { bannerFor } from "@/lib/media";
 
 const PRACTICE = "government" as const;
 const PATH = "/government-it-services";
@@ -80,6 +81,7 @@ export default function GovernmentPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         practice={PRACTICE}
         eyebrow="Government"
         title="Preferred IT services and engineering partner for government"

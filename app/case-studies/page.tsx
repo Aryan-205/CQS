@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { caseStudies, seoFor } from "@/lib/content";
 import { CtaBand, Hero, ListingGrid } from "@/components/sections";
+import { bannerFor } from "@/lib/media";
+import { caseStudyImage } from "@/lib/media";
 
 const PRACTICE = "commercial" as const;
 const PATH = "/case-studies";
@@ -18,6 +20,7 @@ export default function CaseStudiesPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         practice={PRACTICE}
         eyebrow="Insights"
@@ -26,6 +29,7 @@ export default function CaseStudiesPage() {
       />
 
       <ListingGrid
+        imageFor={caseStudyImage}
         practice={PRACTICE}
         records={caseStudies}
         basePath="/case-study"

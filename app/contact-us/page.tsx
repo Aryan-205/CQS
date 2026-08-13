@@ -3,6 +3,7 @@ import { seoFor } from "@/lib/content";
 import { company } from "@/lib/site";
 import { Band, Hero } from "@/components/sections";
 import { ContactForm } from "@/components/contact-form";
+import { bannerFor } from "@/lib/media";
 
 const PATH = "/contact-us";
 const seo = seoFor(PATH);
@@ -19,6 +20,7 @@ export default function ContactPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         eyebrow="Contact"
         title="Connect with CompQsoft"

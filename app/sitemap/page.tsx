@@ -12,6 +12,7 @@ import {
 } from "@/lib/content";
 import { Band, Hero } from "@/components/sections";
 import { footerColumns } from "@/lib/site";
+import { bannerFor } from "@/lib/media";
 
 const PATH = "/sitemap";
 const seo = seoFor(PATH);
@@ -82,6 +83,7 @@ export default function SitemapPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         eyebrow="Site map"
         title="Every page on this site"

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageFor, seoFor } from "@/lib/content";
 import { CtaBand, Hero } from "@/components/sections";
 import { PageProse } from "@/components/page-content";
+import { bannerFor } from "@/lib/media";
 
 const PRACTICE = "government" as const;
 const PATH = "/cio-sp3";
@@ -19,6 +20,7 @@ export default function CioSp3Page() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         practice={PRACTICE}
         eyebrow="Contract vehicle"

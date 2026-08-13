@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { seoFor } from "@/lib/content";
 import { Band, CtaBand, Hero } from "@/components/sections";
+import { bannerFor } from "@/lib/media";
 
 const PATH = "/openings";
 const seo = seoFor(PATH);
@@ -25,6 +26,7 @@ export default function OpeningsPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         eyebrow="Careers"
         title="Open positions"

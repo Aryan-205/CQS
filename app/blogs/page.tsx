@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { blogs, seoFor, taxonomy } from "@/lib/content";
 import { Band, CtaBand, Hero, ListingGrid } from "@/components/sections";
+import { bannerFor } from "@/lib/media";
+import { blogImage } from "@/lib/media";
 
 const PATH = "/blogs";
 const seo = seoFor(PATH);
@@ -36,6 +38,7 @@ export default async function BlogsPage(props: PageProps<"/blogs">) {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         eyebrow="Insights"
         title={selected ? selected.name : "Blogs"}
@@ -83,6 +86,7 @@ export default async function BlogsPage(props: PageProps<"/blogs">) {
       )}
 
       <ListingGrid
+        imageFor={blogImage}
         records={posts}
         basePath="/blog"
         empty="No posts in this topic yet."

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { seoFor, webinars } from "@/lib/content";
 import { CtaBand, Hero, ListingGrid } from "@/components/sections";
+import { bannerFor } from "@/lib/media";
+import { blogImage } from "@/lib/media";
 
 const PATH = "/webinars";
 const seo = seoFor(PATH);
@@ -17,6 +19,7 @@ export default function WebinarsPage() {
   return (
     <main>
       <Hero
+        image={bannerFor(PATH)}
         compact
         eyebrow="Insights"
         title="Webinars"
@@ -24,6 +27,7 @@ export default function WebinarsPage() {
       />
 
       <ListingGrid
+        imageFor={blogImage}
         records={webinars}
         basePath="/webinar"
         empty="No webinars published yet."
