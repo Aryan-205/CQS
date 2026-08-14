@@ -594,6 +594,232 @@ export function CertStrip({
 }
 
 /* =========================================================================
+   7b. LogoWall — customers, certifications, contract vehicles.
+
+   PartnerGrid is a mark-only wall: it works because every technology partner
+   is recognised from its wordmark alone. A federal seal is not a wordmark —
+   the DLA and DeCA seals are near-identical at 56px — so this wall pairs the
+   artwork with the name, and lets the caption carry a line of context.
+
+   The logo is optional. A customer with no mark in the media library renders
+   as the name alone rather than borrowing someone else's artwork, and the
+   fixed-height plate above the name keeps the row baselines aligned either
+   way. Marks are never recoloured — federal insignia especially — so the only
+   treatment is `mix-blend-multiply`, which drops the white plate the JPG
+   marks carry onto the page ground.
+   ========================================================================= */
+export type WallItem = {
+  name: string;
+  logo?: { src: string; alt?: string };
+  caption?: string;
+  href?: string;
+};
+
+export function LogoWall({
+  eyebrow,
+  title,
+  lead,
+  items,
+  tone = "white",
+  practice = "neutral",
+  columns = 4,
+  action,
+}: {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  items: WallItem[];
+  tone?: "white" | "tint";
+  practice?: Practice;
+  columns?: 3 | 4 | 5 | 6;
+  action?: { label: string; href: string };
+}) {
+  if (!items.length) return null;
+
+  const cols = {
+    3: "sm:grid-cols-2 lg:grid-cols-3",
+    4: "sm:grid-cols-2 lg:grid-cols-4",
+    5: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5",
+    6: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6",
+  }[columns];
+
+  return (
+    <Band tone={tone} practice={practice}>
+      <SectionHead
+        eyebrow={eyebrow}
+        title={title}
+        lead={lead}
+        practice={practice}
+        action={action}
+        align={action ? "split" : "left"}
+      />
+
+      <ul className={`grid gap-px border border-line bg-line ${cols}`}>
+        {items.map((item) => {
+          const inner = (
+            <>
+              {/* Fixed plate, whether or not there is a mark to put on it, so
+                  the names below sit on one line across the row. */}
+              <span className="relative block h-16 w-full">
+                {item.logo && (
+                  <Image
+                    src={item.logo.src}
+                    alt={item.logo.alt ?? item.name}
+                    fill
+                    sizes="180px"
+                    className="object-contain mix-blend-multiply"
+                  />
+                )}
+              </span>
+              <span className="mt-7 block text-h4 text-ink">{item.name}</span>
+              {item.caption && (
+                <span className="mt-3 block text-sm text-body">{item.caption}</span>
+              )}
+            </>
+          );
+
+          const base =
+            "group relative flex h-full flex-col items-center bg-bg p-7 text-center transition-colors duration-150 ease-brand sm:p-8";
+
+          return (
+            <li key={item.name} className="bg-bg">
+              {item.href ? (
+                <Link href={item.href} className={`${base} hover:bg-tint-neutral`}>
+                  {/* The rule that fills on hover — the card's practice signal. */}
+                  <span
+                    className={`absolute inset-x-0 top-0 h-[3px] w-0 transition-[width] duration-[180ms] ease-brand group-hover:w-full ${ruleClass(practice)}`}
+                    aria-hidden
+                  />
+                  {inner}
+                </Link>
+              ) : (
+                <div className={base}>{inner}</div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </Band>
+  );
+}
+
+/* =========================================================================
+   7c. PeopleGrid — leadership and the team.
+
+   A portrait, the name, the role. The photograph is deliberately NOT run
+   through `.graded`: that filter exists to pull mission photography cool and
+   desaturated so it sits with the palette, and applied to a headshot it only
+   makes skin look ill. The practice rule under each portrait carries the
+   brand signal instead.
+   ========================================================================= */
+export function PeopleGrid({
+  eyebrow,
+  title,
+  lead,
+  people,
+  tone = "white",
+  practice = "neutral",
+  columns = 3,
+  action,
+}: {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  people: {
+    name: string;
+    role?: string;
+    href?: string;
+    image?: { src: string; alt?: string };
+    description?: string;
+  }[];
+  tone?: "white" | "tint";
+  practice?: Practice;
+  columns?: 3 | 4 | 5;
+  action?: { label: string; href: string };
+}) {
+  if (!people.length) return null;
+
+  const cols = {
+    3: "sm:grid-cols-2 lg:grid-cols-3",
+    4: "sm:grid-cols-2 lg:grid-cols-4",
+    5: "sm:grid-cols-3 lg:grid-cols-5",
+  }[columns];
+
+  return (
+    <Band tone={tone} practice={practice}>
+      <SectionHead
+        eyebrow={eyebrow}
+        title={title}
+        lead={lead}
+        practice={practice}
+        action={action}
+        align={action ? "split" : "left"}
+      />
+
+      <ul className={`grid gap-x-10 gap-y-14 ${cols}`}>
+        {people.map((person) => {
+          const inner = (
+            <>
+              <span className="relative block aspect-square w-full overflow-hidden bg-tint-neutral">
+                {person.image ? (
+                  <Image
+                    src={person.image.src}
+                    alt={person.image.alt || person.name}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover object-top transition-transform duration-[240ms] ease-brand group-hover:scale-[1.02]"
+                  />
+                ) : (
+                  /* No portrait on file — the initials keep the cell a
+                     deliberate object rather than an empty box. */
+                  <span className="grid h-full w-full place-items-center text-h1 text-muted">
+                    {person.name
+                      .split(" ")
+                      .map((part) => part[0])
+                      .slice(0, 2)
+                      .join("")}
+                  </span>
+                )}
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-1 ${ruleClass(practice)}`}
+                  aria-hidden
+                />
+              </span>
+
+              <span className="mt-7 block text-h3 text-ink transition-colors duration-150 ease-brand group-hover:text-link">
+                {person.name}
+              </span>
+              {person.role && (
+                <span className="mt-3 block text-stat-label uppercase text-muted">
+                  {person.role}
+                </span>
+              )}
+              {person.description && (
+                <span className="mt-4 block text-sm text-body">
+                  {person.description}
+                </span>
+              )}
+            </>
+          );
+
+          return (
+            <li key={person.name}>
+              {person.href ? (
+                <Link href={person.href} className="group block">
+                  {inner}
+                </Link>
+              ) : (
+                <div className="group block">{inner}</div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </Band>
+  );
+}
+
+/* =========================================================================
    8. FaqAccordion — FAQs live here, not on their own URLs. The schema fires
    from this component's parent page. See the redirect table in CLAUDE.md.
    ========================================================================= */

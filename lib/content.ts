@@ -99,6 +99,25 @@ export const pageFor = (path: string): PageContent | undefined => pages[path];
 export const bySlug = (list: Record[], slug: string) =>
   list.find((r) => r.slug === slug);
 
+/**
+ * Job titles for the leadership records.
+ *
+ * The CMS record carries only the name, the portrait and the biography — the
+ * role is markup on the /leadership-team/ page itself (content.md:832), so it
+ * survives here rather than in content/leadership.json, which the parser
+ * regenerates.
+ */
+const LEADERSHIP_ROLES: globalThis.Record<string, string> = {
+  "madina-shaik": "CEO / Founder",
+  "sachin-narula": "CFO",
+  "thomas-decot": "COO",
+  "qamer-baber": "Director of Information Technology",
+  "christen-carrier": "Director of Human Resources",
+};
+
+export const leaderRole = (slug: string): string | undefined =>
+  LEADERSHIP_ROLES[slug];
+
 /** Capabilities and FAQs bind to a service through the category taxonomy. */
 export const byCategory = (list: Record[], category?: string) =>
   category ? list.filter((r) => r.category === category) : [];

@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
 import type { PageBlock } from "@/lib/content";
 import { caseStudies, pageFor, seoFor } from "@/lib/content";
-import { CtaBand, PartnerGrid } from "@/components/sections";
+import { CtaBand, LogoWall, PartnerGrid } from "@/components/sections";
 import { Counters } from "@/components/counters";
 import {
   ApproachSteps,
   AssuranceBand,
   EditorialGrid,
   MediaSplit,
-  NameStrip,
   PageHero,
   Pager,
   SpecList,
 } from "@/components/editorial/sections";
 import { Assess, Blueprint, Layers, Lifecycle } from "@/components/icons";
-import { bannerFor, caseStudyImage, partnerLogos, serviceBanner } from "@/lib/media";
+import {
+  agencySeals,
+  bannerFor,
+  caseStudyImage,
+  certificationLogos,
+  customerLogos,
+  partnerLogos,
+  serviceBanner,
+} from "@/lib/media";
 
 const PRACTICE = "government" as const;
 const PATH = "/government-it-services";
@@ -88,29 +95,37 @@ const PROCESS = [
   },
 ];
 
-/** Past performance, verbatim from "Our Success Stories at Federal Agencies". */
+/**
+ * Past performance, verbatim from "Our Success Stories at Federal Agencies".
+ * Each row carries its agency's seal — the same five marks the live page runs.
+ */
 const SUCCESS = [
   {
     label: "DoD",
+    logo: agencySeals.dod,
     value:
       "Provide Unified Communication services within the DoD — transitioned from 7k communication actions per month to over 70k per month since the COVID pandemic.",
   },
   {
     label: "Defense Commissary Agency",
+    logo: agencySeals.deca,
     value: "IT services at 240+ global locations for warfighters.",
   },
   {
     label: "USCG",
+    logo: agencySeals.uscg,
     value:
       "Provide E2E ITSM capabilities in the maintenance of the USCG's Aviation Logistics Systems.",
   },
   {
     label: "Navy",
+    logo: agencySeals.navy,
     value:
       "Provide E2E ITSM capabilities in the maintenance of the tools and systems required to ensure the readiness of our submarine fleet.",
   },
   {
     label: "DISA",
+    logo: agencySeals.disa,
     value:
       "Design and development of next-generation network capabilities in support of the DoD's communications infrastructure.",
   },
@@ -139,17 +154,6 @@ const CERTIFICATIONS = [
   "ISO 9001:2015",
   "ISO/IEC 27001:2013",
   "ISO/IEC 20000-1:2011",
-];
-
-const AGENCIES = [
-  "US Coast Guard",
-  "DISA",
-  "DHS",
-  "US Navy",
-  "DeCA",
-  "DLA",
-  "CDC",
-  "DOE Oak Ridge",
 ];
 
 /**
@@ -313,10 +317,15 @@ export default function GovernmentPage() {
         practice={PRACTICE}
       />
 
-      <NameStrip
+      <LogoWall
         eyebrow="Named customers"
         title="Agencies we support"
-        names={AGENCIES}
+        lead="Direct prime and subcontract delivery across the Department of Defense, DHS, HHS and the civilian research estate."
+        items={customerLogos.map((customer) => ({
+          name: customer.name,
+          logo: customer.logo,
+        }))}
+        columns={4}
         practice={PRACTICE}
       />
 
@@ -327,6 +336,18 @@ export default function GovernmentPage() {
         title="Our technology partnerships"
         logos={partnerLogos}
         action={{ label: "All alliance partners", href: "/alliance-partners" }}
+      />
+
+      <LogoWall
+        eyebrow="Certifications"
+        title="Appraised and certified"
+        lead="Delivery runs under independently audited management systems. The appraisal and certificate marks are below, as issued."
+        items={certificationLogos.map((cert) => ({
+          name: cert.label,
+          logo: cert,
+        }))}
+        columns={6}
+        practice={PRACTICE}
       />
 
       <Pager

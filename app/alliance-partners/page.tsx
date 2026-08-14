@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { partners, seoFor } from "@/lib/content";
-import { CardGrid, CtaBand, Hero, Intro } from "@/components/sections";
+import { CtaBand, Hero, Intro, LogoWall } from "@/components/sections";
 import { bannerFor } from "@/lib/media";
 
 const PRACTICE = "commercial" as const;
@@ -40,13 +40,16 @@ export default function AlliancePartnersPage() {
         </p>
       </Intro>
 
-      <CardGrid
+      {/* Every alliance-partner record is image-and-label only, so the mark is
+          the record. Rendered as a wall rather than as text cards. */}
+      <LogoWall
         practice={PRACTICE}
-        cards={partners.map((partner) => ({
-          title: partner.title,
+        items={partners.map((partner) => ({
+          name: partner.title,
+          logo: partner.image,
           href: `/alliance-partner/${partner.slug}`,
         }))}
-        columns={4}
+        columns={5}
       />
 
       <CtaBand

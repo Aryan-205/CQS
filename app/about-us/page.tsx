@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { leadership, pageFor, seoFor } from "@/lib/content";
+import { leaderRole, leadership, pageFor, seoFor } from "@/lib/content";
 import {
   CardGrid,
   CertStrip,
@@ -7,10 +7,17 @@ import {
   CtaBand,
   Hero,
   Intro,
-  LogoStrip,
+  LogoWall,
+  PartnerGrid,
+  PeopleGrid,
 } from "@/components/sections";
 import { PageProse } from "@/components/page-content";
-import { bannerFor } from "@/lib/media";
+import {
+  bannerFor,
+  certificationLogos,
+  customerLogos,
+  partnerLogos,
+} from "@/lib/media";
 
 const PATH = "/about-us";
 const seo = seoFor(PATH);
@@ -121,33 +128,55 @@ export default function AboutPage() {
 
       <CardGrid eyebrow="Why CompQsoft" title="Why teams choose us" cards={WHY} columns={4} />
 
-      <CardGrid
+      <PeopleGrid
         tone="tint"
         eyebrow="Leadership"
         title="The people running the company"
-        cards={leadership.map((person) => ({
-          title: person.title,
+        people={leadership.map((person) => ({
+          name: person.title,
+          role: leaderRole(person.slug),
           href: `/leadership-team/${person.slug}`,
+          image: person.image,
+        }))}
+        columns={5}
+        action={{ label: "Full leadership team", href: "/leadership-team" }}
+      />
+
+      <LogoWall
+        eyebrow="Customers"
+        title="Who we deliver for"
+        lead="Our clientele spans the Department of Defense, federal health and civilian agencies, and commercial enterprises across the United States."
+        items={customerLogos.map((customer) => ({
+          name: customer.name,
+          logo: customer.logo,
         }))}
         columns={4}
       />
 
-      <CertStrip
-        title="Our certifications"
-        items={[
-          "ISO 9001",
-          "ISO/IEC 27001",
-          "ISO/IEC 20000-1",
-          "CMMI Level 3",
-          "HUBZone Small Business",
-          "Minority-Owned",
-        ]}
+      <LogoWall
+        tone="tint"
+        eyebrow="Certifications"
+        title="Independently appraised and certified"
+        items={certificationLogos.map((cert) => ({
+          name: cert.label,
+          logo: cert,
+        }))}
+        columns={6}
+        action={{ label: "Our compliance posture", href: "/compliance" }}
       />
 
-      <LogoStrip
-        tone="tint"
+      {/* The set-asides have no mark of their own — they are a registration
+          status, not a certificate — so they stay as pills beneath the wall. */}
+      <CertStrip
+        title="Socio-economic status"
+        items={["HUBZone Small Business", "Minority-Owned", "Small Business"]}
+      />
+
+      <PartnerGrid
+        eyebrow="Alliances"
         title="Our technology partnerships"
-        items={["Microsoft", "Salesforce", "SAP", "ServiceNow", "IBM", "Oracle"]}
+        logos={partnerLogos}
+        action={{ label: "All alliance partners", href: "/alliance-partners" }}
       />
 
       {page && <PageProse blocks={page.blocks} eyebrow="In detail" />}

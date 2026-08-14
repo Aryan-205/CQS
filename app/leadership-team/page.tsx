@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { excerpt, leadership, seoFor } from "@/lib/content";
-import { CardGrid, CtaBand, Hero } from "@/components/sections";
+import { excerpt, leaderRole, leadership, seoFor } from "@/lib/content";
+import { CtaBand, Hero, PeopleGrid } from "@/components/sections";
 import { bannerFor } from "@/lib/media";
 
 const PATH = "/leadership-team";
@@ -25,10 +25,13 @@ export default function LeadershipIndexPage() {
         lead="The people accountable for how CompQsoft delivers, across both practices."
       />
 
-      <CardGrid
-        cards={leadership.map((person) => ({
-          title: person.title,
+      <PeopleGrid
+        eyebrow="Meet our leaders"
+        people={leadership.map((person) => ({
+          name: person.title,
+          role: leaderRole(person.slug),
           href: `/leadership-team/${person.slug}`,
+          image: person.image,
           description: excerpt(person, 140),
         }))}
         columns={3}

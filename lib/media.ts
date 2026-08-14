@@ -13,6 +13,9 @@ const CDN = "https://www.compqsoft.com/wp-content/uploads";
 
 export type Media = { src: string; alt: string };
 
+/** A mark rather than a photograph: intrinsic size matters, so it carries one. */
+export type LogoMedia = Media & { width: number; height: number };
+
 /* -------------------------------------------------------------------------
    Hero
    The homepage runs video. The poster has to work as a finished still on its
@@ -124,6 +127,27 @@ export const practiceMedia = {
 } satisfies Record<string, Media>;
 
 /* -------------------------------------------------------------------------
+   Careers imagery. The media library holds one careers asset — the banner —
+   so the culture and benefits sections borrow from the company photography
+   rather than running a picture-less page. Every one of these is real
+   CompQsoft artwork from Section 7, graded at the render site like the rest.
+------------------------------------------------------------------------- */
+export const careersMedia = {
+  culture: {
+    src: `${CDN}/2024/04/customer-story.jpg`,
+    alt: "CompQsoft delivery team at work",
+  },
+  team: {
+    src: `${CDN}/2024/04/leadership-team-banner.jpg`,
+    alt: "The CompQsoft team",
+  },
+  workplace: {
+    src: `${CDN}/2024/04/about-us-bg.jpg`,
+    alt: "A CompQsoft operations floor",
+  },
+} satisfies Record<string, Media>;
+
+/* -------------------------------------------------------------------------
    Technology partners — content.md:617, in the order the live site runs them.
 ------------------------------------------------------------------------- */
 /**
@@ -143,6 +167,279 @@ export const partnerLogos: (Media & { width: number; height: number })[] = [
   { src: `${CDN}/2024/04/logo-15.jpg`, alt: "General Dynamics", width: 175, height: 92 },
   { src: `${CDN}/2024/05/aws.jpg`, alt: "AWS", width: 175, height: 92 },
   { src: `${CDN}/2024/05/splunk.jpg`, alt: "Splunk", width: 175, height: 92 },
+];
+
+/* -------------------------------------------------------------------------
+   Customer marks — the agency seals, transcribed from content.md Section 7.
+
+   A contracting officer scanning a page recognises the DISA seal before they
+   read the word "DISA", so the named-customer list runs as artwork rather
+   than as type. Seals are federal insignia: they are never recoloured,
+   inverted or cropped, only scaled inside a fixed box.
+
+   `mix-blend-multiply` at the render site drops the white plate some of these
+   carry (the CDC, UIC and ORNL marks are JPG/PNG on white) onto the page
+   ground; every one of them is artwork on white, so nothing else is needed.
+------------------------------------------------------------------------- */
+export const agencySeals = {
+  dod: { src: `${CDN}/2024/04/dod.png`, alt: "Department of Defense", width: 105, height: 105 },
+  deca: { src: `${CDN}/2024/04/dca.png`, alt: "Defense Commissary Agency", width: 105, height: 105 },
+  uscg: { src: `${CDN}/2024/04/uscg.png`, alt: "United States Coast Guard", width: 105, height: 105 },
+  navy: { src: `${CDN}/2024/04/navy.png`, alt: "United States Navy", width: 105, height: 105 },
+  disa: {
+    src: `${CDN}/2024/05/DISA_Seal.png`,
+    alt: "Defense Information Systems Agency",
+    width: 776,
+    height: 776,
+  },
+  army: { src: `${CDN}/2024/04/usarmy.png`, alt: "United States Army", width: 516, height: 506 },
+  dla: {
+    src: `${CDN}/2024/09/Seal_of_the_Defense_Logistics_Agency.svg.png`,
+    alt: "Defense Logistics Agency",
+    width: 1200,
+    height: 1475,
+  },
+  cdc: {
+    src: `${CDN}/2024/05/US_CDC_logo.jpg`,
+    alt: "Centers for Disease Control and Prevention",
+    width: 600,
+    height: 453,
+  },
+  hhs: {
+    src: `${CDN}/2024/05/HHS.png`,
+    alt: "Department of Health and Human Services",
+    width: 2000,
+    height: 2000,
+  },
+  ornl: {
+    src: `${CDN}/2024/05/ORNL-DOE.png`,
+    alt: "Oak Ridge National Laboratory",
+    width: 1200,
+    height: 619,
+  },
+  uic: {
+    src: `${CDN}/2024/05/UIC_logo.jpg`,
+    alt: "University of Illinois",
+    width: 715,
+    height: 763,
+  },
+  navyJag: {
+    src: `${CDN}/2024/05/Seal_of_the_United_States_Navy_Judge_Advocate_Generals_Corps.png`,
+    alt: "United States Navy Judge Advocate General's Corps",
+    width: 400,
+    height: 397,
+  },
+  comoptevfor: {
+    src: `${CDN}/2024/05/Commander_Operational_Test_and_Evaluation_Force_seal.jpg`,
+    alt: "Commander, Operational Test and Evaluation Force",
+    width: 640,
+    height: 638,
+  },
+  gsa: {
+    src: `${CDN}/2024/05/gsa-logo.png`,
+    alt: "General Services Administration",
+    width: 200,
+    height: 95,
+  },
+} satisfies Record<string, LogoMedia>;
+
+/**
+ * The named-customer wall, in the order content.md:39 lists them.
+ *
+ * DHS is a named customer with no mark in the media library. Rather than
+ * substitute someone else's artwork or drop a real customer, the wall renders
+ * that cell as the name alone — the component treats the logo as optional.
+ */
+export const customerLogos: { name: string; logo?: LogoMedia }[] = [
+  { name: "U.S. Coast Guard", logo: agencySeals.uscg },
+  { name: "DISA", logo: agencySeals.disa },
+  { name: "U.S. Navy", logo: agencySeals.navy },
+  { name: "Defense Commissary Agency", logo: agencySeals.deca },
+  { name: "Department of Defense", logo: agencySeals.dod },
+  { name: "Defense Logistics Agency", logo: agencySeals.dla },
+  { name: "U.S. Army", logo: agencySeals.army },
+  { name: "CDC", logo: agencySeals.cdc },
+  { name: "HHS", logo: agencySeals.hhs },
+  { name: "DOE Oak Ridge", logo: agencySeals.ornl },
+  { name: "University of Illinois", logo: agencySeals.uic },
+  { name: "DHS" },
+];
+
+/* -------------------------------------------------------------------------
+   Certification marks — the badges the live /compliance/ page runs.
+
+   Labels follow the artwork rather than the archive. The archive captions
+   these with superseded revisions (9001:2008, 27001:2005, 20000:2005), which
+   CLAUDE.md rules a content error; the 9001 badge states 2015 on its face, so
+   that label carries the revision. The 27001 and 20000-1 badges state none,
+   and the company has not published which revision it holds, so those labels
+   name the standard only — asserting a revision nothing evidences would just
+   swap one wrong number for another.
+------------------------------------------------------------------------- */
+export const certificationLogos: (LogoMedia & { label: string })[] = [
+  {
+    src: `${CDN}/2025/06/QUALITY-MANAGEMENT-SYSTEM-ISO-9001-scaled.png`,
+    alt: "ISO 9001 quality management system certification",
+    label: "ISO 9001:2015",
+    width: 2560,
+    height: 2560,
+  },
+  {
+    src: `${CDN}/2025/06/INFORMATION-SECURITY-MANAGEMENT-ISO-27001-scaled.png`,
+    alt: "ISO/IEC 27001 information security management certification",
+    label: "ISO/IEC 27001",
+    width: 2560,
+    height: 2560,
+  },
+  {
+    src: `${CDN}/2025/06/IT-SERVICE-MANAGEMENT-ISO-20000-scaled.png`,
+    alt: "ISO/IEC 20000-1 IT service management certification",
+    label: "ISO/IEC 20000-1",
+    width: 2560,
+    height: 2560,
+  },
+  {
+    src: `${CDN}/2024/07/certifications-logo-04.webp`,
+    alt: "CMMI Development Level 3 appraisal",
+    label: "CMMI-DEV Level 3",
+    width: 346,
+    height: 118,
+  },
+  {
+    src: `${CDN}/2024/07/certifications-logo-05.webp`,
+    alt: "CMMI Services Level 3 appraisal",
+    label: "CMMI-SVC Level 3",
+    width: 346,
+    height: 118,
+  },
+  {
+    src: `${CDN}/2025/07/CMMC-Compliance-Solutions-_-NeQter-Labs.jpeg`,
+    alt: "Cybersecurity Maturity Model Certification",
+    label: "CMMC",
+    width: 204,
+    height: 192,
+  },
+];
+
+/* -------------------------------------------------------------------------
+   Contract vehicle marks. `/compliance/` runs the four square IDIQ badges
+   plus the DLA seal; `/primecontracts/` runs the vehicles' own artwork at
+   full size against each award's write-up.
+------------------------------------------------------------------------- */
+export const vehicleLogos = {
+  encoreIii: {
+    src: `${CDN}/2024/07/contracts-logo-01.webp`,
+    alt: "DISA ENCORE III",
+    width: 244,
+    height: 151,
+  },
+  sparc: {
+    src: `${CDN}/2024/07/contracts-logo-02.webp`,
+    alt: "CMS SPARC",
+    width: 244,
+    height: 151,
+  },
+  cioSp3: {
+    src: `${CDN}/2024/07/contracts-logo-03.webp`,
+    alt: "NITAAC CIO-SP3",
+    width: 244,
+    height: 151,
+  },
+  oasis: {
+    src: `${CDN}/2024/07/contracts-logo-04.webp`,
+    alt: "OASIS Small Business",
+    width: 244,
+    height: 151,
+  },
+  dlaJets: {
+    src: `${CDN}/2024/09/Seal_of_the_Defense_Logistics_Agency.svg-1-1.png`,
+    alt: "DLA JETS 2.0",
+    width: 122,
+    height: 149,
+  },
+  gsaSchedule: agencySeals.gsa,
+  accent: {
+    src: `${CDN}/2024/05/ACC_Logo.jpg`,
+    alt: "Army Contracting Command",
+    width: 751,
+    height: 769,
+  },
+  aesip: {
+    src: `${CDN}/2024/05/AESIP.png`,
+    alt: "Army Enterprise Systems Integration Program",
+    width: 300,
+    height: 92,
+  },
+  seaport: {
+    src: `${CDN}/2024/05/Seaport-e.jpg`,
+    alt: "SeaPort NxG",
+    width: 329,
+    height: 329,
+  },
+} satisfies Record<string, LogoMedia>;
+
+/** The five IDIQ vehicles with their own detail page, as /compliance/ runs them. */
+export const idiqLogos: (LogoMedia & { label: string; href: string })[] = [
+  { ...vehicleLogos.encoreIii, label: "DISA ENCORE III", href: "/disa-encoreiii" },
+  { ...vehicleLogos.sparc, label: "CMS SPARC", href: "/cms-sparc" },
+  { ...vehicleLogos.cioSp3, label: "NITAAC CIO-SP3", href: "/cio-sp3" },
+  { ...vehicleLogos.oasis, label: "OASIS SB Pool 3", href: "/oasis" },
+  { ...vehicleLogos.dlaJets, label: "DLA JETS 2.0", href: "/dlajets" },
+];
+
+/* -------------------------------------------------------------------------
+   Federal case study marks — the six programme logos on /compliance/, keyed
+   by the case study slug they link to.
+------------------------------------------------------------------------- */
+export const federalCaseStudyLogos: (LogoMedia & { label: string; slug: string })[] = [
+  {
+    src: `${CDN}/2024/07/case-studies-logo-01.webp`,
+    alt: "Brooke Army Medical Center",
+    label: "BAMC",
+    slug: "bamc",
+    width: 152,
+    height: 149,
+  },
+  {
+    src: `${CDN}/2024/07/case-studies-logo-02.webp`,
+    alt: "Defense Enterprise Accounting and Management System",
+    label: "DEAMS",
+    slug: "deams",
+    width: 152,
+    height: 149,
+  },
+  {
+    src: `${CDN}/2024/07/case-studies-logo-03.webp`,
+    alt: "General Fund Enterprise Business System",
+    label: "GFEBS",
+    slug: "gfebs",
+    width: 152,
+    height: 149,
+  },
+  {
+    src: `${CDN}/2024/07/case-studies-logo-04.webp`,
+    alt: "Logistics Support Activity",
+    label: "LOGSA",
+    slug: "logsa-lites",
+    width: 152,
+    height: 149,
+  },
+  {
+    src: `${CDN}/2024/07/case-studies-logo-05.webp`,
+    alt: "Marine Corps Enterprise IT Services",
+    label: "MCEITS",
+    slug: "mceits",
+    width: 152,
+    height: 149,
+  },
+  {
+    src: `${CDN}/2024/07/case-studies-logo-06.webp`,
+    alt: "United States Air Force",
+    label: "U.S. Air Force",
+    slug: "ecss-dmo",
+    width: 152,
+    height: 149,
+  },
 ];
 
 /* -------------------------------------------------------------------------

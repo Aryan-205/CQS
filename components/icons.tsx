@@ -147,6 +147,251 @@ export function Lifecycle({ className }: IconProps) {
 }
 
 /* -------------------------------------------------------------------------
+   Careers glyphs — the four company values.
+
+   The live site runs these as raster PNGs from the WordPress uploads folder
+   (values-icon-01…04.png). They are redrawn here on the same 24-unit grid as
+   the process set so they scale, take brand colour from currentColor and stay
+   consistent with everything else on the page.
+------------------------------------------------------------------------- */
+
+/** Excellence Delivered — a medal. Work that is measured and awarded. */
+export function Award({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <circle cx="12" cy="9" r="5.5" />
+      <path d="M12 6.4l.85 1.72 1.9.28-1.37 1.34.32 1.9L12 10.74l-1.7.9.32-1.9L9.25 8.4l1.9-.28L12 6.4Z" />
+      <path d="m8.6 13.9-1.6 6.6 5-2.9 5 2.9-1.6-6.6" />
+    </Glyph>
+  );
+}
+
+/** Proactive Problem Solving — the idea, found before it is asked for. */
+export function Lightbulb({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M12 3a6 6 0 0 0-3.5 10.9c.6.45 1 1.15 1 1.9V16h5v-.2c0-.75.4-1.45 1-1.9A6 6 0 0 0 12 3Z" />
+      <path d="M9.5 19h5M10.5 21.5h3" />
+    </Glyph>
+  );
+}
+
+/** Culture of Dignity and Respect — two people, equally weighted. */
+export function People({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <circle cx="9" cy="8" r="3.25" />
+      <path d="M2.75 20.5v-1a5 5 0 0 1 5-5h2.5a5 5 0 0 1 5 5v1" />
+      <path d="M16.5 5.1a3.25 3.25 0 0 1 0 5.8" />
+      <path d="M17.75 14.7a5 5 0 0 1 3.5 4.8v1" />
+    </Glyph>
+  );
+}
+
+/** Customer-Centered Success — the customer at the centre, literally. */
+export function Target({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="4.75" />
+      <circle cx="12" cy="12" r="1.25" />
+    </Glyph>
+  );
+}
+
+/* -------------------------------------------------------------------------
+   Benefit glyphs — the eight items in the W2 compensation package.
+------------------------------------------------------------------------- */
+
+/** 401(k) — stacked coins, the thing that compounds. */
+export function Coins({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M4.5 7c0-1.66 3.36-3 7.5-3s7.5 1.34 7.5 3-3.36 3-7.5 3-7.5-1.34-7.5-3Z" />
+      <path d="M4.5 12c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3" />
+      <path d="M4.5 7v10c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V7" />
+    </Glyph>
+  );
+}
+
+/** Life insurance — cover held over what matters. */
+export function ShieldHeart({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M12 21s7.5-3.7 7.5-9.5V5.8L12 3 4.5 5.8v5.7C4.5 17.3 12 21 12 21Z" />
+      <path d="M12 15.6s-3.1-1.9-3.1-3.9a1.75 1.75 0 0 1 3.1-1.1 1.75 1.75 0 0 1 3.1 1.1c0 2-3.1 3.9-3.1 3.9Z" />
+    </Glyph>
+  );
+}
+
+/** Health insurance — the cross, read before the word is. */
+export function HealthCross({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.75v8.5M7.75 12h8.5" />
+    </Glyph>
+  );
+}
+
+/** Dental insurance. */
+export function Tooth({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M12 4.6c-1.1-.65-2-1.05-3.3-1.05C6.3 3.55 4.6 5.4 4.6 7.85c0 1.7.5 2.7 1 4 .5 1.5.5 2.7.8 4.45.25 1.7.5 3.6 1.6 3.9 1.3.35 1.7-1.7 2-3.5.25-1.4.3-2.9 2-2.9s1.75 1.5 2 2.9c.3 1.8.7 3.85 2 3.5 1.1-.3 1.35-2.2 1.6-3.9.3-1.75.3-2.95.8-4.45.5-1.3 1-2.3 1-4 0-2.45-1.7-4.3-4.1-4.3-1.3 0-2.2.4-3.3 1.05Z" />
+    </Glyph>
+  );
+}
+
+/** Long and short-term disability — cover that stays up while you cannot. */
+export function Umbrella({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M2.75 12.4a9.25 9.25 0 0 1 18.5 0Z" />
+      <path d="M12 12.4v6.35a2.35 2.35 0 0 1-4.7 0" />
+      <path d="M12 3.15v1.9" />
+    </Glyph>
+  );
+}
+
+/** Sick leave — days that are already yours. */
+export function CalendarCheck({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <rect x="3.75" y="5" width="16.5" height="15.25" rx="1.5" />
+      <path d="M3.75 10h16.5M8.25 2.75v4.5M15.75 2.75v4.5" />
+      <path d="m9 14.9 2.1 2.1 3.9-3.9" />
+    </Glyph>
+  );
+}
+
+/** Training, education and certification assistance. */
+export function GradCap({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="m12 4 9.5 4.4L12 12.8 2.5 8.4 12 4Z" />
+      <path d="M6.75 10.6v4.9c0 1.85 2.35 3 5.25 3s5.25-1.15 5.25-3v-4.9" />
+      <path d="M21.5 8.4v5.6" />
+    </Glyph>
+  );
+}
+
+/** Vacation and holiday plan. */
+export function Sun({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <circle cx="12" cy="12" r="4.5" />
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.15 5.15l1.4 1.4M17.45 17.45l1.4 1.4M18.85 5.15l-1.4 1.4M6.55 17.45l-1.4 1.4" />
+    </Glyph>
+  );
+}
+
+/* -------------------------------------------------------------------------
+   Employee-resource glyphs. The live site runs these as four SVGs
+   (website-icon, download-icon, calendar-icon, pay-icon); redrawn on the
+   shared grid so the four sections of that page carry one visual language.
+------------------------------------------------------------------------- */
+
+/** Website links. */
+export function Globe({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M3.5 12h17" />
+      <path d="M12 3.5a13.5 13.5 0 0 1 0 17 13.5 13.5 0 0 1 0-17Z" />
+    </Glyph>
+  );
+}
+
+/** Common downloads. */
+export function Download({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M12 3.5v11.5" />
+      <path d="m7.5 10.5 4.5 4.5 4.5-4.5" />
+      <path d="M4 19.5h16" />
+    </Glyph>
+  );
+}
+
+/** Holiday calendar. */
+export function CalendarDays({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <rect x="3.75" y="5" width="16.5" height="15.25" rx="1.5" />
+      <path d="M3.75 10h16.5M8.25 2.75v4.5M15.75 2.75v4.5" />
+      <path d="M8 13.5h.01M12 13.5h.01M16 13.5h.01M8 16.75h.01M12 16.75h.01" />
+    </Glyph>
+  );
+}
+
+/** Pay schedule. */
+export function Wallet({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M3.5 8.5a2 2 0 0 1 2-2h12.5a1.5 1.5 0 0 1 1.5 1.5v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2Z" />
+      <path d="M3.5 8.5V7a1.5 1.5 0 0 1 1.5-1.5h10.5" />
+      <path d="M20 12.25h-3.25a1.875 1.875 0 0 0 0 3.75H20" />
+    </Glyph>
+  );
+}
+
+/* -------------------------------------------------------------------------
+   Job-board glyphs.
+------------------------------------------------------------------------- */
+
+/** An open role. */
+export function Briefcase({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <rect x="3.5" y="7" width="17" height="13" rx="1.5" />
+      <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" />
+      <path d="M3.5 12.5h17" />
+    </Glyph>
+  );
+}
+
+/** Where the work is. */
+export function MapPin({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M12 21s7-6.2 7-11.2a7 7 0 1 0-14 0C5 14.8 12 21 12 21Z" />
+      <circle cx="12" cy="9.8" r="2.6" />
+    </Glyph>
+  );
+}
+
+/** Cleared work — the security condition on most federal roles. */
+export function ShieldCheck({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M12 21s7.5-3.7 7.5-9.5V5.8L12 3 4.5 5.8v5.7C4.5 17.3 12 21 12 21Z" />
+      <path d="m8.75 11.75 2.25 2.25 4.25-4.25" />
+    </Glyph>
+  );
+}
+
+/* -------------------------------------------------------------------------
+   Contact glyphs — HR is a phone number and a mailbox, so both get a mark.
+------------------------------------------------------------------------- */
+export function Phone({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <path d="M8.4 4.5H5.6A2.1 2.1 0 0 0 3.5 6.7c.2 3.3 1.7 6.4 4.1 8.8s5.5 3.9 8.8 4.1a2.1 2.1 0 0 0 2.1-2.1v-2.8l-3.9-1.3-1.8 1.8a14 14 0 0 1-4.3-4.3l1.8-1.8L8.4 4.5Z" />
+    </Glyph>
+  );
+}
+
+export function Mail({ className }: IconProps) {
+  return (
+    <Glyph className={className}>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
+      <path d="m3.5 7.5 8.5 6 8.5-6" />
+    </Glyph>
+  );
+}
+
+/* -------------------------------------------------------------------------
    Social marks. Solid glyphs rather than the 1.5px line set: at 18px a hairline
    outline of a wordmark logo turns to mush, and these read as marks, not icons.
 ------------------------------------------------------------------------- */

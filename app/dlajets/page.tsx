@@ -28,7 +28,7 @@ export default function DlajetsPage() {
         lead="Defense Logistics Agency J6 Enterprise Technology Services, unrestricted track."
       />
 
-      {page && <PageProse blocks={page.blocks} practice={PRACTICE} />}
+      {page && <PageProse blocks={page.blocks} practice={PRACTICE} showImages />}
 
       <CtaBand practice={PRACTICE} title="Buying through DLA JETS?" />
     </main>

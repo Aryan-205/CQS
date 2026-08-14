@@ -28,7 +28,7 @@ export default function OasisPage() {
         lead="One Acquisition Solution for Integrated Services — Small Business, Pool 3."
       />
 
-      {page && <PageProse blocks={page.blocks} practice={PRACTICE} />}
+      {page && <PageProse blocks={page.blocks} practice={PRACTICE} showImages />}
 
       <CtaBand practice={PRACTICE} title="Buying through OASIS?" />
     </main>

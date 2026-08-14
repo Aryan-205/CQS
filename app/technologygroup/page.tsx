@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudies, excerpt, pageFor, seoFor, services } from "@/lib/content";
-import { CtaBand, PartnerGrid } from "@/components/sections";
+import { CtaBand, LogoWall, PartnerGrid } from "@/components/sections";
 import { Counters } from "@/components/counters";
 import {
   ApproachSteps,
@@ -14,6 +14,8 @@ import { Assess, Blueprint, Layers, Lifecycle } from "@/components/icons";
 import {
   bannerFor,
   caseStudyImage,
+  certificationLogos,
+  customerLogos,
   partnerLogos,
   serviceBanner,
 } from "@/lib/media";
@@ -228,6 +230,34 @@ export default function CommercialPage() {
         title="Our technology partners in driving transformation"
         logos={partnerLogos}
         action={{ label: "All alliance partners", href: "/alliance-partners" }}
+      />
+
+      {/* The same organisation, so the same customer list. It sits here rather
+          than at the top because a commercial buyer reads the platform work
+          first and the federal past performance as corroboration. */}
+      <LogoWall
+        eyebrow="Named customers"
+        title="Who we deliver for"
+        lead="The federal programmes that set our security and change-control floor, alongside the commercial engagements built on the same delivery organisation."
+        items={customerLogos.map((customer) => ({
+          name: customer.name,
+          logo: customer.logo,
+        }))}
+        columns={4}
+        practice={PRACTICE}
+      />
+
+      <LogoWall
+        tone="tint"
+        eyebrow="Certifications"
+        title="Appraised and certified"
+        lead="Delivery is appraised at CMMI Level 3 and runs under ISO 9001, ISO/IEC 27001 and ISO/IEC 20000-1 certified management systems."
+        items={certificationLogos.map((cert) => ({
+          name: cert.label,
+          logo: cert,
+        }))}
+        columns={6}
+        practice={PRACTICE}
       />
 
       <EditorialGrid

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { bySlug, partners, seoFor } from "@/lib/content";
-import { CardGrid, CtaBand, Hero, Prose } from "@/components/sections";
+import Image from "next/image";
+import { Band, CtaBand, Hero, LogoWall, Prose } from "@/components/sections";
 
 const PRACTICE = "commercial" as const;
 
@@ -45,17 +46,35 @@ export default async function PartnerPage(
         actions={[{ label: "All partners", href: "/alliance-partners" }]}
       />
 
-      {/* Partner records in content.md are image/label only — no body copy. */}
+      {/* Partner records in content.md are image/label only — the mark is the
+          whole record, so it gets a band of its own rather than a thumbnail.
+          No filter: a partner's mark is theirs, not ours to recolour. */}
+      {partner.image && (
+        <Band practice={PRACTICE}>
+          <div className="relative mx-auto h-28 w-full max-w-xs">
+            <Image
+              src={partner.image.src}
+              alt={partner.title}
+              fill
+              priority
+              sizes="320px"
+              className="object-contain mix-blend-multiply"
+            />
+          </div>
+        </Band>
+      )}
+
       {partner.blocks.length > 0 && <Prose blocks={partner.blocks} />}
 
-      <CardGrid
+      <LogoWall
         tone="tint"
         practice={PRACTICE}
         eyebrow="Ecosystem"
         title="Other alliance partners"
         columns={4}
-        cards={others.map((other) => ({
-          title: other.title,
+        items={others.map((other) => ({
+          name: other.title,
+          logo: other.image,
           href: `/alliance-partner/${other.slug}`,
         }))}
       />

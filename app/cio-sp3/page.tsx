@@ -28,7 +28,7 @@ export default function CioSp3Page() {
         lead="NITAAC CIO-SP3 Small Business — HUBZone on-ramp, task areas 1, 2, 4, 5, 6, 7, 8, 9 and 10."
       />
 
-      {page && <PageProse blocks={page.blocks} practice={PRACTICE} />}
+      {page && <PageProse blocks={page.blocks} practice={PRACTICE} showImages />}
 
       <CtaBand practice={PRACTICE} title="Buying through CIO-SP3?" />
     </main>

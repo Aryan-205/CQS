@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { PageBlock, Practice } from "@/lib/content";
 import { Band, Button, Eyebrow } from "@/components/sections";
@@ -14,10 +15,22 @@ export function PageBlocks({
   blocks,
   practice = "neutral",
   skipFirstHeading = true,
+  showImages = false,
 }: {
   blocks: PageBlock[];
   practice?: Practice;
   skipFirstHeading?: boolean;
+  /**
+   * Render the archive's `[IMG]` blocks.
+   *
+   * Off by default because on most of these pages the pictures are decorative
+   * icon bullets that the page already renders properly through a card grid,
+   * and repeating them inside the prose only duplicates the section. It is
+   * turned on for the contract-vehicle pages, where the image is the award's
+   * own seal or vehicle mark sitting directly above its write-up — there the
+   * artwork is the credential and dropping it loses information.
+   */
+  showImages?: boolean;
 }) {
   // Resolved up front rather than tracked while mapping, so the render stays
   // a pure function of its props.
@@ -95,8 +108,34 @@ export function PageBlocks({
           );
         }
 
-        // Images are skipped: every src points at the old WordPress uploads
-        // directory. Wire real assets in when they are supplied.
+        if (block.type === "image" && showImages) {
+          // A seal or vehicle mark, not a photograph: bounded height, never
+          // cropped, never recoloured. `mix-blend-multiply` drops the white
+          // plate the JPG marks carry onto the page ground. The archive's alt
+          // text is often the whole heading repeated, so the mark is treated
+          // as decorative when the heading beneath it already says the name.
+          const label = block.alt?.trim();
+          const heading = blocks[i + 1];
+          const named =
+            heading?.type === "heading" &&
+            label !== undefined &&
+            heading.text.trim().startsWith(label.slice(0, 24));
+
+          return (
+            <div key={i} className="relative h-24 w-full max-w-[240px] pt-4">
+              <Image
+                src={block.src}
+                alt={named ? "" : (label ?? "")}
+                fill
+                sizes="240px"
+                className="object-contain object-left mix-blend-multiply"
+              />
+            </div>
+          );
+        }
+
+        // Everything else — including images when they are not wanted — is
+        // dropped rather than rendered as an empty box.
         return null;
       })}
     </div>
@@ -109,11 +148,13 @@ export function PageProse({
   practice = "neutral",
   tone = "white",
   eyebrow,
+  showImages = false,
 }: {
   blocks: PageBlock[];
   practice?: Practice;
   tone?: "white" | "tint";
   eyebrow?: string;
+  showImages?: boolean;
 }) {
   return (
     <Band tone={tone} practice={practice}>
@@ -122,7 +163,7 @@ export function PageProse({
           <Eyebrow practice={practice}>{eyebrow}</Eyebrow>
         </div>
       )}
-      <PageBlocks blocks={blocks} practice={practice} />
+      <PageBlocks blocks={blocks} practice={practice} showImages={showImages} />
     </Band>
   );
 }
