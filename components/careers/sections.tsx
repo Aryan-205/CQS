@@ -457,10 +457,8 @@ export function UtilityHero({
           </a>
         )}
       </div>
-      <span
-        className={`absolute inset-x-0 bottom-0 h-1 ${ruleClass(practice)}`}
-        aria-hidden
-      />
+      {/* No closing rule here: the console card below sits across this edge
+          and carries the practice colour on its own top instead. */}
     </section>
   );
 }
@@ -482,7 +480,8 @@ export function Console({
   return (
     <section className="relative z-10 bg-bg">
       <div className="shell -mt-16 sm:-mt-20">
-        <ul className="grid gap-px border border-line bg-line shadow-layer sm:grid-cols-2 lg:grid-cols-4">
+        <span className={`block h-1 ${ruleClass(practice)}`} aria-hidden />
+        <ul className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item) => (
             <li key={item.href}>
               <a
