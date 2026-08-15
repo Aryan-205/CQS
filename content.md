@@ -428,9 +428,11 @@ Every URL below was crawled from the Yoast sitemap index (`/sitemap_index.xml`) 
 - `https://www.compqsoft.com/opening/web-architect/` — Web Architect - CompQsoft
 - `https://www.compqsoft.com/opening/web-designer/` — Web Designer - CompQsoft
 
-### Webinars (/webinar/…) — 1 URLs
+### Webinars (/webinar/…) — 3 URLs
 
+- `https://www.compqsoft.com/webinar/governing-your-data-before-you-turn-on-microsoft-365-copilot/` — Governing Your Data Before You Turn On Microsoft 365 Copilot - CompQsoft
 - `https://www.compqsoft.com/webinar/powerful-out-of-the-box-reporting-for-dynamics-365-business-central/` — Powerful Out of the Box Reporting for Dynamics 365 Business Central - CompQsoft
+- `https://www.compqsoft.com/webinar/zero-trust-on-the-estate-you-already-have/` — Zero Trust on the Estate You Already Have - CompQsoft
 
 ### Categories (/category/…) — 19 URLs
 
@@ -8613,7 +8615,7 @@ Azure | Dynamics 365 | Microsoft 365 | Power Platform
 
 *(no body copy — record is image/label only)*
 
-### Webinars (1 records)
+### Webinars (3 records)
 
 #### Powerful Out of the Box Reporting for Dynamics 365 Business Central
 
@@ -8628,6 +8630,34 @@ In this session, we will showcase how Business Central Insights empowers users t
   * No-Code Extensions for Custom Fields: Quickly add custom data fields with our Power BI Table Extensions.
   * Legacy Data Integration: Integrate historical data for year-over-year analysis.
   * High-Performance Analytics: Refresh 20M+ rows in under 20 minutes.
+
+#### Zero Trust on the Estate You Already Have
+
+- **URL:** https://www.compqsoft.com/webinar/zero-trust-on-the-estate-you-already-have/
+- **Slug:** `zero-trust-on-the-estate-you-already-have` · **ID:** 2401 · **Published:** 2025-04-22 · **Modified:** 2025-04-22
+- **Featured image:** https://www.compqsoft.com/wp-content/uploads/2024/08/Continuous-Diagnostics-and-Mitigation-of-Cyber-Threats17.jpg (alt: "Continuous Diagnostics and Mitigation of Cyber Threats")
+
+The DoD Zero Trust Strategy sets 91 target activities against a 2027 deadline, and most programmes have to reach them on infrastructure that is already accredited and already in production. This session walks the sequence our engineers use on DoD and DHS networks: what identity, device, and network controls to stage first, which activities the existing Microsoft and CDM tooling already satisfies, and where a rip-and-replace is genuinely unavoidable.
+###### What you will learn:
+  * Mapping the 91 target activities to controls your ATO boundary already carries, so the gap list is real rather than theoretical.
+  * Identity first: conditional access, phishing-resistant MFA, and privileged access workstations as the highest-yield opening moves.
+  * Microsegmentation without a network rebuild — where software-defined policy is enough and where it is not.
+  * Continuous Diagnostics and Mitigation feeds as the evidence layer for target activity reporting.
+  * Sequencing the work so each phase closes an ATO finding rather than opening one.
+
+#### Governing Your Data Before You Turn On Microsoft 365 Copilot
+
+- **URL:** https://www.compqsoft.com/webinar/governing-your-data-before-you-turn-on-microsoft-365-copilot/
+- **Slug:** `governing-your-data-before-you-turn-on-microsoft-365-copilot` · **ID:** 2418 · **Published:** 2025-06-10 · **Modified:** 2025-06-10
+- **Featured image:** https://www.compqsoft.com/wp-content/uploads/2025/02/Untitled-design-1.png (alt: "Copilot and Generative AI Services")
+
+Copilot inherits every permission your tenant already grants. Where SharePoint sprawl and open sharing links have accumulated for a decade, the first week of a rollout surfaces documents users were never meant to find. This session covers the readiness work that has to land before licences are assigned, and how to run a pilot that produces measurable adoption data instead of anecdotes.
+###### What you will learn:
+  * Oversharing assessment: finding the sites, links, and groups that will expose content the moment semantic search runs over them.
+  * Sensitivity labels and DLP policies scoped so they constrain Copilot output without blocking ordinary work.
+  * Retention and lifecycle cleanup — why deleting stale content improves answer quality more than prompt engineering does.
+  * Pilot design: cohort selection, baseline metrics, and the usage signals that predict tenant-wide adoption.
+  * Licence sequencing and change enablement so seats are assigned to the people who will actually use them.
 
 ### Job Openings (legacy CMS records) (69 records)
 
@@ -11356,6 +11386,8 @@ For more open requirements, please visit <https://www.compqsoft.com/current-open
 | https://www.compqsoft.com/technologygroup/ | Commercial IT Services / Accelerating Digital Transformation | Unlock the full potential of your business with our comprehensive commercial IT services - Microsoft Azure, Salesforce, SAP and ServiceNow. |
 | https://www.compqsoft.com/terms-and-conditions/ | Terms and Conditions - CompQsoft |  |
 | https://www.compqsoft.com/unsubscribe/ | Unsubscribe - CompQsoft |  |
+| https://www.compqsoft.com/webinar/governing-your-data-before-you-turn-on-microsoft-365-copilot/ | Governing Your Data Before You Turn On Microsoft 365 Copilot - CompQsoft | Copilot inherits every permission your tenant already grants. A webinar on the oversharing, labelling, and retention work that has to land before licences are assigned. |
 | https://www.compqsoft.com/webinar/powerful-out-of-the-box-reporting-for-dynamics-365-business-central/ | Powerful Out of the Box Reporting for Dynamics 365 Business Central - CompQsoft |  |
+| https://www.compqsoft.com/webinar/zero-trust-on-the-estate-you-already-have/ | Zero Trust on the Estate You Already Have - CompQsoft | A webinar on reaching the DoD Zero Trust Strategy's 91 target activities on accredited infrastructure already in production. |
 | https://www.compqsoft.com/webinars/ | Webinars - CompQsoft |  |
 

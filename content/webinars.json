@@ -39,5 +39,87 @@
         ]
       }
     ]
+  },
+  {
+    "title": "Zero Trust on the Estate You Already Have",
+    "url": "/webinar/zero-trust-on-the-estate-you-already-have",
+    "slug": "zero-trust-on-the-estate-you-already-have",
+    "published": "2025-04-22",
+    "modified": "2025-04-22",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2024/08/Continuous-Diagnostics-and-Mitigation-of-Cyber-Threats17.jpg",
+      "alt": "Continuous Diagnostics and Mitigation of Cyber Threats"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "The DoD Zero Trust Strategy sets 91 target activities against a 2027 deadline, and most programmes have to reach them on infrastructure that is already accredited and already in production. This session walks the sequence our engineers use on DoD and DHS networks: what identity, device, and network controls to stage first, which activities the existing Microsoft and CDM tooling already satisfies, and where a rip-and-replace is genuinely unavoidable."
+      },
+      {
+        "type": "heading",
+        "text": "What you will learn:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Mapping the 91 target activities to controls your ATO boundary already carries, so the gap list is real rather than theoretical."
+          },
+          {
+            "text": "Identity first: conditional access, phishing-resistant MFA, and privileged access workstations as the highest-yield opening moves."
+          },
+          {
+            "text": "Microsegmentation without a network rebuild — where software-defined policy is enough and where it is not."
+          },
+          {
+            "text": "Continuous Diagnostics and Mitigation feeds as the evidence layer for target activity reporting."
+          },
+          {
+            "text": "Sequencing the work so each phase closes an ATO finding rather than opening one."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Governing Your Data Before You Turn On Microsoft 365 Copilot",
+    "url": "/webinar/governing-your-data-before-you-turn-on-microsoft-365-copilot",
+    "slug": "governing-your-data-before-you-turn-on-microsoft-365-copilot",
+    "published": "2025-06-10",
+    "modified": "2025-06-10",
+    "image": {
+      "src": "https://www.compqsoft.com/wp-content/uploads/2025/02/Untitled-design-1.png",
+      "alt": "Copilot and Generative AI Services"
+    },
+    "blocks": [
+      {
+        "type": "para",
+        "text": "Copilot inherits every permission your tenant already grants. Where SharePoint sprawl and open sharing links have accumulated for a decade, the first week of a rollout surfaces documents users were never meant to find. This session covers the readiness work that has to land before licences are assigned, and how to run a pilot that produces measurable adoption data instead of anecdotes."
+      },
+      {
+        "type": "heading",
+        "text": "What you will learn:"
+      },
+      {
+        "type": "list",
+        "items": [
+          {
+            "text": "Oversharing assessment: finding the sites, links, and groups that will expose content the moment semantic search runs over them."
+          },
+          {
+            "text": "Sensitivity labels and DLP policies scoped so they constrain Copilot output without blocking ordinary work."
+          },
+          {
+            "text": "Retention and lifecycle cleanup — why deleting stale content improves answer quality more than prompt engineering does."
+          },
+          {
+            "text": "Pilot design: cohort selection, baseline metrics, and the usage signals that predict tenant-wide adoption."
+          },
+          {
+            "text": "Licence sequencing and change enablement so seats are assigned to the people who will actually use them."
+          }
+        ]
+      }
+    ]
   }
 ]

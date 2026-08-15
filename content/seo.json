@@ -1299,9 +1299,17 @@
     "title": "Unsubscribe - CompQsoft",
     "description": ""
   },
+  "/webinar/governing-your-data-before-you-turn-on-microsoft-365-copilot": {
+    "title": "Governing Your Data Before You Turn On Microsoft 365 Copilot - CompQsoft",
+    "description": "Copilot inherits every permission your tenant already grants. A webinar on the oversharing, labelling, and retention work that has to land before licences are assigned."
+  },
   "/webinar/powerful-out-of-the-box-reporting-for-dynamics-365-business-central": {
     "title": "Powerful Out of the Box Reporting for Dynamics 365 Business Central - CompQsoft",
     "description": ""
+  },
+  "/webinar/zero-trust-on-the-estate-you-already-have": {
+    "title": "Zero Trust on the Estate You Already Have - CompQsoft",
+    "description": "A webinar on reaching the DoD Zero Trust Strategy's 91 target activities on accredited infrastructure already in production."
   },
   "/webinars": {
     "title": "Webinars - CompQsoft",

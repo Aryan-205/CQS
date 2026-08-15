@@ -302,7 +302,7 @@ write("blogs", parseCollection("### Blog Posts (36 records)"));
 write("faqs", parseCollection("### FAQs (30 records)"));
 write("leadership", parseCollection("### Leadership Team (5 records)"));
 write("partners", parseCollection("### Alliance Partners (14 records)"));
-write("webinars", parseCollection("### Webinars (1 records)"));
+write("webinars", parseCollection("### Webinars (3 records)"));
 
 write(
   "taxonomy",
