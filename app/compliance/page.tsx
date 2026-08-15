@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { pageFor, seoFor } from "@/lib/content";
-import { CtaBand, Hero, LogoWall } from "@/components/sections";
-import { PageProse } from "@/components/page-content";
+import {
+  CtaBand,
+  Hero,
+  IdentifierStrip,
+  Intro,
+  LogoWall,
+  TextLink,
+} from "@/components/sections";
 import {
   bannerFor,
   certificationLogos,
@@ -12,6 +18,23 @@ import {
 const PRACTICE = "government" as const;
 const PATH = "/compliance";
 const seo = seoFor(PATH);
+
+/**
+ * The "CompQsoft Information" block, restructured.
+ *
+ * The archive renders these as four bare H4s with their labels dropped, so a
+ * reader gets `KTU8QJE27RN8` at 24px with nothing saying it is the UEI. Here
+ * each code is paired with its label and set at reference size. NAICS is
+ * added from content.md:79 — a contracting officer checking a UEI wants the
+ * primary code in the same glance.
+ */
+const IDENTIFIERS = [
+  { label: "UEI", value: "KTU8QJE27RN8" },
+  { label: "CAGE Code", value: "1TTA2" },
+  { label: "FEIN (Tax ID)", value: "76-0554431" },
+  { label: "DUNS", value: "140460283" },
+  { label: "Primary NAICS", value: "541512" },
+] as const;
 
 export const metadata: Metadata = {
   title: { absolute: seo?.title ?? "Compliance - CompQsoft" },
@@ -33,11 +56,19 @@ export default function CompliancePage() {
         lead="Our certifications, accreditation practice and the standards we deliver against."
       />
 
+      <IdentifierStrip
+        eyebrow="CompQsoft information"
+        title="Registrations and identifiers"
+        lead="Everything needed to look us up, verify a registration or put us on a solicitation."
+        identifiers={IDENTIFIERS}
+        practice={PRACTICE}
+      />
+
       {/* The three walls a contracting officer is actually here for — the
           vehicles we hold, the programmes we have run on them, and the
-          certificates behind both — each as its own artwork rather than as a
-          line of type in the prose below. */}
+          certificates behind both — each as its own artwork. */}
       <LogoWall
+        tone="tint"
         eyebrow="Contract vehicles"
         title="CompQsoft IDIQ contracts"
         lead="Five prime IDIQ positions an agency can order against without running a new competition."
@@ -51,7 +82,6 @@ export default function CompliancePage() {
       />
 
       <LogoWall
-        tone="tint"
         eyebrow="Past performance"
         title="Programmes we have delivered"
         items={federalCaseStudyLogos.map((study) => ({
@@ -65,6 +95,7 @@ export default function CompliancePage() {
       />
 
       <LogoWall
+        tone="tint"
         eyebrow="Certifications"
         title="Independently appraised and certified"
         lead="Delivery runs under independently audited management systems. Each mark below is the certificate as issued."
@@ -76,7 +107,23 @@ export default function CompliancePage() {
         practice={PRACTICE}
       />
 
-      {page && <PageProse blocks={page.blocks} practice={PRACTICE} />}
+      {/* The archive's prose for this page is nothing but the three sections
+          above repeated as headings and links, plus this one. Rendering it
+          again would duplicate the whole page, so only this survives. */}
+      <Intro
+        practice={PRACTICE}
+        eyebrow="Sustainability and transparency"
+        title="Our greenhouse gas emissions disclosure"
+      >
+        <p className="text-base text-body">
+          We publish our emissions reporting alongside the compliance record,
+          on the same footing as any other disclosure a buyer is entitled to
+          check.
+        </p>
+        <p>
+          <TextLink href="/ghgemissions">Read the disclosure</TextLink>
+        </p>
+      </Intro>
 
       <CtaBand practice={PRACTICE} title="Questions about our compliance posture?" />
     </main>

@@ -563,6 +563,66 @@ export function PartnerGrid({
   );
 }
 
+/* =========================================================================
+   7a. IdentifierStrip — the registrations a contracting officer checks first.
+
+   These are codes, not headings. The archive marks each value up as an H4 and
+   drops the label that belongs above it, so the rebuilt page would otherwise
+   render four unlabelled 24px numbers in a column — the wrong size and, worse,
+   no way to tell a CAGE code from a DUNS number.
+
+   So: the label carries at stat-label (13px, uppercase, tracked, muted) and
+   the value at code (14px mono, ink). Mono earns its one sanctioned job here.
+   Small type is correct — a reference figure is scanned and copied, never
+   read, and setting it large only costs the page its hierarchy.
+   ========================================================================= */
+export function IdentifierStrip({
+  eyebrow = "Company information",
+  title,
+  lead,
+  identifiers,
+  tone = "white",
+  practice = "government",
+  columns = 5,
+}: {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  identifiers: readonly { label: string; value: string }[];
+  tone?: "white" | "tint";
+  practice?: Practice;
+  columns?: 4 | 5;
+}) {
+  if (!identifiers.length) return null;
+
+  return (
+    <Band tone={tone} practice={practice}>
+      {(eyebrow || title || lead) && (
+        <div className="mb-10">
+          {eyebrow && <Eyebrow practice={practice}>{eyebrow}</Eyebrow>}
+          {/* h3 rather than the h1 SectionHead would set: this band is a
+              reference row, and a 46px heading over 14px codes is top-heavy. */}
+          {title && <h2 className="mt-5 text-h3 text-ink">{title}</h2>}
+          {lead && <p className="measure mt-4 text-sm text-body">{lead}</p>}
+        </div>
+      )}
+
+      <dl
+        className={`grid gap-px border border-line bg-line sm:grid-cols-2 ${
+          columns === 4 ? "lg:grid-cols-4" : "lg:grid-cols-5"
+        }`}
+      >
+        {identifiers.map((id) => (
+          <div key={id.label} className="bg-bg px-6 py-7 sm:px-7">
+            <dt className="text-stat-label uppercase text-muted">{id.label}</dt>
+            <dd className="mt-3 font-mono text-code text-ink">{id.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </Band>
+  );
+}
+
 export function CertStrip({
   title,
   items,
