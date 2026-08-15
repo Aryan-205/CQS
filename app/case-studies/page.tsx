@@ -33,6 +33,14 @@ export default function CaseStudiesPage() {
         practice={PRACTICE}
         records={caseStudies}
         basePath="/case-study"
+        size="tight"
+        filters={
+          <div className="border-b border-line pb-6">
+            <p className="text-stat-label uppercase text-muted">
+              {caseStudies.length} case studies
+            </p>
+          </div>
+        }
       />
 
       <CtaBand

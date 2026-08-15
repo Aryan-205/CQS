@@ -43,6 +43,23 @@ export function ChevronDown({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
+export function Check({ className = "h-4 w-4" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="m3 8.5 3.5 3.5L13 4.5" />
+    </svg>
+  );
+}
+
 export function Search({ className = "h-5 w-5" }: IconProps) {
   return (
     <svg

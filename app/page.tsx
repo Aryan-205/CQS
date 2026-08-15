@@ -153,9 +153,18 @@ const PRACTICES = [
   },
 ];
 
+/**
+ * Held back from the homepage only. The record still renders at
+ * /case-study/dynamics-365-finance-case-study and still lists on /case-studies.
+ */
+const HOME_CASE_EXCLUSIONS = ["dynamics-365-finance-case-study"];
+
 export default function HomePage() {
-  const featuredCase = caseStudies[0];
-  const supportingCases = caseStudies.slice(1, 3);
+  const homeCases = caseStudies.filter(
+    (study) => !HOME_CASE_EXCLUSIONS.includes(study.slug),
+  );
+  const featuredCase = homeCases[0];
+  const supportingCases = homeCases.slice(1, 3);
   const [featuredPost, ...featuredRail] = blogs.slice(0, 4);
   const latestPosts = blogs.slice(4, 8);
 

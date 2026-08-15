@@ -56,7 +56,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[slug]">) {
         actions={[{ label: "All insights", href: "/blogs" }]}
       />
 
-      <Prose blocks={post.blocks} />
+      <Prose blocks={post.blocks} size="tight" />
 
       <ListingGrid
         tone="tint"

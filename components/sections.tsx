@@ -22,11 +22,18 @@ export function Band({
   children: ReactNode;
   tone?: "white" | "tint";
   practice?: Practice;
-  size?: "normal" | "large";
+  /** `tight` is for the band that follows a hero directly — the hero already
+   *  gave the eye a rest, so the full 128px reads as a hole in the page. */
+  size?: "tight" | "normal" | "large";
   wide?: boolean;
   id?: string;
 }) {
-  const pad = size === "large" ? "py-28 sm:py-40" : "py-24 sm:py-32";
+  const pad =
+    size === "large"
+      ? "py-28 sm:py-40"
+      : size === "tight"
+        ? "py-14 sm:py-20"
+        : "py-24 sm:py-32";
   return (
     <section id={id} className={`relative isolate bg-bg ${pad}`}>
       {tone === "tint" && <Glow practice={practice} />}
@@ -229,7 +236,7 @@ export function Hero({
       <div
         className={`shell relative flex flex-col justify-end ${
           compact
-            ? "min-h-[300px] py-16 sm:min-h-[360px]"
+            ? "min-h-[260px] py-14 sm:min-h-[320px] sm:py-16"
             : "min-h-[420px] py-20 sm:min-h-[520px] sm:py-28"
         }`}
       >
@@ -239,15 +246,21 @@ export function Hero({
           </Eyebrow>
         )}
         <h1
-          className={`measure mt-6 text-on-black ${compact ? "text-h1" : "text-display"}`}
+          className={`measure text-on-black ${compact ? "mt-4 text-h1" : "mt-6 text-display"}`}
         >
           {title}
         </h1>
         {lead && (
-          <p className="measure mt-6 text-lg text-on-black-mute">{lead}</p>
+          <p
+            className={`measure text-lg text-on-black-mute ${compact ? "mt-4" : "mt-6"}`}
+          >
+            {lead}
+          </p>
         )}
         {actions && actions.length > 0 && (
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div
+            className={`flex flex-wrap gap-3 ${compact ? "mt-7" : "mt-9"}`}
+          >
             {actions.map((action, i) => (
               <Button
                 key={action.href}
@@ -1008,6 +1021,8 @@ export function ListingGrid({
   columns = 3,
   empty = "Nothing here yet.",
   imageFor,
+  size = "normal",
+  filters,
 }: {
   records: Record[];
   basePath: string;
@@ -1017,17 +1032,23 @@ export function ListingGrid({
   empty?: string;
   /** Supply a fallback when the CMS record carries no image. */
   imageFor?: (record: Record) => string | undefined;
+  size?: "tight" | "normal" | "large";
+  /** Filter controls. They belong in the grid's own band — as a band of their
+   *  own they stack two lots of section padding into one empty gap. */
+  filters?: ReactNode;
 }) {
   if (!records.length) {
     return (
-      <Band tone={tone} practice={practice}>
+      <Band tone={tone} practice={practice} size={size}>
+        {filters && <div className="mb-10">{filters}</div>}
         <p className="text-lg text-muted">{empty}</p>
       </Band>
     );
   }
 
   return (
-    <Band tone={tone} practice={practice}>
+    <Band tone={tone} practice={practice} size={size}>
+      {filters && <div className="mb-10 sm:mb-12">{filters}</div>}
       <div
         className={`grid gap-x-10 gap-y-16 ${columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}
       >
@@ -1152,13 +1173,15 @@ export function Prose({
   blocks,
   tone = "white",
   practice = "neutral",
+  size = "normal",
 }: {
   blocks: Block[];
   tone?: "white" | "tint";
   practice?: Practice;
+  size?: "tight" | "normal" | "large";
 }) {
   return (
-    <Band tone={tone} practice={practice}>
+    <Band tone={tone} practice={practice} size={size}>
       <Blocks blocks={blocks} />
     </Band>
   );

@@ -46,7 +46,7 @@ export default async function CaseStudyPage(
         actions={[{ label: "All case studies", href: "/case-studies" }]}
       />
 
-      <Prose blocks={study.blocks} />
+      <Prose blocks={study.blocks} size="tight" />
 
       <ListingGrid
         tone="tint"

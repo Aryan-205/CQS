@@ -59,10 +59,15 @@ export function Featured({
           </h3>
         </Link>
 
-        <ul className="flex flex-col justify-center gap-10">
+        {/* The rail hangs from the top of the lead image, not the middle of the
+            column: `justify-center` left the first headline floating below the
+            image edge and the gap under the last one unexplained. Rows are
+            hairline-separated and top-aligned, so the labels sit on one line
+            down the column however many lines a title runs to. */}
+        <ul className="flex flex-col divide-y divide-line border-y border-line lg:self-start">
           {items.map((item) => (
-            <li key={item.href}>
-              <Link href={item.href} className="group flex items-center gap-6">
+            <li key={item.href} className="py-7 first:pt-0 last:pb-0">
+              <Link href={item.href} className="group flex items-start gap-6">
                 <div className="relative aspect-[4/3] w-32 shrink-0 overflow-hidden bg-tint-neutral sm:w-40">
                   <Image
                     src={item.image}
@@ -72,7 +77,7 @@ export function Featured({
                     className="graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.04]"
                   />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <p className="text-stat-label uppercase text-muted">
                     {item.label}
                   </p>
@@ -80,7 +85,8 @@ export function Featured({
                     {item.title}
                   </h3>
                 </div>
-                <Arrow className="ml-auto hidden h-4 w-4 shrink-0 text-muted transition-transform duration-150 ease-brand group-hover:translate-x-1 sm:block" />
+                {/* Aligned to the label's cap height, not the row's centre. */}
+                <Arrow className="mt-1 hidden h-4 w-4 shrink-0 text-muted transition-transform duration-150 ease-brand group-hover:translate-x-1 sm:block" />
               </Link>
             </li>
           ))}

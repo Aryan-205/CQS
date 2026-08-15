@@ -547,6 +547,7 @@ export function AssuranceBand({
   title,
   lead,
   certifications,
+  marks,
   identifiers,
   image,
   practice = "commercial",
@@ -554,7 +555,14 @@ export function AssuranceBand({
   eyebrow?: string;
   title: string;
   lead: string;
-  certifications: string[];
+  certifications?: string[];
+  /**
+   * Certificate artwork. The issued marks carry their own opaque grounds —
+   * navy for the ISO badges, white for the CMMI ones — so on this black band
+   * each sits in a white `--radius-card` plate, per the deck's rule for a mark
+   * over dark. Never recoloured, never inverted: these are issued documents.
+   */
+  marks?: { src: string; alt?: string; label: string }[];
   identifiers?: { label: string; value: string }[];
   image?: { src: string; alt?: string };
   practice?: Practice;
@@ -586,16 +594,39 @@ export function AssuranceBand({
         <div className="lg:col-span-6 lg:col-start-7">
           <p className="measure text-lg text-on-black-mute">{lead}</p>
 
-          <ul className="mt-10 flex flex-wrap gap-3">
-            {certifications.map((item) => (
-              <li
-                key={item}
-                className="rounded-pill border border-white/25 px-5 py-2 text-sm text-on-black"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
+          {marks && marks.length > 0 && (
+            <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
+              {marks.map((mark) => (
+                <li key={mark.label} className="flex flex-col">
+                  <span className="relative block h-24 rounded-card bg-white">
+                    <Image
+                      src={mark.src}
+                      alt={mark.alt ?? mark.label}
+                      fill
+                      sizes="200px"
+                      className="object-contain p-4"
+                    />
+                  </span>
+                  <span className="mt-3 text-sm text-on-black-mute">
+                    {mark.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {certifications && certifications.length > 0 && (
+            <ul className="mt-10 flex flex-wrap gap-3">
+              {certifications.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-pill border border-white/25 px-5 py-2 text-sm text-on-black"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
 
           {identifiers && identifiers.length > 0 && (
             <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-white/15 pt-8">

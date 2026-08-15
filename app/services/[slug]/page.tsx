@@ -21,9 +21,27 @@ import {
   OverviewSplit,
   Pager,
 } from "@/components/editorial/sections";
+import {
+  ComparisonMatrix,
+  EcosystemHub,
+  EngagementPlans,
+  InlineCallout,
+  ModuleGrid,
+  PhaseTimeline,
+  ReadinessChecklist,
+  RoleSplit,
+  ShiftPanels,
+  StatementQuote,
+} from "@/components/editorial/showcase";
 import { Assess, Blueprint, Layers, Lifecycle } from "@/components/icons";
-import { caseStudyImage, practiceMedia, serviceBanner } from "@/lib/media";
+import {
+  caseStudyImage,
+  certificationLogos,
+  practiceMedia,
+  serviceBanner,
+} from "@/lib/media";
 import { extraServiceFaqs } from "@/lib/service-faqs";
+import { serviceShowcase } from "@/lib/service-showcase";
 
 /** Services sit on the commercial side of the IA, so panels run blue. */
 const PRACTICE = "commercial" as const;
@@ -63,13 +81,16 @@ const TRACK_RECORD = [
   { value: "200", suffix: "+", label: "Global Customers" },
 ];
 
-/** Appraisal and registrations, current revisions. */
-const CERTIFICATIONS = [
-  "CMMI Level 3",
-  "ISO 9001:2015",
-  "ISO/IEC 27001:2013",
-  "ISO/IEC 20000-1:2011",
-];
+/**
+ * Appraisal and registrations, shown as the issued marks. Labels come off the
+ * artwork in `lib/media.ts` rather than the archive, which cites superseded
+ * revisions.
+ */
+const CERTIFICATIONS = certificationLogos.map((cert) => ({
+  src: cert.src,
+  alt: cert.alt,
+  label: cert.label,
+}));
 
 const IDENTIFIERS = [
   { label: "UEI", value: "KTU8QJE27RN8" },
@@ -113,6 +134,10 @@ export default async function ServicePage(
     ...extraServiceFaqs(slug, service.category),
   ];
 
+  // Authored, per-service sections. Only the services with an entry in
+  // lib/service-showcase.ts render them; the rest of the template is unchanged.
+  const showcase = serviceShowcase(slug);
+
   // The next two siblings, wrapping — fourteen service pages are the most
   // useful onward step from any one of them.
   const index = services.findIndex((s) => s.slug === slug);
@@ -140,12 +165,33 @@ export default async function ServicePage(
         practice={PRACTICE}
       />
 
+      {showcase?.shift && (
+        <ShiftPanels
+          title={showcase.shift.title}
+          lead={showcase.shift.lead}
+          before={showcase.shift.before}
+          after={showcase.shift.after}
+          tone="tint"
+          practice={PRACTICE}
+        />
+      )}
+
       <Counters
         eyebrow="Track record"
         title="Twenty-eight years of delivery behind every engagement"
         stats={TRACK_RECORD}
         practice={PRACTICE}
       />
+
+      {showcase?.modules && (
+        <ModuleGrid
+          title={showcase.modules.title}
+          lead={showcase.modules.lead}
+          modules={showcase.modules.items}
+          tone="tint"
+          practice={PRACTICE}
+        />
+      )}
 
       <LinkList
         title="Capabilities"
@@ -155,8 +201,45 @@ export default async function ServicePage(
           href: `/capabilities/${capability.slug}`,
           description: excerpt(capability, 130),
         }))}
+        // The showcase runs a tinted band either side of this one, so the
+        // alternation only holds if this page's list sits on white.
+        tone={showcase ? "white" : "tint"}
         practice={PRACTICE}
       />
+
+      {showcase?.quote && (
+        <StatementQuote
+          quote={showcase.quote.text}
+          attribution={showcase.quote.attribution}
+          role={showcase.quote.role}
+          tone="tint"
+          practice={PRACTICE}
+        />
+      )}
+
+      {showcase?.comparison && (
+        <ComparisonMatrix
+          title={showcase.comparison.title}
+          lead={showcase.comparison.lead}
+          columns={showcase.comparison.columns}
+          rows={showcase.comparison.rows}
+          footnote={showcase.comparison.footnote}
+          tone="white"
+          practice={PRACTICE}
+        />
+      )}
+
+      {showcase?.readiness && (
+        <ReadinessChecklist
+          title={showcase.readiness.title}
+          lead={showcase.readiness.lead}
+          signals={showcase.readiness.signals}
+          note={showcase.readiness.note}
+          action={{ label: "Book an assessment", href: "/contact-us" }}
+          tone="tint"
+          practice={PRACTICE}
+        />
+      )}
 
       <ApproachSteps
         title="Our engagement process"
@@ -165,10 +248,64 @@ export default async function ServicePage(
         practice={PRACTICE}
       />
 
+      {showcase?.phases && (
+        <PhaseTimeline
+          title={showcase.phases.title}
+          lead={showcase.phases.lead}
+          phases={showcase.phases.items}
+          action={{ label: "Talk through your programme", href: "/contact-us" }}
+          tone="tint"
+          practice={PRACTICE}
+        />
+      )}
+
+      {showcase?.roles && (
+        <RoleSplit
+          title={showcase.roles.title}
+          lead={showcase.roles.lead}
+          image={service.image ?? practiceMedia.commercial}
+          roles={showcase.roles.items}
+          tone="white"
+          practice={PRACTICE}
+        />
+      )}
+
+      {showcase?.plans && (
+        <EngagementPlans
+          title={showcase.plans.title}
+          lead={showcase.plans.lead}
+          plans={showcase.plans.items.map((plan) => ({
+            ...plan,
+            action: { label: "Start here", href: "/contact-us" },
+          }))}
+          tone="tint"
+          practice={PRACTICE}
+        />
+      )}
+
+      {showcase?.ecosystem && (
+        <EcosystemHub
+          title={showcase.ecosystem.title}
+          lead={showcase.ecosystem.lead}
+          hub={showcase.ecosystem.hub}
+          nodes={showcase.ecosystem.nodes}
+          tone="white"
+          practice={PRACTICE}
+        />
+      )}
+
+      {showcase?.callout && (
+        <InlineCallout
+          text={showcase.callout}
+          action={{ label: "Book an assessment", href: "/contact-us" }}
+          practice={PRACTICE}
+        />
+      )}
+
       <AssuranceBand
         title="Appraised process, not best effort"
         lead="Commercial and federal work is delivered by one engineering organization, under the same appraised processes and certified management systems. What a contracting officer asks for is what a commercial client gets."
-        certifications={CERTIFICATIONS}
+        marks={CERTIFICATIONS}
         identifiers={IDENTIFIERS}
         image={practiceMedia.commercial}
         practice={PRACTICE}

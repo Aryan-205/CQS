@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { blogs, seoFor, taxonomy } from "@/lib/content";
-import { Band, CtaBand, Hero, ListingGrid } from "@/components/sections";
+import { CtaBand, Hero, ListingGrid } from "@/components/sections";
 import { bannerFor } from "@/lib/media";
 import { blogImage } from "@/lib/media";
 
@@ -42,54 +42,52 @@ export default async function BlogsPage(props: PageProps<"/blogs">) {
         compact
         eyebrow="Insights"
         title={selected ? selected.name : "Blogs"}
-        lead={
-          selected
-            ? `${posts.length} post${posts.length === 1 ? "" : "s"} on ${selected.name}.`
-            : "Perspectives on federal IT modernization, the Microsoft estate, cloud, data and AI."
-        }
+        lead="Perspectives on federal IT modernization, the Microsoft estate, cloud, data and AI."
       />
-
-      {categories.length > 0 && (
-        <Band tone="tint" size="normal">
-          <p className="mb-5 text-stat-label uppercase text-muted">
-            Filter by topic
-          </p>
-          <ul className="flex flex-wrap gap-2">
-            <li>
-              <Link
-                href="/blogs"
-                className={`inline-block rounded-pill px-4 py-1.5 text-sm transition-colors duration-150 ease-brand ${
-                  selected
-                    ? "border border-line text-body hover:border-ink"
-                    : "bg-brand-blue text-ink"
-                }`}
-              >
-                All
-              </Link>
-            </li>
-            {categories.map((category) => (
-              <li key={category.slug}>
-                <Link
-                  href={`/blogs?category=${category.slug}`}
-                  className={`inline-block rounded-pill px-4 py-1.5 text-sm transition-colors duration-150 ease-brand ${
-                    selected?.slug === category.slug
-                      ? "bg-brand-blue text-ink"
-                      : "border border-line text-body hover:border-ink"
-                  }`}
-                >
-                  {category.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Band>
-      )}
 
       <ListingGrid
         imageFor={blogImage}
         records={posts}
         basePath="/blog"
+        size="tight"
         empty="No posts in this topic yet."
+        filters={
+          categories.length > 0 ? (
+            <div className="flex flex-col gap-4 border-b border-line pb-6 sm:flex-row sm:items-center sm:justify-between">
+              <ul className="flex flex-wrap gap-2">
+                <li>
+                  <Link
+                    href="/blogs"
+                    className={`inline-block rounded-pill px-4 py-1.5 text-sm transition-colors duration-150 ease-brand ${
+                      selected
+                        ? "border border-line text-body hover:border-ink"
+                        : "bg-brand-blue text-ink"
+                    }`}
+                  >
+                    All
+                  </Link>
+                </li>
+                {categories.map((category) => (
+                  <li key={category.slug}>
+                    <Link
+                      href={`/blogs?category=${category.slug}`}
+                      className={`inline-block rounded-pill px-4 py-1.5 text-sm transition-colors duration-150 ease-brand ${
+                        selected?.slug === category.slug
+                          ? "bg-brand-blue text-ink"
+                          : "border border-line text-body hover:border-ink"
+                      }`}
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-stat-label uppercase text-muted">
+                {posts.length} post{posts.length === 1 ? "" : "s"}
+              </p>
+            </div>
+          ) : undefined
+        }
       />
 
       <CtaBand
