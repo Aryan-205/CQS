@@ -168,7 +168,7 @@ export default function LifeAtCompqsoftPage() {
 
       <IndexRows
         eyebrow="Our values"
-        title="Four principles, applied on live programmes"
+        title="The four principles we work to"
         items={VALUES}
         practice={PRACTICE}
       />

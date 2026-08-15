@@ -11,6 +11,12 @@ import {
   UtilityHero,
 } from "@/components/careers/sections";
 import { CalendarDays, Download, Globe, Wallet } from "@/components/icons";
+import {
+  AcrobatMark,
+  NotepadPlusPlusMark,
+  SevenZipMark,
+  TeamsMark,
+} from "@/components/vendor-marks";
 
 const PRACTICE = "neutral" as const;
 const PATH = "/employee-resources";
@@ -93,16 +99,32 @@ const PORTALS = [
   },
 ];
 
-/** Vendor download pages, not mirrors. */
+/** Vendor download pages, not mirrors. Marks are the vendors' own. */
 const DOWNLOADS = [
   {
     label: "Microsoft Teams",
     note: "Windows · macOS · mobile",
     href: "https://www.microsoft.com/microsoft-teams/download-app",
+    mark: <TeamsMark className="h-9 w-9" />,
   },
-  { label: "7-Zip", href: "https://www.7-zip.org/download.html" },
-  { label: "Adobe Acrobat Reader", href: "https://get.adobe.com/reader/" },
-  { label: "Notepad++", href: "https://notepad-plus-plus.org/downloads/" },
+  {
+    label: "7-Zip",
+    note: "Windows · archive tool",
+    href: "https://www.7-zip.org/download.html",
+    mark: <SevenZipMark className="h-9 w-9" />,
+  },
+  {
+    label: "Adobe Acrobat Reader",
+    note: "Windows · macOS",
+    href: "https://get.adobe.com/reader/",
+    mark: <AcrobatMark className="h-9 w-9" />,
+  },
+  {
+    label: "Notepad++",
+    note: "Windows · text editor",
+    href: "https://notepad-plus-plus.org/downloads/",
+    mark: <NotepadPlusPlusMark className="h-9 w-9" />,
+  },
 ];
 
 /** 2026 holiday schedule, verbatim from content.md:1737. */
@@ -178,6 +200,7 @@ export default function EmployeeResourcesPage() {
         lead="Time, pay, benefits and learning each live in their own system. This is the index."
         items={PORTALS}
         practice={PRACTICE}
+        mark
       />
 
       <DownloadChips

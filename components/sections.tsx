@@ -5,6 +5,7 @@ import type { Block, Practice, Record } from "@/lib/content";
 import { eyebrowClass, glowClass, ruleClass } from "@/lib/content";
 import { Blocks } from "@/components/blocks";
 import { Arrow } from "@/components/icons";
+import { Logo } from "@/components/logo";
 
 /* =========================================================================
    Band — every section is one of these. The ground is white the whole way
@@ -84,6 +85,7 @@ export function SectionHead({
   onDark = false,
   action,
   align = "left",
+  mark = false,
 }: {
   eyebrow?: string;
   title?: string;
@@ -92,14 +94,22 @@ export function SectionHead({
   onDark?: boolean;
   action?: { label: string; href: string };
   align?: "left" | "split";
+  /**
+   * Hangs the company lockup off the end of the head, at four times the size
+   * it runs at in the header. Transparent artwork straight onto the white
+   * ground — no plate, no tint, no opacity fade, because the mark is only ever
+   * shown as drawn. Reserved for the bands that are statements about the
+   * company itself rather than about a service.
+   */
+  mark?: boolean;
 }) {
   if (!eyebrow && !title && !lead) return null;
 
   return (
     <div
       className={`mb-14 sm:mb-16 ${
-        align === "split"
-          ? "flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
+        align === "split" || mark
+          ? "flex flex-col gap-10 md:flex-row md:items-end md:justify-between md:gap-16"
           : ""
       }`}
     >
@@ -124,6 +134,15 @@ export function SectionHead({
           </p>
         )}
       </div>
+      {mark && (
+        <Logo
+          variant="full"
+          tone={onDark ? "dark" : "light"}
+          className="h-14 shrink-0 sm:h-16 lg:h-20"
+          priority={false}
+          decorative
+        />
+      )}
       {action && (
         <TextLink href={action.href} onDark={onDark}>
           {action.label}
@@ -344,6 +363,7 @@ export function CardGrid({
   columns = 3,
   action,
   numbered = false,
+  mark = false,
 }: {
   eyebrow?: string;
   title?: string;
@@ -355,6 +375,8 @@ export function CardGrid({
   action?: { label: string; href: string };
   /** Numbered markers instead of icons — values, principles, differentiators. */
   numbered?: boolean;
+  /** Hang the company lockup off the head. See `SectionHead`. */
+  mark?: boolean;
 }) {
   const cols =
     columns === 2
@@ -372,6 +394,7 @@ export function CardGrid({
         practice={practice}
         action={action}
         align={action ? "split" : "left"}
+        mark={mark}
       />
 
       <div className={`grid gap-px border border-line bg-line ${cols}`}>
@@ -636,29 +659,58 @@ export function IdentifierStrip({
   );
 }
 
+/**
+ * CertStrip — the socio-economic registrations.
+ *
+ * A set-aside status has no mark of its own: it is a registration in SAM, not
+ * a certificate with artwork, so there is nothing to put in a LogoWall. It is
+ * also the single fact that decides whether a contracting officer can buy from
+ * CompQsoft at all, which is more weight than a row of pills carries. Each
+ * status therefore gets a cell, a brand-filled marker and a line saying what
+ * it means in a procurement, and the company lockup hangs off the head so the
+ * band reads as a statement about the firm rather than as a caption.
+ */
 export function CertStrip({
+  eyebrow,
   title,
+  lead,
   items,
   tone = "white",
   practice = "neutral",
+  mark = false,
 }: {
+  eyebrow?: string;
   title?: string;
-  items: string[];
+  lead?: string;
+  items: { title: string; description: string; icon?: ReactNode }[];
   tone?: "white" | "tint";
   practice?: Practice;
+  mark?: boolean;
 }) {
+  if (!items.length) return null;
+
   return (
     <Band tone={tone} practice={practice}>
-      {title && (
-        <p className="mb-8 text-stat-label uppercase text-muted">{title}</p>
-      )}
-      <ul className="flex flex-wrap gap-3">
+      <SectionHead
+        eyebrow={eyebrow}
+        title={title}
+        lead={lead}
+        practice={practice}
+        mark={mark}
+      />
+
+      <ul className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
-          <li
-            key={item}
-            className="rounded-pill border border-line px-5 py-2 text-sm text-ink"
-          >
-            {item}
+          <li key={item.title} className="bg-bg p-7 sm:p-8">
+            {item.icon && (
+              <span
+                className={`mb-6 grid h-12 w-12 place-items-center rounded-pill text-ink ${ruleClass(practice)}`}
+              >
+                {item.icon}
+              </span>
+            )}
+            <h3 className="text-h4 text-ink">{item.title}</h3>
+            <p className="mt-3 text-sm text-body">{item.description}</p>
           </li>
         ))}
       </ul>

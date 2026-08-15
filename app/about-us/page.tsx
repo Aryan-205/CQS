@@ -12,6 +12,7 @@ import {
   PeopleGrid,
 } from "@/components/sections";
 import { PageProse } from "@/components/page-content";
+import { Briefcase, People, ShieldCheck } from "@/components/icons";
 import {
   bannerFor,
   certificationLogos,
@@ -77,8 +78,63 @@ const WHY = [
   },
 ];
 
+/**
+ * The set-aside registrations. Each line says what the status does in a
+ * procurement rather than restating the label, because that is the question a
+ * contracting officer arrives with. Sourced from content.md:46 and the
+ * CIO-SP3 award record at content.md:1115.
+ */
+const SET_ASIDES = [
+  {
+    title: "HUBZone Small Business",
+    description:
+      "The status CompQsoft won its CIO-SP3 On-Ramp award under, in the HUBZone socio-economic category, across nine task areas.",
+    icon: <ShieldCheck className="h-6 w-6" />,
+  },
+  {
+    title: "Minority-Owned",
+    description:
+      "Founded and led by Madina Shaik, and minority-owned continuously since 1997.",
+    icon: <People className="h-6 w-6" />,
+  },
+  {
+    title: "Small Business",
+    description:
+      "Prime on small-business pools including DISA ENCORE III SB and OASIS SB Pool 3, under NAICS 541512.",
+    icon: <Briefcase className="h-6 w-6" />,
+  },
+];
+
+/**
+ * The archive's own About page (content.md Section 4) repeats, as one long
+ * column of headings, nearly everything the designed bands above already
+ * render — the counters, the four values, the four differentiators, the
+ * partner and certification walls, and the CTA. It also cites the superseded
+ * ISO revisions this rebuild corrects. Rendering it whole produced a section
+ * where a stat fragment ("28", "+") arrived at heading size and every value
+ * appeared twice.
+ *
+ * So the band keeps only the two passages that appear nowhere else on the
+ * page: the Q Methodology write-up and the social responsibility statement.
+ * Both are verbatim.
+ */
+const DETAIL_SECTIONS = ["Our Methodology", "Our Social Responsibility"];
+
 export default function AboutPage() {
   const page = pageFor(PATH);
+
+  const detail = (page?.blocks ?? []).filter((block, i, blocks) => {
+    // Walk back to the nearest H2 and keep the block only if that heading is
+    // one of the two the band carries. Paragraphs alone are ambiguous —
+    // several repeat under different headings.
+    for (let j = i; j >= 0; j--) {
+      const b = blocks[j];
+      if (b.type === "heading" && b.level <= 2) {
+        return DETAIL_SECTIONS.includes(b.text) && block.type !== "image";
+      }
+    }
+    return false;
+  });
 
   return (
     <main>
@@ -124,9 +180,16 @@ export default function AboutPage() {
         lead="With our C5i methodology we prioritize communication, collaboration, cooperation, coordination and collegiality."
         cards={VALUES}
         columns={4}
+        mark
       />
 
-      <CardGrid eyebrow="Why CompQsoft" title="Why teams choose us" cards={WHY} columns={4} />
+      <CardGrid
+        eyebrow="Why CompQsoft"
+        title="Why teams choose us"
+        cards={WHY}
+        columns={4}
+        mark
+      />
 
       <PeopleGrid
         tone="tint"
@@ -165,11 +228,16 @@ export default function AboutPage() {
         action={{ label: "Our compliance posture", href: "/compliance" }}
       />
 
-      {/* The set-asides have no mark of their own — they are a registration
-          status, not a certificate — so they stay as pills beneath the wall. */}
+      {/* The set-asides carry no artwork of their own, so the band is built
+          from the company's own mark and a line per status saying what it
+          means when a contracting officer is checking whether they can buy. */}
       <CertStrip
-        title="Socio-economic status"
-        items={["HUBZone Small Business", "Minority-Owned", "Small Business"]}
+        tone="tint"
+        eyebrow="Socio-economic status"
+        title="How CompQsoft is registered"
+        lead="Founded in Houston in 1997 and registered ever since as a minority-owned HUBZone small business. The status is what puts CompQsoft on set-aside vehicles as a prime."
+        mark
+        items={SET_ASIDES}
       />
 
       <PartnerGrid
@@ -179,7 +247,11 @@ export default function AboutPage() {
         action={{ label: "All alliance partners", href: "/alliance-partners" }}
       />
 
-      {page && <PageProse blocks={page.blocks} eyebrow="In detail" />}
+      {detail.length > 0 && (
+        // No band title: the two passages carry their own H2s, and a third
+        // heading over them would be the fourth hierarchy level in one band.
+        <PageProse blocks={detail} eyebrow="In detail" layout="rail" />
+      )}
 
       <CtaBand
         title="Ready to elevate your IT strategy?"

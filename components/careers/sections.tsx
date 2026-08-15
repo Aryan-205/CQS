@@ -17,6 +17,7 @@ import type { Media } from "@/lib/media";
 import type { Practice } from "@/lib/content";
 import { eyebrowClass, glowClass, ruleClass } from "@/lib/content";
 import { Arrow } from "@/components/icons";
+import { Logo } from "@/components/logo";
 import { Button, Eyebrow } from "@/components/sections";
 
 /* =========================================================================
@@ -189,9 +190,21 @@ export function IndexRows({
       )}
       <div className="shell">
         {(eyebrow || title) && (
-          <div className="mb-16 max-w-[24ch]">
-            {eyebrow && <Eyebrow practice={practice}>{eyebrow}</Eyebrow>}
-            {title && <h2 className="mt-6 text-h1 text-ink">{title}</h2>}
+          // The head sits on the same 12-column frame as the rows below it, so
+          // the heading starts where the row headings start and runs the width
+          // of the two content columns. Capped at 24ch it was folding a
+          // six-word line over four, with two thirds of the row left empty.
+          <div className="mb-16 grid gap-6 lg:grid-cols-12 lg:gap-16">
+            {eyebrow && (
+              <div className="lg:col-span-2">
+                <Eyebrow practice={practice}>{eyebrow}</Eyebrow>
+              </div>
+            )}
+            {title && (
+              <h2 className="max-w-[28ch] text-h1 text-ink lg:col-span-8 lg:col-start-3">
+                {title}
+              </h2>
+            )}
           </div>
         )}
 
@@ -513,6 +526,7 @@ export function PortalTiles({
   lead,
   items,
   practice = "neutral",
+  mark = false,
 }: {
   id?: string;
   eyebrow?: string;
@@ -524,10 +538,24 @@ export function PortalTiles({
     action?: { label: string; href: string };
   }[];
   practice?: Practice;
+  /** The company lockup at full size above the tiles. This is the page an
+   *  employee lands on from outside the network, so the band that indexes
+   *  every internal system is where the mark earns its place. */
+  mark?: boolean;
 }) {
   return (
     <section id={id} className="bg-bg py-24 sm:py-32">
       <div className="shell">
+        {mark && (
+          <div className="mb-12 border-b border-line pb-12">
+            <Logo
+              variant="full"
+              className="h-16 sm:h-20 lg:h-24"
+              priority={false}
+              decorative
+            />
+          </div>
+        )}
         <div className="mb-14 grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
           <div className="lg:col-span-6">
             {eyebrow && <Eyebrow practice={practice}>{eyebrow}</Eyebrow>}
@@ -573,8 +601,16 @@ export function PortalTiles({
   );
 }
 
-/** DownloadChips — the standard desktop set, as pills. Four small links do
- *  not need four cards. */
+/**
+ * DownloadChips — the standard desktop set.
+ *
+ * Each row carries the product's own mark, because an employee looking for
+ * Acrobat recognises the mark before they read the word. The marks are the
+ * vendors' official artwork rendered as monochrome silhouettes in ink, so four
+ * unrelated brands sit as one set on the white page instead of four competing
+ * colour statements. Every link goes to the vendor's own download page — this
+ * page has never mirrored an installer.
+ */
 export function DownloadChips({
   id,
   eyebrow,
@@ -585,7 +621,7 @@ export function DownloadChips({
   id?: string;
   eyebrow?: string;
   title: string;
-  items: { label: string; href: string; note?: string }[];
+  items: { label: string; href: string; note?: string; mark?: ReactNode }[];
   practice?: Practice;
 }) {
   return (
@@ -593,20 +629,26 @@ export function DownloadChips({
       <div className="shell border-t border-line pt-14">
         {eyebrow && <Eyebrow practice={practice}>{eyebrow}</Eyebrow>}
         <h2 className="mt-6 max-w-[20ch] text-h2 text-ink">{title}</h2>
-        <ul className="mt-10 flex flex-wrap gap-3">
+        <ul className="mt-10 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item) => (
             <li key={item.href}>
               <a
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 rounded-pill border border-line px-6 py-3 text-base text-ink transition-colors duration-150 ease-brand hover:border-ink hover:bg-tint-neutral"
+                className="group flex h-full flex-col bg-bg p-7 transition-colors duration-150 ease-brand hover:bg-tint-neutral sm:p-8"
               >
-                {item.label}
-                {item.note && (
-                  <span className="text-sm text-muted">{item.note}</span>
+                {item.mark && (
+                  <span className="mb-7 block text-ink">{item.mark}</span>
                 )}
-                <Arrow className="h-3 w-3 rotate-90 text-muted transition-transform duration-150 ease-brand group-hover:translate-y-0.5" />
+                <span className="text-h4 text-ink">{item.label}</span>
+                {item.note && (
+                  <span className="mt-2 text-sm text-muted">{item.note}</span>
+                )}
+                <span className="mt-auto inline-flex items-center gap-2 pt-7 text-sm text-link">
+                  Download
+                  <Arrow className="h-3 w-3 rotate-90 transition-transform duration-150 ease-brand group-hover:translate-y-0.5" />
+                </span>
               </a>
             </li>
           ))}

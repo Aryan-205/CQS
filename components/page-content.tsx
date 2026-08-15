@@ -43,12 +43,17 @@ export function PageBlocks({
       {blocks.map((block, i) => {
         if (block.type === "heading") {
           if (i === droppedH1) return null;
-          // The archive uses H2-H6 fairly loosely; map everything to two
-          // visual levels so the three-level hierarchy rule holds.
-          const Tag = block.level <= 2 ? "h2" : "h3";
-          const size = block.level <= 2 ? "text-h2" : "text-h3";
+          // The archive uses H2-H6 loosely — a section title and a full
+          // sentence can both arrive as H5 — so the levels are collapsed onto
+          // three sizes and, crucially, three amounts of space above them.
+          // Size alone was leaving a sub-heading floating between the
+          // paragraph it belongs to and the one it does not.
+          const level = block.level <= 2 ? 2 : block.level <= 4 ? 3 : 4;
+          const Tag = (["h2", "h3", "h4"] as const)[level - 2];
+          const size = (["text-h2", "text-h3", "text-h4"] as const)[level - 2];
+          const space = (["pt-14", "pt-10", "pt-7"] as const)[level - 2];
           return (
-            <Tag key={i} className={`${size} pt-6 text-ink first:pt-0`}>
+            <Tag key={i} className={`${size} ${space} text-ink first:pt-0`}>
               {block.text}
             </Tag>
           );
@@ -142,28 +147,61 @@ export function PageBlocks({
   );
 }
 
-/** Full band wrapper for the common case. */
+/**
+ * Full band wrapper for the common case.
+ *
+ * `layout="rail"` hangs the eyebrow and section title in the left margin and
+ * runs the prose in its own column, which is the right shape when the band is
+ * one long passage of copy rather than a stack of sub-sections: the reader
+ * gets a single measure to follow and the band stops reading as an
+ * afterthought pinned to the page's left edge.
+ */
 export function PageProse({
   blocks,
   practice = "neutral",
   tone = "white",
   eyebrow,
+  title,
   showImages = false,
+  layout = "stacked",
 }: {
   blocks: PageBlock[];
   practice?: Practice;
   tone?: "white" | "tint";
   eyebrow?: string;
+  title?: string;
   showImages?: boolean;
+  layout?: "stacked" | "rail";
 }) {
+  const prose = (
+    <PageBlocks blocks={blocks} practice={practice} showImages={showImages} />
+  );
+
+  if (layout === "rail") {
+    return (
+      <Band tone={tone} practice={practice}>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            {eyebrow && <Eyebrow practice={practice}>{eyebrow}</Eyebrow>}
+            {title && (
+              <h2 className="mt-6 max-w-[18ch] text-h2 text-ink">{title}</h2>
+            )}
+          </div>
+          <div className="lg:col-span-7 lg:col-start-6">{prose}</div>
+        </div>
+      </Band>
+    );
+  }
+
   return (
     <Band tone={tone} practice={practice}>
-      {eyebrow && (
+      {(eyebrow || title) && (
         <div className="mb-10">
-          <Eyebrow practice={practice}>{eyebrow}</Eyebrow>
+          {eyebrow && <Eyebrow practice={practice}>{eyebrow}</Eyebrow>}
+          {title && <h2 className="mt-6 text-h2 text-ink">{title}</h2>}
         </div>
       )}
-      <PageBlocks blocks={blocks} practice={practice} showImages={showImages} />
+      {prose}
     </Band>
   );
 }

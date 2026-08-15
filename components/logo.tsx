@@ -26,10 +26,21 @@ export function Logo({
   className = "",
   tone = "light",
   variant = "wordmark",
+  priority = true,
+  decorative = false,
 }: {
   className?: string;
   tone?: "light" | "dark";
   variant?: "wordmark" | "full";
+  /**
+   * On by default because the header and footer marks are chrome. Turn it off
+   * for the large marks that sit inside a section further down the page —
+   * those compete with the hero for bandwidth and are never the LCP element.
+   */
+  priority?: boolean;
+  /** The section already names the company in its heading, so the mark is
+   *  ornament to a screen reader rather than information. */
+  decorative?: boolean;
 }) {
   const { src, ratio } = SOURCES[`${variant}-${tone}` as keyof typeof SOURCES];
   const height = variant === "full" ? 281 : 226;
@@ -37,10 +48,10 @@ export function Logo({
   return (
     <Image
       src={src}
-      alt="CompQsoft"
+      alt={decorative ? "" : "CompQsoft"}
       width={Math.round(height * ratio)}
       height={height}
-      priority
+      priority={priority}
       className={`w-auto ${className}`}
     />
   );
