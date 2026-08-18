@@ -45,21 +45,17 @@ export function PageHero({
   actions?: { label: string; href: string }[];
 }) {
   return (
-    <section className="relative isolate overflow-hidden grad-hero">
+    <section className="relative isolate overflow-hidden bg-black">
       {image && (
-        <>
-          <Image
-            src={image}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="graded-deep object-cover opacity-70"
-          />
-          <div className="absolute inset-0 scrim-plain" aria-hidden />
-        </>
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
       )}
-      <div className="absolute inset-0 hairline-grid opacity-50" aria-hidden />
 
       <div className="shell relative flex min-h-[calc(100svh-var(--header-h))] flex-col justify-end pb-20 pt-32 sm:pb-28">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-16">

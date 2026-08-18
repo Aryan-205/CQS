@@ -206,14 +206,14 @@ export function PhaseTimeline({
         </div>
 
         {/* The rail is the list's own left border; markers sit astride it. */}
-        <ol className="relative border-l border-line lg:col-span-7 lg:col-start-6">
+        <ol className="relative ml-5 border-l border-line sm:ml-6 lg:ml-0 lg:col-span-7 lg:col-start-6">
           {phases.map((phase, i) => (
             <li
               key={phase.title}
-              className="relative pb-14 pl-10 last:pb-0 sm:pl-14"
+              className="relative pb-14 pl-8 last:pb-0 sm:pl-14"
             >
               <span
-                className={`absolute -left-6 top-0 grid h-12 w-12 place-items-center rounded-pill text-h4 tabular ${markerClass(practice)}`}
+                className={`absolute -left-5 top-0 grid h-10 w-10 place-items-center rounded-pill text-h4 tabular sm:-left-6 sm:h-12 sm:w-12 ${markerClass(practice)}`}
                 aria-hidden
               >
                 {i + 1}
@@ -274,9 +274,43 @@ export function ComparisonMatrix({
     <Band tone={tone} practice={practice} size="large">
       <SectionHead eyebrow={eyebrow} title={title} lead={lead} practice={practice} />
 
-      {/* Wide tables scroll inside their own box; the page never does. */}
-      <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-        <table className="w-full min-w-[44rem] border-collapse text-left">
+      {/* Below sm the matrix reads as one block per requirement. A 44rem table
+          cannot be scrolled inside a 360px page without the page scrolling with
+          it, so on phones the columns become labelled rows instead. */}
+      <ul className="grid gap-px border border-line bg-line sm:hidden">
+        {rows.map((row) => (
+          <li key={row.label} className="bg-bg p-7">
+            <h3 className="text-h4 text-ink">{row.label}</h3>
+            <dl className="mt-5 space-y-3">
+              {columns.map((column, i) => {
+                const value = row.values[i];
+                const last = i === columns.length - 1;
+                return (
+                  <div
+                    key={column}
+                    className="flex items-baseline justify-between gap-6 border-t border-line pt-3 first:border-0 first:pt-0"
+                  >
+                    <dt className={`text-sm ${last ? "text-ink" : "text-muted"}`}>
+                      {column}
+                    </dt>
+                    <dd className="text-right text-sm text-body">
+                      {typeof value === "string"
+                        ? value
+                        : value
+                          ? "Included"
+                          : "Not included"}
+                    </dd>
+                  </div>
+                );
+              })}
+            </dl>
+          </li>
+        ))}
+      </ul>
+
+      {/* From sm up the table fits the shell, so nothing scrolls sideways. */}
+      <div className="hidden overflow-x-auto sm:block">
+        <table className="w-full min-w-[34rem] border-collapse text-left">
           <thead>
             <tr className="border-b border-line">
               <th className="w-2/5 py-6 pr-8 text-stat-label uppercase text-muted">

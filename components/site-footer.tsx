@@ -43,13 +43,13 @@ export function SiteFooter() {
         {/* Directory. Services runs two lists inside its own span — twelve links
             against three elsewhere would otherwise drag the block twice as deep
             as it needs to be. */}
-        <div className="shell grid gap-x-10 gap-y-12 border-t border-white/10 py-14 sm:grid-cols-2 lg:grid-cols-12">
+        <div className="shell grid grid-cols-2 gap-x-8 gap-y-12 border-t border-white/10 py-14 sm:gap-x-10 lg:grid-cols-12">
           {footerColumns.map((column) => {
             const wide = column.links.length > 6;
             return (
               <div
                 key={column.heading}
-                className={wide ? "sm:col-span-2 lg:col-span-4" : "lg:col-span-2"}
+                className={wide ? "col-span-2 lg:col-span-4" : "lg:col-span-2"}
               >
                 <p className="mb-5 text-eyebrow uppercase text-on-black">
                   {column.heading}
@@ -57,7 +57,7 @@ export function SiteFooter() {
                 <ul
                   className={
                     wide
-                      ? "grid gap-x-8 gap-y-2.5 sm:grid-cols-2"
+                      ? "grid grid-cols-2 gap-x-6 gap-y-2.5 sm:gap-x-8"
                       : "space-y-2.5"
                   }
                 >
