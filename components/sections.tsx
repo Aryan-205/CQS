@@ -174,7 +174,7 @@ export function Button({
         ? "bg-bg text-ink hover:bg-on-black-mute"
         : "bg-black text-on-black hover:bg-body"
       : onDark
-        ? "border border-white/30 text-on-black hover:border-on-black hover:bg-white/5"
+        ? "border border-white/60 bg-black/35 backdrop-blur-sm text-on-black hover:border-on-black hover:bg-black/55"
         : "border border-line text-ink hover:border-ink hover:bg-tint-neutral";
 
   return (
