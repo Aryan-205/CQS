@@ -492,3 +492,16 @@ export const caseStudyImage = (record: { slug: string; image?: Media }): string 
 
 export const blogImage = (record: { slug: string; image?: Media }): string =>
   record.image?.src ?? pick(BLOG_FALLBACKS, record.slug);
+
+/* -------------------------------------------------------------------------
+   Blur-up placeholder.
+
+   Every photograph on the site is remote and graded cool, so it arrives late
+   and lands hard on the white page. next/image needs an explicit blurDataURL
+   for remote sources; this is one two-tone cool grey, sized 8×5 so the browser
+   scales it to any aspect the card asks for. Shared rather than per-image: a
+   real per-asset LQIP would mean a build step over the CDN, and the point here
+   is only that the frame is occupied before the photograph resolves.
+------------------------------------------------------------------------- */
+export const blurPlaceholder =
+  "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%208%205'%3E%3Crect%20width='8'%20height='5'%20fill='%23b9c0c6'/%3E%3Crect%20width='8'%20height='2'%20fill='%23ced4d9'/%3E%3C/svg%3E";

@@ -111,7 +111,7 @@ export function Counters({
 
   return (
     <section
-      className={`relative isolate overflow-hidden ${onDark ? "grad-hero" : "bg-bg"} py-24 sm:py-32`}
+      className={`relative isolate overflow-hidden ${onDark ? "grad-hero" : "bg-bg"} py-16 sm:py-24`}
     >
       {onDark ? (
         <div className="absolute inset-0 hairline-grid opacity-60" aria-hidden />
@@ -123,7 +123,7 @@ export function Counters({
       ) : null}
       <div className="shell relative">
         {(eyebrow || title || lead) && (
-          <div className="mb-16">
+          <div className="mb-12">
             {eyebrow && (
               <p
                 className={`flex items-center gap-3 text-eyebrow uppercase ${
@@ -140,14 +140,14 @@ export function Counters({
             )}
             {title && (
               <h2
-                className={`measure mt-5 text-h1 ${onDark ? "text-on-black" : "text-ink"}`}
+                className={`measure-title mt-5 text-h1 ${onDark ? "text-on-black" : "text-ink"}`}
               >
                 {title}
               </h2>
             )}
             {lead && (
               <p
-                className={`measure mt-5 text-lg ${onDark ? "text-on-black-mute" : "text-body"}`}
+                className={`measure-lead mt-5 text-lg ${onDark ? "text-on-black-mute" : "text-body"}`}
               >
                 {lead}
               </p>

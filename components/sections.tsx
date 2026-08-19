@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import type { Block, Practice, Record } from "@/lib/content";
 import { eyebrowClass, glowClass, ruleClass } from "@/lib/content";
 import { Blocks } from "@/components/blocks";
+import { blurPlaceholder } from "@/lib/media";
 import { Arrow } from "@/components/icons";
 import { Logo } from "@/components/logo";
 
@@ -29,12 +30,15 @@ export function Band({
   wide?: boolean;
   id?: string;
 }) {
+  // 96px desktop / 64px mobile is the figure the design system names; the page
+  // had drifted to 128, which reads as a hole between bands rather than as air
+  // around them. `large` and `tight` move one step either side of it.
   const pad =
     size === "large"
-      ? "py-28 sm:py-40"
+      ? "py-20 sm:py-28"
       : size === "tight"
-        ? "py-14 sm:py-20"
-        : "py-24 sm:py-32";
+        ? "py-10 sm:py-14"
+        : "py-16 sm:py-24";
   return (
     <section id={id} className={`relative isolate bg-bg ${pad}`}>
       {tone === "tint" && <Glow practice={practice} />}
@@ -107,7 +111,7 @@ export function SectionHead({
 
   return (
     <div
-      className={`mb-14 sm:mb-16 ${
+      className={`mb-10 sm:mb-12 ${
         align === "split" || mark
           ? "flex flex-col gap-10 md:flex-row md:items-end md:justify-between md:gap-16"
           : ""
@@ -121,14 +125,14 @@ export function SectionHead({
         )}
         {title && (
           <h2
-            className={`measure mt-5 text-h1 ${onDark ? "text-on-black" : "text-ink"}`}
+            className={`measure-title mt-5 text-h1 ${onDark ? "text-on-black" : "text-ink"}`}
           >
             {title}
           </h2>
         )}
         {lead && (
           <p
-            className={`measure mt-5 text-lg ${onDark ? "text-on-black-mute" : "text-body"}`}
+            className={`measure-lead mt-5 text-lg ${onDark ? "text-on-black-mute" : "text-body"}`}
           >
             {lead}
           </p>
@@ -556,6 +560,7 @@ export function PartnerGrid({
   tone = "tint",
   practice = "neutral",
   action,
+  rounded = false,
 }: {
   eyebrow?: string;
   title?: string;
@@ -564,6 +569,8 @@ export function PartnerGrid({
   tone?: "white" | "tint";
   practice?: Practice;
   action?: { label: string; href: string };
+  /** Landing-page design experiment — see the note in app/page.tsx. */
+  rounded?: boolean;
 }) {
   return (
     <Band tone={tone} practice={practice}>
@@ -575,7 +582,11 @@ export function PartnerGrid({
         action={action}
         align={action ? "split" : "left"}
       />
-      <ul className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-3 lg:grid-cols-5">
+      <ul
+        className={`grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-3 lg:grid-cols-5 ${
+          rounded ? "overflow-hidden rounded-soft" : ""
+        }`}
+      >
         {logos.map((logo) => (
           <li
             key={logo.alt}
@@ -1037,18 +1048,18 @@ export function CtaBand({
   practice?: Practice;
 }) {
   return (
-    <section className="relative isolate bg-bg py-32 sm:py-44">
+    <section className="relative isolate bg-bg py-24 sm:py-32">
       <Glow practice={practice} />
       <div className="shell flex flex-col items-center text-center">
         <span
-          className={`mb-10 block h-[3px] w-16 ${ruleClass(practice)}`}
+          className={`mb-8 block h-[3px] w-16 ${ruleClass(practice)}`}
           aria-hidden
         />
         <h2 className="max-w-[18ch] text-display text-ink">{title}</h2>
         {lead && (
           <p className="mt-7 max-w-[58ch] text-lg text-body">{lead}</p>
         )}
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Button href={action.href}>{action.label}</Button>
           {secondary && (
             <Button href={secondary.href} variant="secondary">
@@ -1139,6 +1150,7 @@ export function EditorialCard({
   cta,
   size = "normal",
   meta = "above",
+  rounded = false,
 }: {
   href: string;
   image?: string;
@@ -1150,6 +1162,8 @@ export function EditorialCard({
   cta?: string;
   size?: "normal" | "large" | "compact";
   meta?: "above" | "below";
+  /** Landing-page design experiment — see the note in app/page.tsx. */
+  rounded?: boolean;
 }) {
   const formatted =
     date &&
@@ -1161,9 +1175,16 @@ export function EditorialCard({
     });
 
   const metaLine = (category || formatted) && (
-    <p className="text-stat-label uppercase text-muted">
-      {[category, formatted].filter(Boolean).join(" · ")}
-    </p>
+    <div>
+      {category && (
+        <p className="text-stat-label uppercase text-link">{category}</p>
+      )}
+      {formatted && (
+        <p className={`text-sm text-muted ${category ? "mt-1" : ""}`}>
+          {formatted}
+        </p>
+      )}
+    </div>
   );
 
   return (
@@ -1171,8 +1192,10 @@ export function EditorialCard({
       {image && (
         <div
           className={`relative w-full overflow-hidden bg-tint-neutral ${
-            size === "large" ? "aspect-[16/10]" : "aspect-[4/3]"
-          } ${meta === "above" ? "mb-5" : "mb-6"}`}
+            rounded ? "rounded-soft" : ""
+          } ${size === "large" ? "aspect-[16/10]" : "aspect-[4/3]"} ${
+            meta === "above" ? "mb-5" : "mb-6"
+          }`}
         >
           <Image
             src={image}
@@ -1185,6 +1208,8 @@ export function EditorialCard({
                   ? "(min-width: 1024px) 25vw, 100vw"
                   : "(min-width: 640px) 33vw, 100vw"
             }
+            placeholder="blur"
+            blurDataURL={blurPlaceholder}
             className="graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.03]"
           />
         </div>
@@ -1365,8 +1390,8 @@ export function CredentialBand({
       <div className="shell relative grid gap-16 lg:grid-cols-[1fr_1fr] lg:gap-24">
         <div>
           <Eyebrow practice="government">{eyebrow}</Eyebrow>
-          <h2 className="measure mt-5 text-h1 text-ink">{title}</h2>
-          {lead && <p className="measure mt-5 text-lg text-body">{lead}</p>}
+          <h2 className="measure-title mt-5 text-h1 text-ink">{title}</h2>
+          {lead && <p className="measure-lead mt-5 text-lg text-body">{lead}</p>}
 
           <dl className="mt-12 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-3">
             {identifiers.map((id) => (

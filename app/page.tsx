@@ -5,6 +5,7 @@ import { blogs, caseStudies, excerpt, seoFor } from "@/lib/content";
 import {
   bannerFor,
   blogImage,
+  blurPlaceholder,
   caseStudyImage,
   partnerLogos,
   practiceMedia,
@@ -159,6 +160,65 @@ const PRACTICES = [
  */
 const HOME_CASE_EXCLUSIONS = ["dynamics-365-finance-case-study"];
 
+/* -------------------------------------------------------------------------
+   CaseCard — a photograph with the headline set on it rather than under it.
+   Only the case study band uses this; everywhere else on the page the picture
+   sits above its words, and the difference is the point.
+------------------------------------------------------------------------- */
+function CaseCard({
+  study,
+  lead = false,
+  standfirst,
+}: {
+  study: { slug: string; title: string; image?: { src: string; alt: string } };
+  /** The tall card on the left of the band. */
+  lead?: boolean;
+  standfirst?: string;
+}) {
+  return (
+    <Link
+      href={`/case-study/${study.slug}`}
+      className={`group relative isolate flex flex-col justify-end overflow-hidden rounded-soft bg-black ${
+        lead ? "aspect-[4/3] lg:aspect-auto lg:min-h-[32rem]" : "aspect-[16/9] lg:aspect-auto"
+      }`}
+    >
+      <Image
+        src={caseStudyImage(study)}
+        alt=""
+        fill
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        placeholder="blur"
+        blurDataURL={blurPlaceholder}
+        className="-z-10 graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.03]"
+      />
+      {/* The type sits on live photography, so the foot of the frame carries
+          its own ground rather than trusting the picture to be dark there. */}
+      <div className="absolute inset-0 -z-10 scrim-card" aria-hidden />
+
+      <div className={lead ? "p-8 sm:p-10" : "p-7 sm:p-8"}>
+        {/* No category chip. The band is headed "Case studies" and holds
+            nothing else, so labelling each card is the page telling the reader
+            something it has already told them — and the pill was the loudest
+            object in a composition whose subject is the photograph. */}
+        <h3
+          className={`max-w-[20ch] text-on-black ${lead ? "text-h2" : "text-h4"}`}
+        >
+          {headline(study.title, lead ? 72 : 60)}
+        </h3>
+        {standfirst && (
+          <p className="mt-4 hidden max-w-[46ch] text-base text-on-black sm:block">
+            {standfirst}
+          </p>
+        )}
+        <span className="mt-6 inline-flex items-center gap-2 text-base text-on-black">
+          Read case study
+          <Arrow className="h-3.5 w-3.5 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 export default function HomePage() {
   const homeCases = caseStudies.filter(
     (study) => !HOME_CASE_EXCLUSIONS.includes(study.slug),
@@ -180,7 +240,7 @@ export default function HomePage() {
           lead="CompQsoft has run federal programmes and commercial transformation side by side for 28 years. Start with the one you came for."
         />
 
-        <div className="grid gap-px border border-line bg-line lg:grid-cols-2">
+        <div className="grid gap-px overflow-hidden rounded-soft border border-line bg-line lg:grid-cols-2">
           {PRACTICES.map((practice) => (
             <div key={practice.key} className="flex flex-col bg-bg">
               <div className="relative aspect-[16/9] overflow-hidden bg-black">
@@ -189,6 +249,8 @@ export default function HomePage() {
                   alt={practice.image.alt}
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"
+                  placeholder="blur"
+                  blurDataURL={blurPlaceholder}
                   className="graded object-cover"
                 />
                 <span
@@ -243,10 +305,31 @@ export default function HomePage() {
       {/* ---- Services ---------------------------------------------------- */}
       <ServiceTabs tabs={SERVICE_TABS} />
 
+      {/* ---- Partners ---------------------------------------------------- */}
+      {/* Moved up above the case studies. A partner set is the fastest
+          credibility read on the page — it is scanned, not read — and it was
+          sitting sixth, after four content shelves had already spent the
+          visitor's attention. */}
+      <PartnerGrid
+        tone="tint"
+        eyebrow="Alliances"
+        title="Our technology partners"
+        lead="We hold partner status across the platforms our clients already run, so the work lands inside their existing licensing and support model."
+        logos={partnerLogos}
+        action={{ label: "All alliance partners", href: "/alliance-partners" }}
+        rounded
+      />
+
       {/* ---- Work -------------------------------------------------------- */}
-      {/* One story told at full size, two more beside it. The asymmetry is
-          the editing: it says which piece of work we would show first. */}
-      <Band id="work" tone="tint" practice="commercial">
+      {/* Every other band on this page is a picture with its words underneath.
+          This one puts the words on the picture: three overlay cards, the lead
+          one tall on the left, two stacked beside it. Different unit, so the
+          section reads as a change of subject rather than as another shelf —
+          and the black-and-scrim treatment is the brand's own language.
+
+          The right column is grid-rows-2, so the two stacked cards divide the
+          lead card's height exactly rather than approximately. */}
+      <Band id="work" tone="white" practice="commercial">
         <SectionHead
           eyebrow="Case studies"
           title="Performance, proven in the field"
@@ -255,53 +338,23 @@ export default function HomePage() {
           align="split"
         />
 
-        {/* One picture the full width of the shell, its headline and its
-            standfirst side by side underneath. The old two-column split put a
-            four-line title next to a four-line excerpt next to two more cards,
-            and every block fought the others for the eye. */}
-        {featuredCase && (
-          <Link href={`/case-study/${featuredCase.slug}`} className="group block">
-            <div className="relative aspect-[21/9] w-full overflow-hidden bg-tint-neutral">
-              <Image
-                src={caseStudyImage(featuredCase)}
-                alt=""
-                fill
-                priority={false}
-                sizes="100vw"
-                className="graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.02]"
-              />
-            </div>
-
-            <div className="mt-10 grid gap-x-16 gap-y-6 lg:grid-cols-[1.1fr_1fr]">
-              <h3 className="max-w-[22ch] text-h1 text-ink transition-colors duration-150 ease-brand group-hover:text-link">
-                {headline(featuredCase.title, 72)}
-              </h3>
-              <div>
-                <p className="text-lg text-body">
-                  {excerpt(featuredCase, 210)}
-                </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-base text-link">
-                  Read case study
-                  <Arrow className="h-3.5 w-3.5 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
-                </span>
-              </div>
-            </div>
-          </Link>
-        )}
-
-        <div className="mt-24 grid gap-x-16 gap-y-14 sm:grid-cols-2">
-          {supportingCases.map((study) => (
-            <EditorialCard
-              key={study.slug}
-              href={`/case-study/${study.slug}`}
-              image={caseStudyImage(study)}
-              category="Case study"
-              title={headline(study.title, 68)}
-              size="compact"
+        <div className="grid gap-5 lg:grid-cols-2 lg:items-stretch">
+          {featuredCase && (
+            <CaseCard
+              study={featuredCase}
+              lead
+              standfirst={excerpt(featuredCase, 170)}
             />
-          ))}
+          )}
+
+          <div className="grid gap-5 lg:grid-rows-2">
+            {supportingCases.map((study) => (
+              <CaseCard key={study.slug} study={study} />
+            ))}
+          </div>
         </div>
       </Band>
+
 
       {/* ---- Featured ---------------------------------------------------- */}
       {featuredPost && (
@@ -349,20 +402,11 @@ export default function HomePage() {
               title={headline(post.title, 64)}
               date={post.published}
               size="compact"
+              rounded
             />
           ))}
         </div>
       </Band>
-
-      {/* ---- Partners ---------------------------------------------------- */}
-      <PartnerGrid
-        tone="tint"
-        eyebrow="Alliances"
-        title="Our technology partners"
-        lead="We hold partner status across the platforms our clients already run, so the work lands inside their existing licensing and support model."
-        logos={partnerLogos}
-        action={{ label: "All alliance partners", href: "/alliance-partners" }}
-      />
 
       {/* The contracting-officer credential band and the careers band both came
           off this page. The credentials live on /primecontracts and /compliance,

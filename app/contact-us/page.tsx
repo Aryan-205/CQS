@@ -173,10 +173,10 @@ export default function ContactPage() {
         <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-7">
             <Eyebrow>By message</Eyebrow>
-            <h2 className="measure mt-5 text-h1 text-ink">
+            <h2 className="measure-title mt-5 text-h1 text-ink">
               Tell us what you are trying to solve
             </h2>
-            <p className="measure mt-5 text-lg text-body">
+            <p className="measure-lead mt-5 text-lg text-body">
               Five fields and a message. If it is time-sensitive, call the line
               above instead.
             </p>

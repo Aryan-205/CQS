@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Button, Eyebrow } from "@/components/sections";
+import { Eyebrow } from "@/components/sections";
 import { Arrow, ChevronDown } from "@/components/icons";
 import { heroPoster, heroVideo } from "@/lib/media";
 
@@ -88,14 +88,11 @@ export function HomeHero() {
           digital transformation for the enterprises that run alongside them.
         </p>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Button href="/government-it-services" onDark>
-            Explore Government services
-          </Button>
-          <Button href="/technologygroup" variant="secondary" onDark>
-            Explore Commercial services
-          </Button>
-        </div>
+        {/* No button pair here. It said Government / Commercial, and the
+            practice split forty pixels below says Government / Commercial —
+            the same fork, twice, is four calls to action for one decision.
+            The split is the better object and it is pinned to the band edge,
+            so the buttons come off and the headline gets the air. */}
       </div>
 
       {/* Practice split, pinned to the foot of the hero — the first choice a

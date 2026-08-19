@@ -104,6 +104,11 @@
   --radius-pill: 9999px;
   --radius-card: 12px;
 
+  /* Landing-page design experiment. A separate token rather than a change to
+     --radius-card, because the rounding is scoped to the homepage and every
+     other page still frames media at 12px. */
+  --radius-soft: 6px;
+
   /* -- Motion: microinteractions only ------------------------------------- */
   --ease-brand: cubic-bezier(0.2, 0, 0, 1);
 
@@ -181,6 +186,19 @@
     max-width: 70ch;
   }
 
+  /* Headlines are not prose and must not be measured like prose. At 46px a
+     70ch heading runs to three lines and reads as a paragraph set large; the
+     same words at 24ch land in two and read as a statement. The lead beneath
+     stays comfortably inside the 70ch cap but sits narrower than the body it
+     introduces, so the head is a shape rather than a wall. */
+  .measure-title {
+    max-width: 24ch;
+  }
+
+  .measure-lead {
+    max-width: 62ch;
+  }
+
   /* Page shell: 1280px, 24px gutters, 16px on mobile. */
   .shell,
   .shell-wide {
@@ -236,6 +254,20 @@
       rgb(0 0 0 / 0.72) 0%,
       rgb(0 0 0 / 0.45) 45%,
       rgb(0 0 0 / 0.86) 100%
+    );
+  }
+
+  /* Overlay cards: type sits on the photograph rather than under it, so the
+     foot of the frame has to carry white at 21:1 whatever the picture does
+     there. Bottom-weighted and almost clear at the top, so the image still
+     reads as an image. */
+  .scrim-card {
+    background: linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0.04) 0%,
+      rgb(0 0 0 / 0.22) 44%,
+      rgb(0 0 0 / 0.72) 78%,
+      rgb(0 0 0 / 0.88) 100%
     );
   }
 

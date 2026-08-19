@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Band, SectionHead } from "@/components/sections";
 import { Arrow } from "@/components/icons";
+import { blurPlaceholder } from "@/lib/media";
 
 export type FeatureItem = {
   href: string;
@@ -40,14 +41,16 @@ export function Featured({
         align="split"
       />
 
-      <div className="grid gap-x-16 gap-y-14 lg:grid-cols-[1.15fr_1fr]">
+      <div className="grid gap-x-12 gap-y-12 lg:grid-cols-[1.15fr_1fr]">
         <Link href={lead.href} className="group flex flex-col">
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-tint-neutral">
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-soft bg-tint-neutral">
             <Image
               src={lead.image}
               alt=""
               fill
               sizes="(min-width: 1024px) 55vw, 100vw"
+              placeholder="blur"
+              blurDataURL={blurPlaceholder}
               className="graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.03]"
             />
           </div>
@@ -66,14 +69,16 @@ export function Featured({
             down the column however many lines a title runs to. */}
         <ul className="flex flex-col divide-y divide-line border-y border-line lg:self-start">
           {items.map((item) => (
-            <li key={item.href} className="py-7 first:pt-0 last:pb-0">
+            <li key={item.href} className="py-6 first:pt-0 last:pb-0">
               <Link href={item.href} className="group flex items-start gap-6">
-                <div className="relative aspect-[4/3] w-32 shrink-0 overflow-hidden bg-tint-neutral sm:w-40">
+                <div className="relative aspect-[4/3] w-32 shrink-0 overflow-hidden rounded-soft bg-tint-neutral sm:w-40">
                   <Image
                     src={item.image}
                     alt=""
                     fill
                     sizes="160px"
+                    placeholder="blur"
+                    blurDataURL={blurPlaceholder}
                     className="graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.04]"
                   />
                 </div>

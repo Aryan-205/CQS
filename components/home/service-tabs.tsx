@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useId, useState } from "react";
 import { Eyebrow } from "@/components/sections";
+import { blurPlaceholder } from "@/lib/media";
 
 export type ServiceCard = {
   title: string;
@@ -33,12 +34,12 @@ export function ServiceTabs({ tabs }: { tabs: ServiceTab[] }) {
   const practice = current.key;
 
   return (
-    <section className="bg-bg py-24 sm:py-32">
+    <section className="bg-bg py-16 sm:py-24">
       <div className="shell">
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <Eyebrow practice={practice}>What we do</Eyebrow>
-            <h2 className="measure mt-5 text-h1 text-ink">Our services</h2>
+            <h2 className="measure-title mt-5 text-h1 text-ink">Our services</h2>
           </div>
 
           <div
@@ -72,7 +73,7 @@ export function ServiceTabs({ tabs }: { tabs: ServiceTab[] }) {
           </div>
         </div>
 
-        <p className="measure mb-16 text-lg text-body">{current.lead}</p>
+        <p className="measure-lead mb-12 text-lg text-body">{current.lead}</p>
 
         {/* No borders, no fills, no icon chrome: a picture, a name, a line of
             copy, sitting on the white page with room around them. */}
@@ -80,7 +81,7 @@ export function ServiceTabs({ tabs }: { tabs: ServiceTab[] }) {
           role="tabpanel"
           id={`${id}-${current.key}-panel`}
           aria-labelledby={`${id}-${current.key}-tab`}
-          className="grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4"
         >
           {current.cards.map((card) => (
             <Link
@@ -88,16 +89,18 @@ export function ServiceTabs({ tabs }: { tabs: ServiceTab[] }) {
               href={card.href}
               className="group flex flex-col"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-tint-neutral">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-soft bg-tint-neutral">
                 <Image
                   src={card.image}
                   alt=""
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  placeholder="blur"
+                  blurDataURL={blurPlaceholder}
                   className="graded object-cover transition-transform duration-[240ms] ease-brand group-hover:scale-[1.04]"
                 />
                 <span
-                  className={`absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 transition-transform duration-[180ms] ease-brand group-hover:scale-x-100 ${
+                  className={`absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 rounded-b-soft transition-transform duration-[180ms] ease-brand group-hover:scale-x-100 ${
                     practice === "government" ? "bg-brand-red" : "bg-brand-blue"
                   }`}
                   aria-hidden
