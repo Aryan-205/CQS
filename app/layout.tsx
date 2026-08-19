@@ -1,26 +1,34 @@
 import type { Metadata } from "next";
-import { Outfit, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 // Brand font is Codec Pro (Zetafonts), Regular and Medium, letter-spacing 0%.
-// The webfont licence is not purchased yet. Outfit is the closest free match —
-// geometric sans, single-storey `a`. When the licence lands, swap this for a
-// next/font/local loader; nothing else in the codebase needs to change.
-const brandSans = Outfit({
+// The webfont licence is not purchased yet. Geist is the stand-in — a neo-
+// grotesque that holds up at 17px over a 70ch measure, where Outfit's wide
+// geometric counters went soft. Self-hosted from app/fonts/ so the build needs
+// no network. Variable across 100-900; the 400/500 ladder is enforced by the
+// type tokens in globals.css, not by what the file can render.
+// Latin subset only (U+0000-00FF plus punctuation, currency and quotes) —
+// anything outside it falls back to system-ui.
+const brandSans = localFont({
+  src: "./fonts/Geist-Variable.woff2",
   variable: "--font-brand-sans",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: "100 900",
+  style: "normal",
   display: "swap",
 });
 
 // Reserved for federal identifiers only — UEI, CAGE, DUNS, contract vehicle
 // numbers. Not a brand font, so it never appears in headings or eyebrows.
-const brandMono = JetBrains_Mono({
+// Geist Mono rather than JetBrains Mono: it shares the sans skeleton, so a
+// code string sits in a line of body copy without reading as a foreign font.
+const brandMono = localFont({
+  src: "./fonts/GeistMono-Variable.woff2",
   variable: "--font-brand-mono",
-  subsets: ["latin"],
-  weight: ["400"],
+  weight: "100 900",
+  style: "normal",
   display: "swap",
 });
 

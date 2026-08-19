@@ -121,7 +121,7 @@ export default function StyleguidePage() {
       </Band>
 
       {/* ---------------- Type scale ---------------- */}
-      <Band label="Type scale — Outfit, weights 400 and 500 only" tint="neutral">
+      <Band label="Type scale — Geist, weights 400 and 500 only" tint="neutral">
         <div className="space-y-8">
           <div>
             <p className="text-code font-mono text-muted mb-2">
