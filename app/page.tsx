@@ -25,6 +25,7 @@ import { Arrow } from "@/components/icons";
 import { HomeHero } from "@/components/home/hero";
 import { Featured } from "@/components/home/featured";
 import { ServiceTabs, type ServiceTab } from "@/components/home/service-tabs";
+import { MethodLedger } from "@/components/home/method";
 
 /** CMS titles run to full sentences; past this they stop being headlines. */
 function headline(text: string, max = 84) {
@@ -154,6 +155,33 @@ const PRACTICES = [
   },
 ];
 
+/* -------------------------------------------------------------------------
+   Q Methodology — the four delivery stages, verbatim from content.md:933.
+   A real sequence, which is what earns the numbering in the ledger.
+------------------------------------------------------------------------- */
+const PROCESS = [
+  {
+    title: "Comprehensive Assessment",
+    description:
+      "By understanding your specific needs and goals, we can tailor our solutions to address your unique requirements.",
+  },
+  {
+    title: "Customized Solution Development",
+    description:
+      "We develop customized solutions based on the assessment, leveraging our expertise and industry best practices.",
+  },
+  {
+    title: "Scalable and Efficient Implementation",
+    description:
+      "We ensure a smooth implementation of the solutions, considering scalability and efficiency.",
+  },
+  {
+    title: "Ongoing Support and Optimization",
+    description:
+      "Our team continually monitors and optimizes the implemented solutions, keeping them updated with industry trends and technological advancements.",
+  },
+];
+
 /**
  * Held back from the homepage only. The record still renders at
  * /case-study/dynamics-365-finance-case-study and still lists on /case-studies.
@@ -194,6 +222,13 @@ function CaseCard({
       {/* The type sits on live photography, so the foot of the frame carries
           its own ground rather than trusting the picture to be dark there. */}
       <div className="absolute inset-0 -z-10 scrim-card" aria-hidden />
+
+      {/* The same rule the service cards wipe in on hover. Two hover languages
+          on one page is one more than the page needs. */}
+      <span
+        className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-brand-blue transition-transform duration-[180ms] ease-brand group-hover:scale-x-100"
+        aria-hidden
+      />
 
       <div className={lead ? "p-8 sm:p-10" : "p-7 sm:p-8"}>
         {/* No category chip. The band is headed "Case studies" and holds
@@ -238,11 +273,19 @@ export default function HomePage() {
           eyebrow="Two practices"
           title="One company, two ways in"
           lead="CompQsoft has run federal programmes and commercial transformation side by side for 28 years. Start with the one you came for."
+          size="display"
         />
 
-        <div className="grid gap-px overflow-hidden rounded-soft border border-line bg-line lg:grid-cols-2">
+        {/* Two cards, not one two-up panel. Hairline-joined they read as a
+            single object split down the middle, which is the opposite of what
+            the band says: these are two separate ways into the company, and a
+            real gap between them is the fork. */}
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
           {PRACTICES.map((practice) => (
-            <div key={practice.key} className="flex flex-col bg-bg">
+            <div
+              key={practice.key}
+              className="flex flex-col overflow-hidden rounded-soft border border-line bg-bg"
+            >
               <div className="relative aspect-[16/9] overflow-hidden bg-black">
                 <Image
                   src={practice.image.src}
@@ -305,13 +348,25 @@ export default function HomePage() {
       {/* ---- Services ---------------------------------------------------- */}
       <ServiceTabs tabs={SERVICE_TABS} />
 
+      {/* ---- Method ------------------------------------------------------ */}
+      {/* The page has said what the company sells four times by this point and
+          has not once said how it runs. This is also the only band on the page
+          with no photograph in it, which is the reason it is here rather than
+          folded into the services grid above. */}
+      <MethodLedger
+        title="How we deliver"
+        lead="Delivery runs on CompQsoft's proprietary Q Methodology, aligned to Carnegie Mellon's CMMI-SVC — the same four stages on every contract, commercial or federal, so service delivery stays uniform and risk stays contained."
+        footnote="Appraised at CMMI-DEV Level 3 and CMMI-SVC Level 3, and certified to ISO 9001:2015, ISO/IEC 27001 and ISO/IEC 20000-1."
+        steps={PROCESS}
+      />
+
       {/* ---- Partners ---------------------------------------------------- */}
       {/* Moved up above the case studies. A partner set is the fastest
           credibility read on the page — it is scanned, not read — and it was
           sitting sixth, after four content shelves had already spent the
           visitor's attention. */}
       <PartnerGrid
-        tone="tint"
+        tone="white"
         eyebrow="Alliances"
         title="Our technology partners"
         lead="We hold partner status across the platforms our clients already run, so the work lands inside their existing licensing and support model."
@@ -329,7 +384,7 @@ export default function HomePage() {
 
           The right column is grid-rows-2, so the two stacked cards divide the
           lead card's height exactly rather than approximately. */}
-      <Band id="work" tone="white" practice="commercial">
+      <Band id="work" tone="tint" practice="commercial">
         <SectionHead
           eyebrow="Case studies"
           title="Performance, proven in the field"
@@ -359,6 +414,7 @@ export default function HomePage() {
       {/* ---- Featured ---------------------------------------------------- */}
       {featuredPost && (
         <Featured
+          tone="white"
           eyebrow="Featured"
           title="What we are working on"
           action={{ label: "View all updates", href: "/blogs" }}
@@ -380,7 +436,7 @@ export default function HomePage() {
       {/* ---- Latest ------------------------------------------------------ */}
       {/* Four equal columns — nothing here outranks anything else, so the row
           reads as a shelf rather than a hierarchy. */}
-      <Band id="latest" tone="white">
+      <Band id="latest" tone="white" size="tight">
         <SectionHead
           eyebrow="Latest"
           title="Expert insights from every angle"

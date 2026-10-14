@@ -159,10 +159,10 @@ export function SiteHeader() {
             </Link>
             <Link
               href="/contact-us"
-              className={`group inline-flex items-center gap-2 rounded-pill px-6 py-2.5 text-base transition-colors duration-150 ease-brand ${
+              className={`group inline-flex items-center gap-2 rounded-pill px-6 py-2.5 text-base transition-[background-color,color,box-shadow] duration-150 ease-brand ${
                 onDark
                   ? "bg-bg text-ink hover:bg-on-black-mute"
-                  : "bg-black text-on-black hover:bg-body"
+                  : "bg-black text-on-black hover:bg-body hover:shadow-[0_10px_28px_-8px_rgba(1,167,229,0.55)]"
               }`}
             >
               Contact us

@@ -56,6 +56,7 @@ const BANNERS: Record<string, string> = {
   "/cms-sparc": `${CDN}/2024/12/compqsoft-banner.jpg`,
   "/dlajets": `${CDN}/2024/12/compqsoft-banner.jpg`,
   "/erc": `${CDN}/2024/04/careers-banner.jpg`,
+  "/it-workforce-solutions": `${CDN}/2024/04/careers-banner.jpg`,
 };
 
 export const bannerFor = (path: string): string | undefined =>

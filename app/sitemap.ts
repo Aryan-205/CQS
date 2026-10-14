@@ -17,6 +17,7 @@ const STATIC_ROUTES = [
   "/about-us",
   "/government-it-services",
   "/technologygroup",
+  "/it-workforce-solutions",
   "/compliance",
   "/primecontracts",
   "/cio-sp3",

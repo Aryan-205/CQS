@@ -216,7 +216,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="group inline-flex items-center gap-2.5 rounded-pill bg-black px-8 py-4 text-base text-on-black transition-colors duration-150 ease-brand hover:bg-body"
+        className="group inline-flex items-center gap-2.5 rounded-pill bg-black px-8 py-4 text-base text-on-black transition-[background-color,box-shadow] duration-150 ease-brand hover:bg-body hover:shadow-[0_10px_28px_-8px_rgba(1,167,229,0.55)]"
       >
         Send message
         <Arrow className="h-3.5 w-3.5 transition-transform duration-150 ease-brand group-hover:translate-x-1" />

@@ -122,6 +122,7 @@ export const primaryNav: NavItem[] = [
         href: "/technologygroup",
         links: [
           { label: "Commercial IT Services", href: "/technologygroup" },
+          { label: "IT Workforce Solutions", href: "/it-workforce-solutions" },
           { label: "Alliance Partners", href: "/alliance-partners" },
         ],
       },
@@ -212,6 +213,7 @@ export const footerColumns: NavColumn[] = [
     links: [
       { label: "Government", href: "/government-it-services" },
       { label: "Commercial", href: "/technologygroup" },
+      { label: "IT Workforce Solutions", href: "/it-workforce-solutions" },
       { label: "Compliance", href: "/compliance" },
     ],
   },

@@ -410,20 +410,30 @@ export function SpecList({
 export function NameStrip({
   eyebrow,
   title,
+  lead,
   names,
+  columns = 4,
   tone = "white",
   practice = "commercial",
 }: {
   eyebrow?: string;
   title?: string;
+  lead?: string;
   names: string[];
+  /** Pick the count that divides the list — the hairline grid shows a dead
+   *  cell as a grey block. */
+  columns?: 3 | 4;
   tone?: "white" | "tint";
   practice?: Practice;
 }) {
   return (
     <Band tone={tone} practice={practice}>
-      <SectionHead eyebrow={eyebrow} title={title} practice={practice} />
-      <ul className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      <SectionHead eyebrow={eyebrow} title={title} lead={lead} practice={practice} />
+      <ul
+        className={`grid gap-px border border-line bg-line sm:grid-cols-2 ${
+          columns === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
+        }`}
+      >
         {names.map((name) => (
           <li
             key={name}

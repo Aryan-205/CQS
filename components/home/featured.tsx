@@ -25,15 +25,17 @@ export function Featured({
   action,
   lead,
   items,
+  tone = "tint",
 }: {
   eyebrow: string;
   title: string;
   action: { label: string; href: string };
   lead: FeatureItem;
   items: FeatureItem[];
+  tone?: "white" | "tint";
 }) {
   return (
-    <Band tone="tint" practice="neutral">
+    <Band tone={tone} practice="neutral">
       <SectionHead
         eyebrow={eyebrow}
         title={title}

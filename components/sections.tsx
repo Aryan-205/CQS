@@ -90,6 +90,7 @@ export function SectionHead({
   action,
   align = "left",
   mark = false,
+  size = "h1",
 }: {
   eyebrow?: string;
   title?: string;
@@ -98,6 +99,9 @@ export function SectionHead({
   onDark?: boolean;
   action?: { label: string; href: string };
   align?: "left" | "split";
+  /** `display` is for the three anchor bands only. Every band heading at the
+   *  same size is why a long page reads flat — nothing outranks anything. */
+  size?: "h1" | "display";
   /**
    * Hangs the company lockup off the end of the head, at four times the size
    * it runs at in the header. Transparent artwork straight onto the white
@@ -125,7 +129,7 @@ export function SectionHead({
         )}
         {title && (
           <h2
-            className={`measure-title mt-5 text-h1 ${onDark ? "text-on-black" : "text-ink"}`}
+            className={`measure-title mt-5 ${size === "display" ? "text-display" : "text-h1"} ${onDark ? "text-on-black" : "text-ink"}`}
           >
             {title}
           </h2>
@@ -164,11 +168,13 @@ export function Button({
   children,
   variant = "primary",
   onDark = false,
+  practice = "neutral",
 }: {
   href: string;
   children: ReactNode;
   variant?: "primary" | "secondary";
   onDark?: boolean;
+  practice?: Practice;
 }) {
   // On white the primary is a black pill; on black it inverts to white, per
   // the deck's "The IT Edge for Lean Government" button.
@@ -181,10 +187,17 @@ export function Button({
         ? "border border-white/60 bg-black/35 backdrop-blur-sm text-on-black hover:border-on-black hover:bg-black/55"
         : "border border-line text-ink hover:border-ink hover:bg-tint-neutral";
 
+  // Practice-coded glow on hover — red for Government, blue for Commercial —
+  // the same signal the tint bands and card rules already carry.
+  const glow =
+    practice === "government"
+      ? "hover:shadow-[0_10px_28px_-8px_rgba(238,71,67,0.55)]"
+      : "hover:shadow-[0_10px_28px_-8px_rgba(1,167,229,0.55)]";
+
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center gap-2.5 rounded-pill px-7 py-3.5 text-base transition-colors duration-150 ease-brand ${style}`}
+      className={`group inline-flex items-center gap-2.5 rounded-pill px-7 py-3.5 text-base shadow-[0_0_0_rgba(0,0,0,0)] transition-[background-color,color,border-color,box-shadow] duration-150 ease-brand ${style} ${glow}`}
     >
       {children}
       <Arrow className="h-3.5 w-3.5 transition-transform duration-150 ease-brand group-hover:translate-x-1" />
@@ -290,6 +303,7 @@ export function Hero({
                 href={action.href}
                 variant={i === 0 ? "primary" : "secondary"}
                 onDark
+                practice={practice}
               >
                 {action.label}
               </Button>
@@ -715,7 +729,7 @@ export function CertStrip({
           <li key={item.title} className="bg-bg p-7 sm:p-8">
             {item.icon && (
               <span
-                className={`mb-6 grid h-12 w-12 place-items-center rounded-pill text-ink ${ruleClass(practice)}`}
+                className={`mb-6 grid h-12 w-12 place-items-center rounded-pill text-on-black ${ruleClass(practice)}`}
               >
                 {item.icon}
               </span>
@@ -1060,9 +1074,11 @@ export function CtaBand({
           <p className="mt-7 max-w-[58ch] text-lg text-body">{lead}</p>
         )}
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <Button href={action.href}>{action.label}</Button>
+          <Button href={action.href} practice={practice}>
+            {action.label}
+          </Button>
           {secondary && (
-            <Button href={secondary.href} variant="secondary">
+            <Button href={secondary.href} variant="secondary" practice={practice}>
               {secondary.label}
             </Button>
           )}
@@ -1334,7 +1350,7 @@ export function FeatureSplit({
           )}
           {action && (
             <div className="mt-8">
-              <Button href={action.href} variant="secondary">
+              <Button href={action.href} variant="secondary" practice={practice}>
                 {action.label}
               </Button>
             </div>
@@ -1406,7 +1422,9 @@ export function CredentialBand({
 
           {action && (
             <div className="mt-12">
-              <Button href={action.href}>{action.label}</Button>
+              <Button href={action.href} practice="government">
+                {action.label}
+              </Button>
             </div>
           )}
         </div>
